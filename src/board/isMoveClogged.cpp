@@ -1,4 +1,5 @@
 /*
+ *
  * FALP Chess © 2023 by Antlampas is licensed under CC BY-SA 4.0. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/
  *
  */
@@ -25,7 +26,7 @@ bool board::isMoveClogged(std::string start,std::string end)
             else
                 return false;
         else if(piece.at(1)=='r')
-            if( ((startRow == endRow) && (this->isColumnClogged(start,end))) || ((startColumn == endColumn) && (this->isRowClogged(start,end))) )
+            if( ((startRow == endRow) && (startColumn != endColumn) && (this->isColumnClogged(start,end))) || ((startColumn == endColumn) && (startRow != endRow) && (this->isRowClogged(start,end))) )
                 return true;
             else
                 return false;

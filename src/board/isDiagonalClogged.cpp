@@ -1,4 +1,5 @@
 /*
+ *
  * FALP Chess © 2023 by Antlampas is licensed under CC BY-SA 4.0. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/
  *
  */
@@ -18,20 +19,23 @@ bool board::isDiagonalClogged(std::string start,std::string end)
     const int& endRow      {decodedEndCoordinates.first};
     const int& endColumn   {decodedEndCoordinates.second};
 
-    if(std::abs(endColumn - startColumn) == std::abs(endRow - startRow))
-        if((endColumn > startColumn) && (endRow > startRow))
+    if(std::abs(endColumn - startColumn) == std::abs(endRow - startRow)) .
+    
+        /* Check main diagonal */
+        if((endColumn > startColumn) && (endRow > startRow)) //To the right
             for(int i=(startRow+1);i<endRow;i++)
                 if(this->boardMap.at(i).at(i)!="e")
                     return true;
-        else if( (endColumn < startColumn) && (endRow < startRow) )
+        else if((endColumn < startColumn) && (endRow < startRow)) //To the left
             for(int i=(startRow-1);i>endRow;i--)
                 if(this->boardMap.at(i).at(i)!="e")
                     return true;
-        else if( (endColumn > startColumn) && (endRow < startRow) )
+        /* Check secondary diagonal */
+        else if((endColumn > startColumn) && (endRow < startRow)) //To the right
             for(int i=(startRow-1),j=(startColumn+1);i>endRow,j<endColumn;i--,j++)
                 if(this->boardMap.at(i).at(j)!="e")
                     return true;
-        else if( (endColumn < startColumn) && (endRow > startRow) )
+        else if((endColumn < startColumn) && (endRow > startRow)) //To the left
             for(int i=(startRow+1),j=(startColumn-1);i<endRow,j>endColumn;i++,j--)
                 if(this->boardMap.at(i).at(j)!="e")
                     return true;
