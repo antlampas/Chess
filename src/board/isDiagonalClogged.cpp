@@ -19,7 +19,7 @@ bool board::isDiagonalClogged(std::string start,std::string end)
     const int& endRow      {decodedEndCoordinates.first};
     const int& endColumn   {decodedEndCoordinates.second};
 
-    if(std::abs(endColumn - startColumn) == std::abs(endRow - startRow)) .
+    if(std::abs(endColumn - startColumn) == std::abs(endRow - startRow))
     
         /* Check main diagonal */
         if((endColumn > startColumn) && (endRow > startRow)) //To the right

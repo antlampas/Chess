@@ -36,7 +36,7 @@ class board{
     * Coordinates id: it's a string like this: "a1", "b1", "c6", etc...
     */
     private:
-        std::vector<std::vector<std::string>> boardMap = std::vector(8,std::vector(8,std::string("e")));
+        std::vector<std::vector<std::string>> boardMap = std::vector<std::vector<std::string>>(8,std::vector<std::string>(8,std::string("e")));
         std::string error;
         // enum columns {A='a',B='b',C='c',D='d',E='e',F='f',G='g',H='h'};
         // enum rows {ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT};

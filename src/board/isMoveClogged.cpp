@@ -44,6 +44,8 @@ bool board::isMoveClogged(std::string start,std::string end)
                 return false;
         else if(piece.at(1)=='k')
             return false;
+        else
+            return false;
     else
     {
         this->error = "No pieces on the square";
