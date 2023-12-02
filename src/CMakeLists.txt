@@ -6,6 +6,9 @@ project(Chess)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+add_subdirectory(board)
+add_subdirectory(tests)
+
 add_executable(chess main.cpp)
 
-target_link_libraries(chess board)
+target_link_libraries(chess PUBLIC board)

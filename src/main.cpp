@@ -6,6 +6,7 @@
  
 #include <iostream>
 #include <algorithm>
+#include <iostream>
 
 #ifndef BOARD_HPP
 #include "board/board.hpp"
@@ -14,6 +15,7 @@
 int main(int argc,char** argv)
 {
     board b;
-
+    std::vector<std::vector<std::string>> board = b.boardStatus();
+    std::for_each(board.begin(),board.end(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){std::cout << column << " ";});std::cout << std::endl;});
     return 0;
 }
