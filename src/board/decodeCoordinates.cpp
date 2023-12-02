@@ -14,8 +14,8 @@ std::pair<int,int> board::decodeCoordinates(std::string coordinates)
 
     if(this->isCoordinateValid(coordinates))
     {
-        decodedCoordinates.first  = coordinates.at(1) - 48;
         decodedCoordinates.second = coordinates.at(0) - 97;
+        decodedCoordinates.first  = coordinates.at(1) - 49;
     }
     else
         this->error = "Coordinates not valid";
