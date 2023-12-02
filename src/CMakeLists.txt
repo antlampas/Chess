@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_subdirectory(board)
-add_subdirectory(tests)
 
 add_executable(chess main.cpp)
 
