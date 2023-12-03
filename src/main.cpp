@@ -9,7 +9,7 @@
 #include <iostream>
 
 #ifndef BOARD_HPP
-#include "board/board.hpp"
+#include "board.hpp"
 #endif
 
 int main(int argc,char** argv)
