@@ -16,7 +16,6 @@ board::board()
 
     const std::vector<std::string> backLine {"r","n","b","q","k","b","n","r"};
 
-    //for(int row=0;row<8;row++)
     for(int row: {0,1,2,3,4,5,6,7})
         if(row==0)
             for(int column=0;column<8;column++)
