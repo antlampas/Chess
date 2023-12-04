@@ -5,6 +5,7 @@
  */
 
 #include <algorithm>
+#include <regex>
 
 #ifndef BOARD_HPP
 #include "board.hpp"
@@ -29,4 +30,27 @@ board::board()
         else if(row==6)
             for(int column: {0,1,2,3,4,5,6,7})
                 this->boardMap.at(row).at(column) = "bp";
+}
+
+board::board(boardMapType initialPositions)
+{
+    std::regex pieceNameFormat("^[wb][prnbkq]$|^e$");
+    
+    bool validInput = true;
+
+    for(auto row: initialPositions)
+        if(!validInput)
+            break;
+        else
+            for(auto column: row)
+                if(!std::regex_match(column,pieceNameFormat))
+                {
+                    validInput = false;
+                    break;
+                }
+
+    if(!validInput)
+        std::for_each(this->boardMap.begin(),this->boardMap.end(),[](std::vector<std::string> column){std::fill(column.begin(),column.end(),"e");});
+    else
+        std::swap(this->boardMap,initialPositions);
 }

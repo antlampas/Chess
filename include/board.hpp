@@ -14,6 +14,8 @@
 
 #define private public
 
+using boardMapType = std::vector<std::vector<std::string>>;
+
 class board{
     /*
     * e = empty square
@@ -36,7 +38,7 @@ class board{
     * Coordinates id: it's a string like this: "a1", "b1", "c6", etc...
     */
     private:
-        std::vector<std::vector<std::string>> boardMap = std::vector<std::vector<std::string>>(8,std::vector<std::string>(8,std::string("e")));
+        boardMapType boardMap = boardMapType(8,std::vector<std::string>(8,std::string("e")));
         std::string error;
         // enum columns {A='a',B='b',C='c',D='d',E='e',F='f',G='g',H='h'};
         // enum rows {ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT};
@@ -55,7 +57,8 @@ class board{
         std::string getPieceInSquare(std::string);
     public:
         board();
-        std::vector<std::vector<std::string>> boardStatus();
+        board(boardMapType);
+        boardMapType boardStatus();
         std::vector<std::string> listValidMoves(std::string);
         bool move(std::string,std::string);
 };
