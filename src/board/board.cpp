@@ -18,21 +18,15 @@ board::board()
 
     for(int row: {0,1,2,3,4,5,6,7})
         if(row==0)
-            for(int column=0;column<8;column++)
-            {
-                this->boardMap.at(row).at(column) = backLine.at(column);
-                this->boardMap.at(row).at(column).insert(0,"w");
-            }
+            for(int column: {0,1,2,3,4,5,6,7})
+                this->boardMap.at(row).at(column) = "w"+backLine.at(column);
         else if(row==7)
-            for(int column=0;column<8;column++)
-            {
-                this->boardMap.at(row).at(column) = backLine.at(column);
-                this->boardMap.at(row).at(column).insert(0,"b");
-            }
+            for(int column: {0,1,2,3,4,5,6,7})
+                this->boardMap.at(row).at(column) = "b"+backLine.at(column);
         else if(row==1)
-            for(int column=0;column<8;column++)
+            for(int column: {0,1,2,3,4,5,6,7})
                 this->boardMap.at(row).at(column) = "wp";
         else if(row==6)
-            for(int column=0;column<8;column++)
+            for(int column: {0,1,2,3,4,5,6,7})
                 this->boardMap.at(row).at(column) = "bp";
 }
