@@ -39,10 +39,8 @@ class board{
     */
     private:
         boardMapType boardMap = boardMapType(8,std::vector<std::string>(8,std::string("e")));
+        std::vector<std::string> tookPieces;
         std::string error;
-        // enum columns {A='a',B='b',C='c',D='d',E='e',F='f',G='g',H='h'};
-        // enum rows {ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT};
-        // enum pieces {P='p',R='r',N='n',B='b',Q='q',K='k'};
     private:
         std::pair<int,int> decodeCoordinates(std::string);
         std::pair<char,char> decodePieceName(std::string);

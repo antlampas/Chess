@@ -18,7 +18,7 @@ bool board::isMoveValid(std::string start,std::string end)
     if(this->isPieceNameValid(piece) && this->isCoordinateValid(start) && this->isCoordinateValid(end))
     {
         std::pair<int,int> startCoordinates = this->decodeCoordinates(start);
-        std::pair<int,int> endCoordinates = this->decodeCoordinates(end);
+        std::pair<int,int> endCoordinates   = this->decodeCoordinates(end);
         
         const int& startRow    {startCoordinates.first};
         const int& startColumn {startCoordinates.second};
@@ -29,8 +29,8 @@ bool board::isMoveValid(std::string start,std::string end)
         bool moveHV       = (!(((startColumn != endColumn) && (startRow == endRow)) != !((startColumn == endColumn) && (startRow != endRow))));
         bool moveDiagonal = (std::abs(endRow-startRow) == std::abs(endColumn-startColumn));
         bool moveAnywhere = ((!moveHV != !moveDiagonal) || ((startRow == endRow) && (startColumn == endColumn)));
-        bool moveOne      = ((std::abs(endRow-startRow) <= 1) && (std::abs(endColumn-startColumn) <= 1));
-        bool moveL        = ((std::abs(endRow-startRow) == 1) && (std::abs(endRow-startRow) == 2)) || ((std::abs(endRow-startRow) == 2) && (std::abs(endRow-startRow) == 1));
+        bool moveOne      = ((std::abs(endRow-startRow) == 1) || (std::abs(endColumn-startColumn) == 1));
+        bool moveL        = (!(std::abs(endRow-startRow) == 1) && (std::abs(endColumn-startColumn) == 2)) != !((std::abs(endRow-startRow) == 2) && (std::abs(endColumn-startColumn) == 1));
         bool noMove       = ((startRow == endRow) && (startColumn == endColumn));
         
         if(piece.find("p"))      return noMove || advanceOne;

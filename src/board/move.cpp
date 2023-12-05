@@ -13,15 +13,25 @@ bool board::move(std::string start,std::string end)
     std::pair<int,int> decodedStartCoordinates = this->decodeCoordinates(start);
     std::pair<int,int> decodedEndCoordinates   = this->decodeCoordinates(end);
     
-    const int& startColumn {decodedStartCoordinates.first};
-    const int& startRow    {decodedStartCoordinates.second};
-    const int& endColumn   {decodedEndCoordinates.first};
-    const int& endRow      {decodedEndCoordinates.second};
+    const int& startRow    {decodedStartCoordinates.first};
+    const int& startColumn {decodedStartCoordinates.second};
+    const int& endRow      {decodedEndCoordinates.first};
+    const int& endColumn   {decodedEndCoordinates.second};
 
     std::string movingPiece = this->getPieceInSquare(start);
-    // if(this->isMoveValid(start,end))
-    // {
-        
-    // }
-    return true;
+
+    if(this->isMoveValid(start,end))
+        if(!this->isMoveClogged(start,end))
+        {
+            if(this->getPieceInSquare(end) != "e")
+                this->tookPieces.push_back(this->getPieceInSquare(end));
+            this->boardMap.at(endRow).at(endColumn) = movingPiece;
+            this->boardMap.at(startRow).at(startColumn) = "e";
+
+            return true;
+        }
+        else
+            return false;
+    else
+        return false;
 }
