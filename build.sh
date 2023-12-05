@@ -7,6 +7,5 @@ else
     mkdir build
 fi
 cd build
-cmake ..
-make
+cmake .. && make
 cd ..
