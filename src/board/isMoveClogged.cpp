@@ -22,7 +22,7 @@ bool board::isMoveClogged(std::string start,std::string end)
 
     if(piece!="e")
         if(piece.at(1)=='p')
-            if(this->isFrontClogged(start))
+            if(((startRow != endRow) && (startColumn == endColumn)) && this->isFrontClogged(start))
                 return true;
             else
                 if((this->boardMap.at(endRow).at(endColumn) != "e") && (this->boardMap.at(endRow).at(endColumn).at(0) == piece.at(0)))
