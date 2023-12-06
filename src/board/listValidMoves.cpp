@@ -10,13 +10,14 @@
 
 std::vector<std::string> board::listValidMoves(std::string coordinates)
 {
-    std::pair<int,int> decodedStartCoordinates = this->decodeCoordinates(coordinates);
+    std::pair<int,int> decodedCoordinates = this->decodeCoordinates(coordinates);
 
     const int& row    {decodedCoordinates.first};
     const int& column {decodedCoordinates.second};
     
     const std::string& piece = this->getPieceInSquare(coordinates);
-
+    char p = 'e';
+    
     if(this->isPieceNameValid(piece))
           p = piece.at(1); 
     else
