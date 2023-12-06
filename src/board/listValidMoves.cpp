@@ -16,10 +16,38 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
     const int& column {decodedCoordinates.second};
     
     const std::string& piece = this->getPieceInSquare(coordinates);
-    char p = 'e';
     
     if(this->isPieceNameValid(piece))
-          p = piece.at(1); 
+    {
+        std::vector<std::string> movesList;
+        if(piece.at(1)=='p')
+        {
+            if(piece.at(0) == 'w')
+            {
+                if((((row+1)<9)&&((column-1)<9)))
+                {
+                    std::string square = this->encodeCoordinates(std::pain<int,int>(row+1,column-1));
+                    if((this->getPieceInSquare(square) == 'e') || (this->getPieceInSquare(square).at(0) != piece.at(0)))
+                        moveList.append(this->encodeCoordinates(std::pain<int,int>(row+1,column-1)));
+                }
+                else if((((row+1)<9)&&((column+1)<9)))
+                {
+                    std::string square = this->encodeCoordinates(std::pain<int,int>(row+1,column+1));
+                    if((this->getPieceInSquare(square) == 'e') || (this->getPieceInSquare(square).at(0) != piece.at(0)))
+                        moveList.append(this->encodeCoordinates(std::pain<int,int>(row+1,column+1)));
+                }
+                else if((((row+1)<9))){}
+            }
+            else if(piece.at(0) == 'b'){}
+        }
+        else if(piece.at(1)=='r'){}
+        else if(piece.at(1)=='n'){}
+        else if(piece.at(1)=='b'){}
+        else if(piece.at(1)=='q'){}
+        else if(piece.at(1)=='k'){}
+        else return std::vector<std::string>();
+        return moveList;
+    }
     else
         return std::vector<std::string>();
 }
