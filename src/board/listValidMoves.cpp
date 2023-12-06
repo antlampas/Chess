@@ -106,7 +106,32 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 if(((column + 2) <  8) && ((row - 1) > -1)) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row-1,column+2)));
                 if(((column + 1) <  8) && ((row - 2) > -1)) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row-2,column+1)));
             }
-            else if(piece.at(1)=='b'){}
+            else if(piece.at(1)=='b')
+            {
+                if((row == 0) && (column == 0))
+                    for(int i=1;(!this->isDiagonalClogged(coordinates,this->encodeCoordinates(i,i)) || (i<8));i++)
+                        movesList.push_back(this->encodeCoordinates(i,i));
+                else if((row == 7) && (column == 0))
+                    for(int i=6,j=1;!this->isDiagonalClogged(coordinates,this->encodeCoordinates(i,j)) || (i > -1 || j < 8);i--,j++)
+                        movesList.push_back(this->encodeCoordinates(i,i));
+                else if((row == 7) && (column == 7))
+                    for(int i=6;(!this->isDiagonalClogged(coordinates,this->encodeCoordinates(i,i)) || (i>-1));i--)
+                        movesList.push_back(this->encodeCoordinates(i,i));
+                else if((row == 0) && (column == 7))
+                    for(int i=1,j=6;!this->isDiagonalClogged(coordinates,this->encodeCoordinates(i,j)) || (i < 8 || j > -1;i++,j--))
+                            movesList.push_back(this->encodeCoordinates(i,i));
+                else
+                {
+                    for(int i=row+1,j=column+1;!this->isDiagonalClogged(coordinates,this->encodeCoordinates(i,j)) || (i < 8) || (j < 8);i++,j++)
+                        movesList.push_back(this->encodeCoordinates(i,j));
+                    for(int i=row+1,j=column-1;!this->isDiagonalClogged(coordinates,this->encodeCoordinates(i,j)) || (i < 8) || (j > -1);i++,j--)
+                        movesList.push_back(this->encodeCoordinates(i,j));
+                    for(int i=row-1,j=column-1;!this->isDiagonalClogged(coordinates,this->encodeCoordinates(i,j)) || (i > -1) || (j > -1);i++,j++)
+                        movesList.push_back(this->encodeCoordinates(i,j));
+                    for(int i=row-1,j=column+1;!this->isDiagonalClogged(coordinates,this->encodeCoordinates(i,j)) || (i > -1) || (j < 8);i++,j++)
+                        movesList.push_back(this->encodeCoordinates(i,j));
+                }
+            }
             else if(piece.at(1)=='q'){}
             else if(piece.at(1)=='k'){}
             return movesList;
