@@ -10,7 +10,7 @@
 #include "board.hpp"
 #endif
 
-std::string encodeCoordinates(std::pair<int,int> coordinates)
+std::string board::encodeCoordinates(std::pair<int,int> coordinates)
 {
     if(coordinates.first > -1 && coordinates.first < 9)
         if(coordinates.second > -1 && coordinates.second < 9)
