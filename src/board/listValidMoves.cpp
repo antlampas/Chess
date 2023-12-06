@@ -12,65 +12,107 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
 {
     std::pair<int,int> decodedCoordinates = this->decodeCoordinates(coordinates);
 
-    const int& row    {decodedCoordinates.first};
-    const int& column {decodedCoordinates.second};
-    
-    const std::string& piece = this->getPieceInSquare(coordinates);
-    std::vector<std::string> movesList;
-
-    if(this->isPieceNameValid(piece))
+    if(decodedCoordinates.first != -1)
     {
-        if(piece.at(1)=='p')
+        const int& row    {decodedCoordinates.first};
+        const int& column {decodedCoordinates.second};
+        
+
+        const std::string& piece = this->getPieceInSquare(coordinates);
+        std::vector<std::string> movesList;
+
+        if(this->isPieceNameValid(piece))
         {
-            if(piece.at(0) == 'w')
+            if(piece.at(1)=='p')
             {
-                if((((row+1)<9)&&((column-1)>-1)))
+                if(piece.at(0) == 'w')
                 {
-                    std::string square = this->encodeCoordinates(std::pair<int,int>(row+1,column-1));
-                    if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
-                        movesList.push_back(square);
+                    if((((row+1)<8)&&((column-1)>-1)))
+                    {
+                        std::string square = this->encodeCoordinates(std::pair<int,int>(row+1,column-1));
+                        if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
+                            movesList.push_back(square);
+                    }
+                    if((((row+1)<8)&&((column+1)<8)))
+                    {
+                        std::string square = this->encodeCoordinates(std::pair<int,int>(row+1,column+1));
+                        if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
+                            movesList.push_back(square);
+                    }
+                    if((((row+1)<8)))
+                    {
+                        std::string square = this->encodeCoordinates(std::pair<int,int>(row+1,column));
+                        if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
+                            movesList.push_back(square);
+                    }
                 }
-                if((((row+1)<9)&&((column+1)<9)))
+                else if(piece.at(0) == 'b')
                 {
-                    std::string square = this->encodeCoordinates(std::pair<int,int>(row+1,column+1));
-                    if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
-                        movesList.push_back(square);
-                }
-                if((((row+1)<9)))
-                {
-                    std::string square = this->encodeCoordinates(std::pair<int,int>(row+1,column));
-                    if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
-                        movesList.push_back(square);
+                    if((((row-1)>-1)&&((column-1)>-1)))
+                    {
+                        std::string square = this->encodeCoordinates(std::pair<int,int>(row-1,column-1));
+                        if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
+                            movesList.push_back(square);
+                    }
+                    if((((row-1)>-1)&&((column+1)<8)))
+                    {
+                        std::string square = this->encodeCoordinates(std::pair<int,int>(row-1,column+1));
+                        if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
+                            movesList.push_back(square);
+                    }
+                    if((((row-1)>-1)))
+                    {
+                        std::string square = this->encodeCoordinates(std::pair<int,int>(row-1,column));
+                        if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
+                            movesList.push_back(square);
+                    }
                 }
             }
-            else if(piece.at(0) == 'b')
+            else if(piece.at(1)=='r')
             {
-                if((((row-1)>-1)&&((column-1)>-1)))
-                {
-                    std::string square = this->encodeCoordinates(std::pair<int,int>(row-1,column-1));
-                    if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
-                        movesList.push_back(square);
-                }
-                if((((row-1)>-1)&&((column+1)<9)))
-                {
-                    std::string square = this->encodeCoordinates(std::pair<int,int>(row-1,column+1));
-                    if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
-                        movesList.push_back(square);
-                }
-                if((((row-1)>-1)))
-                {
-                    std::string square = this->encodeCoordinates(std::pair<int,int>(row-1,column));
-                    if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
-                        movesList.push_back(square);
-                }
+                if((row!=0) && (row!=7))
+                    if(!this->isColumnClogged(coordinates,this->encodeCoordinates(7,column)) && !this->isColumnClogged(coordinates,this->encodeCoordinates(0,column)))
+                    {
+                        for(int i=row+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
+                        for(int i=row-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
+                    }
+                else if((row==0))
+                    if(!this->isColumnClogged(coordinates,this->encodeCoordinates(7,column)))
+                        for(int i=row+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
+                else if((row==7))
+                    if(!this->isColumnClogged(coordinates,this->encodeCoordinates(0,column)))
+                        for(int i=row-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
+                if((column!=0) && (column!=7))
+                    if(!this->isRowClogged(coordinates,this->encodeCoordinates(row,7)) && !this->isRowClogged(coordinates,this->encodeCoordinates(row,0)))
+                    {
+                        for(int i=column+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
+                        for(int i=column-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
+                    }
+                else if((column==0))
+                    if(!this->isColumnClogged(coordinates,this->encodeCoordinates(7,column)))
+                        for(int i=column+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
+                else if((column==7))
+                    if(!this->isColumnClogged(coordinates,this->encodeCoordinates(0,column)))
+                        for(int i=column-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
             }
+            else if(piece.at(1)=='n')
+            {
+                if(((column - 2) > -1) && ((row + 1) <  8)) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row+1,column-2)));
+                if(((column - 1) > -1) && ((row + 2) <  8)) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row+2,column-1)));
+                if(((column - 2) > -1) && ((row - 1) > -1)) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row-1,column-2)));
+                if(((column - 1) > -1) && ((row - 2) > -1)) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row-2,column-1)));
+                if(((column + 2) <  8) && ((row + 1) <  8)) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row+1,column+2)));
+                if(((column + 1) <  8) && ((row + 2) <  8)) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row+2,column+1)));
+                if(((column + 2) <  8) && ((row - 1) > -1)) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row-1,column+2)));
+                if(((column + 1) <  8) && ((row - 2) > -1)) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row-2,column+1)));
+            }
+            else if(piece.at(1)=='b'){}
+            else if(piece.at(1)=='q'){}
+            else if(piece.at(1)=='k'){}
+            return movesList;
         }
-        else if(piece.at(1)=='r'){}
-        else if(piece.at(1)=='n'){}
-        else if(piece.at(1)=='b'){}
-        else if(piece.at(1)=='q'){}
-        else if(piece.at(1)=='k'){}
-        return movesList;
+        else
+            return std::vector<std::string>();
     }
     else
         return std::vector<std::string>();

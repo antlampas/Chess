@@ -12,17 +12,16 @@
 
 std::string board::encodeCoordinates(std::pair<int,int> coordinates)
 {
-    if(coordinates.first > -1 && coordinates.first < 9)
-        if(coordinates.second > -1 && coordinates.second < 9)
-        {
-            const char row    = coordinates.first  + 49;
-            const char column = coordinates.second + 97;
-            
-            std::string encodedCoordinates;
-            
-            encodedCoordinates.append(1,column).append(1,row);
+    if((coordinates.first > -1 && coordinates.first < 9) && (coordinates.second > -1 && coordinates.second < 9))
+    {
+        const char row    = coordinates.first  + 49;
+        const char column = coordinates.second + 97;
+        
+        std::string encodedCoordinates;
+        
+        encodedCoordinates.append(1,column).append(1,row);
 
-            return encodedCoordinates;
-        }
+        return encodedCoordinates;
+    }
     return std::string();
 }
