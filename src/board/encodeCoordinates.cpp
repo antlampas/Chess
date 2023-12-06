@@ -20,7 +20,7 @@ std::string encodeCoordinates(std::pair<int,int> coordinates)
             
             std::string encodedCoordinates;
             
-            encodedCoordinates.append(1,column).append(1.row);
+            encodedCoordinates.append(1,column).append(1,row);
 
             return encodedCoordinates;
         }
