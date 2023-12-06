@@ -44,6 +44,7 @@ class board{
     private:
         std::pair<int,int> decodeCoordinates(std::string);
         std::pair<char,char> decodePieceName(std::string);
+        std::string encodeCoordinates(std::pair<int,int>);
         bool isColumnClogged(std::string,std::string);   //Starting position, end position
         bool isCoordinateValid(std::string);
         bool isDiagonalClogged(std::string,std::string); //Starting position, end position

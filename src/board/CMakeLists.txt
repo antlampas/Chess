@@ -5,6 +5,7 @@ add_library(board SHARED
             boardStatus.cpp
             decodeCoordinates.cpp
             decodePieceName.cpp
+            encodeCoordinates.cpp
             getPieceInSquare.cpp
             isColumnClogged.cpp
             isCoordinateValid.cpp

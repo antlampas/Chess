@@ -8,8 +8,17 @@
 #include "board.hpp"
 #endif
 
-std::vector<std::string> board::listValidMoves(std::string piece)
+std::vector<std::string> board::listValidMoves(std::string coordinates)
 {
+    std::pair<int,int> decodedStartCoordinates = this->decodeCoordinates(coordinates);
+
+    const int& row    {decodedCoordinates.first};
+    const int& column {decodedCoordinates.second};
     
-    return std::vector<std::string>();
+    const std::string& piece = this->getPieceInSquare(coordinates);
+
+    if(this->isPieceNameValid(piece))
+          p = piece.at(1); 
+    else
+        return std::vector<std::string>();
 }
