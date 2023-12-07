@@ -117,16 +117,16 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
             else if(piece.at(1)=='b')
             {
                 if((row == 0) && (column == 0))
-                    for(int i=1;(!this->isDiagonalClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(i,i))) || (i<8));i++)
+                    for(int i=1;(!this->isDiagonalClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(i,i))) && (i<8));i++)
                         movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,i)));
                 else if((row == 7) && (column == 0))
-                    for(int i=6,j=1;!this->isDiagonalClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(i,j))) || (i > -1 || j < 8);i--,j++)
+                    for(int i=6,j=1;!this->isDiagonalClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(i,j))) && (i > -1 || j < 8);i--,j++)
                         movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,i)));
                 else if((row == 7) && (column == 7))
-                    for(int i=6;(!this->isDiagonalClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(i,i))) || (i>-1));i--)
+                    for(int i=6;(!this->isDiagonalClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(i,i))) && (i>-1));i--)
                         movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,i)));
                 else if((row == 0) && (column == 7))
-                    for(int i=1,j=6;!this->isDiagonalClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(i,j))) || (i < 8 || j > -1);i++,j--)
+                    for(int i=1,j=6;!this->isDiagonalClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(i,j))) && (i < 8 || j > -1);i++,j--)
                             movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,i)));
                 else
                 {
