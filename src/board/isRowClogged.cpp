@@ -22,7 +22,10 @@ bool board::isRowClogged(std::string start,std::string end)
 
     bool clogged = false;
     if(startRow == endRow)
-        std::for_each(this->boardMap.at(startRow).begin(),this->boardMap.at(startRow).end(),[&clogged](std::string column){if(column!="e") clogged = true;});
+        //std::for_each(this->boardMap.at(startRow).begin(),this->boardMap.at(startRow).end(),[&clogged](std::string column){if(column!="e") clogged = true;});
+        for(int i=startColumn;i<=endColumn;i++)
+            if(this->boardMap.at(startRow).at(i)!="e")
+                clogged = true;
     else
         this->error = "Not on the same Row";
     return clogged;

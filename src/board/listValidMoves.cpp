@@ -77,9 +77,17 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 std::string previousRow    = this->encodeCoordinates(std::pair<int,int>(row-1,column));
                 std::string nextRow        = this->encodeCoordinates(std::pair<int,int>(row+1,column));
                 
+                bool isUpperColumnClogged = this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(7,column)));
+                bool isLowerColumnClogged = this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),previousRow);
+                bool isRightSideClogged   = this->isRowClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(row,7)));
+                bool isLeftSideClogged    = this->isRowClogged(this->encodeCoordinates(std::pair<int,int>(row,0)),previousColumn);
+
+                std::cout << isUpperColumnClogged << " " << isLowerColumnClogged << " " << isRightSideClogged << " " << isLeftSideClogged << std::endl << std::endl;
+                
                 if((row!=0) && (row!=7))
                 {
-                    if(!this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(7,column))) && !this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),previousRow))
+                    
+                    if(!isUpperColumnClogged && !isLowerColumnClogged)
                     {
                         for(int i=row+1;i<8;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                         for(int i=row-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
@@ -87,21 +95,22 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 }
                 else if((row==0))
                 {
-                    if(!this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(7,column))))
+                    if(!isUpperColumnClogged)
                     {
                         for(int i=row+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                     }
                 }
                 else if((row==7))
                 {
-                    if(!this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),previousRow))
+                    if(!isLowerColumnClogged)
                     {
                         for(int i=row-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                     }
                 }
+
                 if((column!=0) && (column!=7))
                 {
-                    if(!this->isRowClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(row,7))) && !this->isRowClogged(this->encodeCoordinates(std::pair<int,int>(row,0)),previousColumn))
+                    if(!isLeftSideClogged && !isRightSideClogged)
                     {
                         for(int i=column+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                         for(int i=column-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
@@ -109,14 +118,14 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 }
                 else if((column==0))
                 {
-                    if(!this->isRowClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(row,7))))
+                    if(!isRightSideClogged)
                     {
                         for(int i=column+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                     }
                 }
                 else if((column==7))
                 {
-                    if(!this->isRowClogged(this->encodeCoordinates(std::pair<int,int>(row,0)),previousColumn))
+                    if(!isLeftSideClogged)
                     {
                         for(int i=column-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                     }
