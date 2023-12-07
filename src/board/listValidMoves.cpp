@@ -71,7 +71,7 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
             else if(piece.at(1)=='r')
             {
                 if((row!=0) && (row!=7))
-                    if(!this->isColumnClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(7,column))) && !this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column),coordinates)))
+                    if(!this->isColumnClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(7,column))) && !this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),coordinates))
                     {
                         for(int i=row+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                         for(int i=row-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
@@ -80,10 +80,10 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                     if(!this->isColumnClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(7,column))))
                         for(int i=row+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                 else if((row==7))
-                    if(!this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column),coordinates)))
+                    if(!this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),coordinates))
                         for(int i=row-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                 if((column!=0) && (column!=7))
-                    if(!this->isRowClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(row,7))) && !this->isRowClogged(this->encodeCoordinates(std::pair<int,int>(row,0),coordinates)))
+                    if(!this->isRowClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(row,7))) && !this->isRowClogged(this->encodeCoordinates(std::pair<int,int>(row,0)),coordinates))
                     {
                         for(int i=column+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                         for(int i=column-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
@@ -92,7 +92,7 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                     if(!this->isColumnClogged(coordinates,this->encodeCoordinates(std::pair<int,int>(7,column))))
                         for(int i=column+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                 else if((column==7))
-                    if(!this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column),coordinates)))
+                    if(!this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),coordinates))
                         for(int i=column-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
             }
             else if(piece.at(1)=='n')
