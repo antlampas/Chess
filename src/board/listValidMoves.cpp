@@ -159,7 +159,10 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 if(((column - 1) > -1) && (this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,column-1))).at(0) != piece.at(0)))
                     movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,column-1)));
             }
-            else if(piece.at(1)=='q'){}
+            else if(piece.at(1)=='q')
+            {
+                return std::vector<std::string>();
+            }
             return movesList;
         }
         else
