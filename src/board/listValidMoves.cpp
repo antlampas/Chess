@@ -76,6 +76,7 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 std::string nextColumn     = this->encodeCoordinates(std::pair<int,int>(row,column+1));
                 std::string previousRow    = this->encodeCoordinates(std::pair<int,int>(row-1,column));
                 std::string nextRow        = this->encodeCoordinates(std::pair<int,int>(row+1,column));
+                
                 if((row!=0) && (row!=7))
                 {
                     if(!this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(7,column))) && !this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),previousRow))
