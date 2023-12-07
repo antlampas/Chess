@@ -81,8 +81,6 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 bool isLowerColumnClogged = this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),previousRow);
                 bool isRightSideClogged   = this->isRowClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(row,7)));
                 bool isLeftSideClogged    = this->isRowClogged(this->encodeCoordinates(std::pair<int,int>(row,0)),previousColumn);
-
-                std::cout << isUpperColumnClogged << " " << isLowerColumnClogged << " " << isRightSideClogged << " " << isLeftSideClogged << std::endl << std::endl;
                 
                 if((row!=0) && (row!=7))
                 {
