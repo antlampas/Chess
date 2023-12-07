@@ -108,14 +108,14 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 }
                 else if((column==0))
                 {
-                    if(!this->isRowClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(7,column))))
+                    if(!this->isRowClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(row,7))))
                     {
                         for(int i=column+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                     }
                 }
                 else if((column==7))
                 {
-                    if(!this->isRowClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),previousColumn))
+                    if(!this->isRowClogged(this->encodeCoordinates(std::pair<int,int>(row,0)),previousColumn))
                     {
                         for(int i=column-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                     }
