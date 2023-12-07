@@ -161,7 +161,7 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
             }
             else if(piece.at(1)=='q')
             {
-                return std::vector<std::string>(std::string("e"));
+                movesList.push_back("a1");
             }
             return movesList;
         }
