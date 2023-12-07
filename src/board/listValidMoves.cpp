@@ -21,25 +21,48 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
         const std::string& piece = this->getPieceInSquare(coordinates);
         std::vector<std::string> movesList;
 
+        std::string previousColumn = this->encodeCoordinates(std::pair<int,int>(row,column-1));
+        std::string nextColumn     = this->encodeCoordinates(std::pair<int,int>(row,column+1));
+        std::string previousRow    = this->encodeCoordinates(std::pair<int,int>(row-1,column));
+        std::string nextRow        = this->encodeCoordinates(std::pair<int,int>(row+1,column));
+        
+        const bool isUpperColumnClogged = this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(7,column)));
+        const bool isLowerColumnClogged = this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),previousRow);
+        const bool isRightSideClogged   = this->isRowClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(row,7)));
+        const bool isLeftSideClogged    = this->isRowClogged(this->encodeCoordinates(std::pair<int,int>(row,0)),previousColumn);
+
+        const bool isTopLeftInsideBounds     = ( (row + 1) < 8) && ( (column - 1) > -1);
+        const bool isTopRightInsideBounds    = ( (row + 1) < 8) && ( (column + 1) <  8);
+        const bool isBottomLeftInsideBounds  = ( (row - 1) > -1) && ( (column - 1) > -1);
+        const bool isBottomRightInsideBounds = ( (row - 1) > -1) && ( (column + 1) < 8);
+        const bool isTopInsideBounds         = (row + 1) < 8;
+        const bool isBottomInsideBounds      = (row - 1) > -1;
+        const bool isOnBottom                = row == 0;
+        const bool isOnTop                   = row == 7;
+        const bool isOnLeft                  = column == 0;
+        const bool isOnRight                 = column == 7;
+        const bool isNotOnBottomOrTop        = (row != 0) && (row != 7);
+        const bool isNotOnLeftOrRight        = (column != 0) && (column != 7);
+
         if(this->isPieceNameValid(piece))
         {
             if(piece.at(1)=='p')
             {
                 if(piece.at(0) == 'w')
                 {
-                    if((((row+1)<8)&&((column-1)>-1)))
+                    if(isTopLeftInsideBounds)
                     {
                         std::string square = this->encodeCoordinates(std::pair<int,int>(row+1,column-1));
                         if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
                             movesList.push_back(square);
                     }
-                    if((((row+1)<8)&&((column+1)<8)))
+                    if(isTopRightInsideBounds)
                     {
                         std::string square = this->encodeCoordinates(std::pair<int,int>(row+1,column+1));
                         if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
                             movesList.push_back(square);
                     }
-                    if((((row+1)<8)))
+                    if(isTopInsideBounds)
                     {
                         std::string square = this->encodeCoordinates(std::pair<int,int>(row+1,column));
                         if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
@@ -48,19 +71,19 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 }
                 else if(piece.at(0) == 'b')
                 {
-                    if((((row-1)>-1)&&((column-1)>-1)))
+                    if(isBottomLeftInsideBounds)
                     {
                         std::string square = this->encodeCoordinates(std::pair<int,int>(row-1,column-1));
                         if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
                             movesList.push_back(square);
                     }
-                    if((((row-1)>-1)&&((column+1)<8)))
+                    if(isBottomRightInsideBounds)
                     {
                         std::string square = this->encodeCoordinates(std::pair<int,int>(row-1,column+1));
                         if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
                             movesList.push_back(square);
                     }
-                    if((((row-1)>-1)))
+                    if(isBottomInsideBounds)
                     {
                         std::string square = this->encodeCoordinates(std::pair<int,int>(row-1,column));
                         if((this->getPieceInSquare(square) == "e") || (this->getPieceInSquare(square).at(0) != piece.at(0)))
@@ -70,62 +93,34 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
             }
             else if(piece.at(1)=='r')
             {
-                std::string previousColumn = this->encodeCoordinates(std::pair<int,int>(row,column-1));
-                std::string nextColumn     = this->encodeCoordinates(std::pair<int,int>(row,column+1));
-                std::string previousRow    = this->encodeCoordinates(std::pair<int,int>(row-1,column));
-                std::string nextRow        = this->encodeCoordinates(std::pair<int,int>(row+1,column));
-                
-                bool isUpperColumnClogged = this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(7,column)));
-                bool isLowerColumnClogged = this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),previousRow);
-                bool isRightSideClogged   = this->isRowClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(row,7)));
-                bool isLeftSideClogged    = this->isRowClogged(this->encodeCoordinates(std::pair<int,int>(row,0)),previousColumn);
-                
-                if((row!=0) && (row!=7))
-                {
-                    
+                if(isNotOnBottomOrTop)
                     if(!isUpperColumnClogged && !isLowerColumnClogged)
                     {
                         for(int i=row+1;i<8;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                         for(int i=row-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                     }
-                }
-                else if((row==0))
-                {
+                else if(isOnBottom)
                     if(!isUpperColumnClogged)
                     {
                         for(int i=row+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                     }
-                }
-                else if((row==7))
-                {
+                else if(isOnTop)
                     if(!isLowerColumnClogged)
                     {
                         for(int i=row-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                     }
-                }
-
-                if((column!=0) && (column!=7))
-                {
+                if(isNotOnLeftOrRight)
                     if(!isLeftSideClogged && !isRightSideClogged)
                     {
                         for(int i=column+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                         for(int i=column-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                     }
-                }
-                else if((column==0))
-                {
+                else if(isOnLeft)
                     if(!isRightSideClogged)
-                    {
                         for(int i=column+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
-                    }
-                }
-                else if((column==7))
-                {
+                else if(isOnRight)
                     if(!isLeftSideClogged)
-                    {
                         for(int i=column-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
-                    }
-                }
             }
             else if(piece.at(1)=='n')
             {
