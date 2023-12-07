@@ -4,8 +4,6 @@
  *
  */
 
-#include <algorithm>
-
 #ifndef BOARD_HPP
 #include "board.hpp"
 #endif
@@ -22,7 +20,6 @@ bool board::isColumnClogged(std::string start,std::string end)
 
     bool clogged = false;
     if(startColumn == endColumn)
-        //std::for_each(this->boardMap.begin(),this->boardMap.end(),[&clogged,startColumn](std::vector<std::string> row){if(row.at(startColumn)!="e") clogged = true;});
         for(int i=startRow;i<=endRow;i++)
         if(this->boardMap.at(i).at(startColumn) != "e")
                 clogged = true;

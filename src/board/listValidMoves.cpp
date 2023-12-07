@@ -4,8 +4,6 @@
  *
  */
 
-#include <iostream>
-
 #ifndef BOARD_HPP
 #include "board.hpp"
 #endif
