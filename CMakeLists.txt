@@ -4,10 +4,10 @@ cmake_minimum_required(VERSION 3.15)
 
 project(Chess)
 
-include_directories(include)
-
-add_subdirectory(src ${CMAKE_BUILD_TYPE})
-
 if(${CMAKE_BUILD_TYPE} MATCHES "Debug")
     add_definitions(-DDEBUG)
 endif()
+
+include_directories(include)
+
+add_subdirectory(src ${CMAKE_BUILD_TYPE})
