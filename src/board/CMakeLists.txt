@@ -15,6 +15,10 @@ add_library(board SHARED
             isMoveValid.cpp
             isPieceNameValid.cpp
             isRowClogged.cpp
+            leftRowFreeSquare.cpp
             listValidMoves.cpp
+            lowerColumnFreeSquare.cpp
             move.cpp
+            rightRowFreeSquare.cpp
+            upperColumnFreeSquare.cpp
            )
