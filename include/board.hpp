@@ -54,10 +54,10 @@ class board{
         bool isRowClogged(std::string,std::string);      //Starting position, end position
         bool isPieceNameValid(std::string);
         std::string getPieceInSquare(std::string);
-        int upperColumnFreeSquare(int,std::string);
-        int lowerColumnFreeSquare(int,std::string);
-        int rightRowFreeSquare(int,std::string);
-        int leftRowFreeSquare(int,std::string);
+        int upperColumnFreeSquare(int,int,std::string);
+        int lowerColumnFreeSquare(int,int,std::string);
+        int rightRowFreeSquare(int,int,std::string);
+        int leftRowFreeSquare(int,int,std::string);
     public:
         board();
         board(boardMapType);
