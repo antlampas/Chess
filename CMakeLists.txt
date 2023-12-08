@@ -8,3 +8,6 @@ include_directories(include)
 
 add_subdirectory(src ${CMAKE_BUILD_TYPE})
 
+if(${CMAKE_BUILD_TYPE} MATCHES "Debug")
+    add_definitions(-DDEBUG)
+endif()

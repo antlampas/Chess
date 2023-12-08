@@ -23,6 +23,3 @@ add_library(board SHARED
             upperColumnFreeSquare.cpp
            )
 
-if(${CMAKE_BUILD_TYPE} MATCHES "Debug")
-    add_definitions(-DDEBUG)
-endif()
