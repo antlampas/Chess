@@ -95,37 +95,37 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 //Column check
                 if(isNotOnBottomOrTop)
                 {
-                    int endRow = upperColumnFreeSquare(column,nextRow,piece);
+                    int endRow = upperColumnFreeSquare(row,column,nextRow,piece);
                     for(int i=row+1;i<=endRow;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
-                    endRow = lowerColumnFreeSquare(column,previousRow,piece);
+                    endRow = lowerColumnFreeSquare(row,column,previousRow,piece);
                     for(int i=row-1;i>=endRow;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                 }
                 if(isOnBottom)
                 {
-                    int endRow = upperColumnFreeSquare(column,nextRow,piece);
+                    int endRow = upperColumnFreeSquare(row,column,nextRow,piece);
                     for(int i=row+1;i<=endRow;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                 }
                 if(isOnTop)
                 {
-                    int endRow = lowerColumnFreeSquare(column,previousRow,piece);
+                    int endRow = lowerColumnFreeSquare(row,column,previousRow,piece);
                     for(int i=row-1;i>=endRow;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                 }
                 //Row check
                 if(isNotOnLeftOrRight)
                 {
-                    int endColumn = rightRowFreeSquare(row,nextColumn,piece);
+                    int endColumn = rightRowFreeSquare(row,column,nextColumn,piece);
                     for(int i=column+1;i<=endColumn;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
-                    endColumn = leftRowFreeSquare(row,previousColumn,piece);
+                    endColumn = leftRowFreeSquare(row,column,previousColumn,piece);
                     for(int i=column-1;i>=endColumn;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                 }
                 if(isOnLeft)
                 {
-                    int endColumn = rightRowFreeSquare(row,nextColumn,piece);
+                    int endColumn = rightRowFreeSquare(row,column,nextColumn,piece);
                     for(int i=column+1;i<=endColumn;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                 }
                 if(isOnRight)
                 {
-                    int endColumn = leftRowFreeSquare(row,previousColumn,piece);
+                    int endColumn = leftRowFreeSquare(row,column,previousColumn,piece);
                     for(int i=column-1;i>=endColumn;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                 }
             }
