@@ -278,7 +278,7 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
         return std::vector<std::string>();
 }
 
-int board::upperColumnFreeSquare(int row,std::string nextRow,std::string piece)
+int board::upperColumnFreeSquare(int row,int column,std::string nextRow,std::string piece)
 {
     int endRow = 7;
     while(this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(endRow,column))) && (endRow > row) ) --endRow;
@@ -287,7 +287,7 @@ int board::upperColumnFreeSquare(int row,std::string nextRow,std::string piece)
     return endRow;
 }
 
-int board::lowerColumnFreeSquare(int row,std::string previousRow,std::string piece)
+int board::lowerColumnFreeSquare(int row,int column,std::string previousRow,std::string piece)
 {
     int endRow = 0;
     while(this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(endRow,column)),previousRow) && (endRow < row) ) ++endRow;
@@ -296,7 +296,7 @@ int board::lowerColumnFreeSquare(int row,std::string previousRow,std::string pie
     return endRow;
 }
 
-int board::rightRowFreeSquare(int column,std::string nextColumn,std::string piece)
+int board::rightRowFreeSquare(int row,int column,std::string nextColumn,std::string piece)
 {
     int endColumn = 7;
     while(this->isColumnClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(row,endColumn))) && (endColumn > column) ) --endColumn;
@@ -305,7 +305,7 @@ int board::rightRowFreeSquare(int column,std::string nextColumn,std::string piec
     return endColumn;
 }
 
-int board::leftRowFreeSquare(int column,std::string previousColumn,std::string piece)
+int board::leftRowFreeSquare(int row,int column,std::string previousColumn,std::string piece)
 {
     int endColumn = 0;
     while(this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(row,endColumn)),previousColumn) && (endColumn < column) ) ++endColumn;
