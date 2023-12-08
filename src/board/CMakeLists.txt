@@ -24,5 +24,5 @@ add_library(board SHARED
            )
 
 if(${CMAKE_BUILD_TYPE} MATCHES "Debug")
-    target_compile_definitions(board public private)
+    add_definitions(-DDEBUG)
 endif()

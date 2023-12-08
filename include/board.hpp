@@ -12,7 +12,9 @@
 #include <array>
 #include <string>
 
-//#define private public
+#ifdef DEBUG
+    #define private public
+#endif
 
 using boardMapType = std::vector<std::vector<std::string>>;
 
