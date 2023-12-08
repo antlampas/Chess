@@ -7,3 +7,4 @@ project(Chess)
 include_directories(include)
 
 add_subdirectory(src ${CMAKE_BUILD_TYPE})
+
