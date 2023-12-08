@@ -93,36 +93,60 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
             }
             else if(piece.at(1)=='r')
             {
+                int endRow    = 0;
+                int endColumn = 0;
                 //Column check
                 if(isNotOnBottomOrTop)
-                    if(!isUpperColumnClogged && !isLowerColumnClogged)
-                    {
-                        for(int i=row+1;i<8;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
-                        for(int i=row-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
-                    }
+                {
+                    endRow = 7;
+                    while(this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(endRow,column))) && (endRow > row) ) --endRow;
+                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(endRow,column))).at(0) == piece.at(0)) --endRow;
+                    for(int i=row+1;i<=endRow;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
+                    endRow = 0;
+                    while(this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(endRow,column))) && (endRow < row) ) ++endRow;
+                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(endRow,column))).at(0) == piece.at(0)) ++endRow;
+                    for(int i=row-1;i>=endRow;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
+                }
                 if(isOnBottom)
-                    if(!isUpperColumnClogged)
-                    {
-                        for(int i=row+1;i<8;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
-                    }
+                {
+                    endRow = 7;
+                    while(this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(endRow,column))) && (endRow > row) ) --endRow;
+                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(endRow,column))).at(0) == piece.at(0)) --endRow;
+                    for(int i=row+1;i<=endRow;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
+                }
                 if(isOnTop)
-                    if(!isLowerColumnClogged)
-                    {
-                        for(int i=row-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
-                    }
+                {
+                    endRow = 0;
+                    while(this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(endRow,column))) && (endRow < row) ) ++endRow;
+                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(endRow,column))).at(0) == piece.at(0)) ++endRow;
+                    for(int i=row-1;i>=endRow;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
+                }
                 //Row check
                 if(isNotOnLeftOrRight)
-                    if(!isLeftSideClogged && !isRightSideClogged)
-                    {
-                        for(int i=column+1;i<8;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
-                        for(int i=column-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
-                    }
+                {
+                    endColumn = 7;
+                    while(this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(row,endColumn)),nextColumn) && (endColumn > column) ) --endColumn;
+                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,endColumn))).at(0) == piece.at(0)) --endColumn;
+                    for(int i=column+1;i<=endColumn;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
+                    endColumn = 0;
+                    while(this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(row,endColumn)),nextColumn) && (endColumn < column) ) ++endColumn;
+                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,endColumn))).at(0) == piece.at(0)) ++endColumn;
+                    for(int i=column-1;i>=endColumn;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
+                }
                 if(isOnLeft)
-                    if(!isRightSideClogged)
-                        for(int i=column+1;i<8;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
+                {
+                    endColumn = 7;
+                    while(this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(row,endColumn)),nextColumn) && (endColumn > column) ) --endColumn;
+                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,endColumn))).at(0) == piece.at(0)) --endColumn;
+                    for(int i=column+1;i<=endColumn;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
+                }
                 if(isOnRight)
-                    if(!isLeftSideClogged)
-                        for(int i=column-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
+                {
+                    endColumn = 0;
+                    while(this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(row,endColumn)),nextColumn) && (endColumn < column) ) ++endColumn;
+                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,endColumn))).at(0) == piece.at(0)) ++endColumn;
+                    for(int i=column-1;i>=endColumn;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
+                }
             }
             else if(piece.at(1)=='n')
             {
