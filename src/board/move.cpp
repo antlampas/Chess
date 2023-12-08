@@ -19,16 +19,22 @@ bool board::move(std::string start,std::string end)
     const int& endColumn   {decodedEndCoordinates.second};
 
     std::string movingPiece = this->getPieceInSquare(start);
-
+    std::string targetPiece = this->getPieceInSquare(end);
     if(this->isMoveValid(start,end))
         if(!this->isMoveClogged(start,end))
         {
-            if(this->getPieceInSquare(end) != "e")
-                this->tookPieces.push_back(this->getPieceInSquare(end));
-            this->boardMap.at(endRow).at(endColumn) = movingPiece;
-            this->boardMap.at(startRow).at(startColumn) = "e";
+            if(targetPiece != "e")
+                if(targetPiece.at(0) != movingPiece.at(0))
+                    this->tookPieces.push_back(targetPiece);
+                else
+                    return false;
+            else
+            {
+                this->boardMap.at(endRow).at(endColumn) = movingPiece;
+                this->boardMap.at(startRow).at(startColumn) = "e";
 
-            return true;
+                return true;
+            }
         }
         else
             return false;
