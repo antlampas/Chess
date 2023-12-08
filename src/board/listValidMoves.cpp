@@ -100,7 +100,7 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 {
                     int endRow = upperColumnFreeSquare(column,nextRow,piece);
                     for(int i=row+1;i<=endRow;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
-                    int endRow = lowerColumnFreeSquare(column,nextRow,piece);
+                    int endRow = lowerColumnFreeSquare(column,previousRow,piece);
                     for(int i=row-1;i>=endRow;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                 }
                 if(isOnBottom)
@@ -110,7 +110,7 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 }
                 if(isOnTop)
                 {
-                    int endRow = lowerColumnFreeSquare(column,nextRow,piece);
+                    int endRow = lowerColumnFreeSquare(column,previousRow,piece);
                     for(int i=row-1;i>=endRow;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                 }
                 //Row check
@@ -118,17 +118,17 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 {
                     int endColumn = rightRowFreeSquare(row,nextColumn,piece);
                     for(int i=column+1;i<=endColumn;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
-                    int endColumn = leftRowFreeSquare(row,piece);
+                    int endColumn = leftRowFreeSquare(row,previousColumn,piece);
                     for(int i=column-1;i>=endColumn;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                 }
                 if(isOnLeft)
                 {
-                    int endColumn = rightRowFreeSquare(row,piece);
+                    int endColumn = rightRowFreeSquare(row,nextColumn,piece);
                     for(int i=column+1;i<=endColumn;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                 }
                 if(isOnRight)
                 {
-                    int endColumn = leftRowFreeSquare(row,piece);
+                    int endColumn = leftRowFreeSquare(row,previousColumn,piece);
                     for(int i=column-1;i>=endColumn;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                 }
             }
