@@ -35,14 +35,14 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
         const bool isTopRightInsideBounds    = ( (row + 1) < 8) && ( (column + 1) <  8);
         const bool isBottomLeftInsideBounds  = ( (row - 1) > -1) && ( (column - 1) > -1);
         const bool isBottomRightInsideBounds = ( (row - 1) > -1) && ( (column + 1) < 8);
-        const bool isTopInsideBounds         = (row + 1) < 8;
-        const bool isBottomInsideBounds      = (row - 1) > -1;
-        const bool isOnBottom                = row == 0;
-        const bool isOnTop                   = row == 7;
-        const bool isOnLeft                  = column == 0;
-        const bool isOnRight                 = column == 7;
-        const bool isNotOnBottomOrTop        = (row != 0) && (row != 7);
-        const bool isNotOnLeftOrRight        = (column != 0) && (column != 7);
+        const bool isTopInsideBounds         = ( (row + 1) < 8);
+        const bool isBottomInsideBounds      = ( (row - 1) > -1);
+        const bool isOnBottom                = ( row == 0 );
+        const bool isOnTop                   = ( row == 7) ;
+        const bool isOnLeft                  = ( column == 0 );
+        const bool isOnRight                 = ( column == 7 );
+        const bool isNotOnBottomOrTop        = ( (row != 0) && (row != 7));
+        const bool isNotOnLeftOrRight        = ( (column != 0) && (column != 7));
 
         if(this->isPieceNameValid(piece))
         {
@@ -93,32 +93,34 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
             }
             else if(piece.at(1)=='r')
             {
+                //Column check
                 if(isNotOnBottomOrTop)
                     if(!isUpperColumnClogged && !isLowerColumnClogged)
                     {
                         for(int i=row+1;i<8;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                         for(int i=row-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                     }
-                else if(isOnBottom)
+                if(isOnBottom)
                     if(!isUpperColumnClogged)
                     {
-                        for(int i=row+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
+                        for(int i=row+1;i<8;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                     }
-                else if(isOnTop)
+                if(isOnTop)
                     if(!isLowerColumnClogged)
                     {
                         for(int i=row-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                     }
+                //Row check
                 if(isNotOnLeftOrRight)
                     if(!isLeftSideClogged && !isRightSideClogged)
                     {
-                        for(int i=column+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
+                        for(int i=column+1;i<8;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                         for(int i=column-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                     }
-                else if(isOnLeft)
+                if(isOnLeft)
                     if(!isRightSideClogged)
-                        for(int i=column+1;i<7;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
-                else if(isOnRight)
+                        for(int i=column+1;i<8;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
+                if(isOnRight)
                     if(!isLeftSideClogged)
                         for(int i=column-1;i>-1;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
             }
@@ -189,15 +191,15 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
             else if(piece.at(1)=='q')
             {
                 //Check Column and Row
-                std::string previousColumn = this->encodeCoordinates(std::pair<int,int>(row,column-1));
-                std::string nextColumn     = this->encodeCoordinates(std::pair<int,int>(row,column+1));
-                std::string previousRow    = this->encodeCoordinates(std::pair<int,int>(row-1,column));
-                std::string nextRow        = this->encodeCoordinates(std::pair<int,int>(row+1,column));
+                // std::string previousColumn = this->encodeCoordinates(std::pair<int,int>(row,column-1));
+                // std::string nextColumn     = this->encodeCoordinates(std::pair<int,int>(row,column+1));
+                // std::string previousRow    = this->encodeCoordinates(std::pair<int,int>(row-1,column));
+                // std::string nextRow        = this->encodeCoordinates(std::pair<int,int>(row+1,column));
                 
-                bool isUpperColumnClogged = this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(7,column)));
-                bool isLowerColumnClogged = this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),previousRow);
-                bool isRightSideClogged   = this->isRowClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(row,7)));
-                bool isLeftSideClogged    = this->isRowClogged(this->encodeCoordinates(std::pair<int,int>(row,0)),previousColumn);
+                // bool isUpperColumnClogged = this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(7,column)));
+                // bool isLowerColumnClogged = this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),previousRow);
+                // bool isRightSideClogged   = this->isRowClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(row,7)));
+                // bool isLeftSideClogged    = this->isRowClogged(this->encodeCoordinates(std::pair<int,int>(row,0)),previousColumn);
                 
                 if((row!=0) && (row!=7))
                 {
