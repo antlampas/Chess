@@ -16,7 +16,6 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
     {
         const int& row    {decodedCoordinates.first};
         const int& column {decodedCoordinates.second};
-        
 
         const std::string& piece = this->getPieceInSquare(coordinates);
         std::vector<std::string> movesList;
@@ -95,56 +94,41 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
             {
                 int endRow    = 0;
                 int endColumn = 0;
+
                 //Column check
                 if(isNotOnBottomOrTop)
                 {
-                    endRow = 7;
-                    while(this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(endRow,column))) && (endRow > row) ) --endRow;
-                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(endRow,column))).at(0) == piece.at(0)) --endRow;
+                    int endRow = upperColumnFreeSquare(column,piece);
                     for(int i=row+1;i<=endRow;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
-                    endRow = 0;
-                    while(this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(endRow,column))) && (endRow < row) ) ++endRow;
-                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(endRow,column))).at(0) == piece.at(0)) ++endRow;
+                    int endRow = lowerColumnFreeSquare(column,piece);
                     for(int i=row-1;i>=endRow;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                 }
                 if(isOnBottom)
                 {
-                    endRow = 7;
-                    while(this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(endRow,column))) && (endRow > row) ) --endRow;
-                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(endRow,column))).at(0) == piece.at(0)) --endRow;
+                    int endRow = upperColumnFreeSquare(column,piece);
                     for(int i=row+1;i<=endRow;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                 }
                 if(isOnTop)
                 {
-                    endRow = 0;
-                    while(this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(endRow,column))) && (endRow < row) ) ++endRow;
-                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(endRow,column))).at(0) == piece.at(0)) ++endRow;
+                    int endRow = lowerColumnFreeSquare(column,piece);
                     for(int i=row-1;i>=endRow;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(i,column)));
                 }
                 //Row check
                 if(isNotOnLeftOrRight)
                 {
-                    endColumn = 7;
-                    while(this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(row,endColumn)),nextColumn) && (endColumn > column) ) --endColumn;
-                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,endColumn))).at(0) == piece.at(0)) --endColumn;
+                    int endColumn = rightRowFreeSquare(row,piece);
                     for(int i=column+1;i<=endColumn;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
-                    endColumn = 0;
-                    while(this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(row,endColumn)),nextColumn) && (endColumn < column) ) ++endColumn;
-                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,endColumn))).at(0) == piece.at(0)) ++endColumn;
+                    int endColumn = leftRowFreeSquare(row,piece);
                     for(int i=column-1;i>=endColumn;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                 }
                 if(isOnLeft)
                 {
-                    endColumn = 7;
-                    while(this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(row,endColumn)),nextColumn) && (endColumn > column) ) --endColumn;
-                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,endColumn))).at(0) == piece.at(0)) --endColumn;
+                    int endColumn = rightRowFreeSquare(row,piece);
                     for(int i=column+1;i<=endColumn;i++)  movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                 }
                 if(isOnRight)
                 {
-                    endColumn = 0;
-                    while(this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(row,endColumn)),nextColumn) && (endColumn < column) ) ++endColumn;
-                    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,endColumn))).at(0) == piece.at(0)) ++endColumn;
+                    int endColumn = leftRowFreeSquare(row,piece);
                     for(int i=column-1;i>=endColumn;i--) movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,i)));
                 }
             }
@@ -295,4 +279,40 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
     }
     else
         return std::vector<std::string>();
+}
+
+int board::upperColumnFreeSquare(int column,std::string piece)
+{
+    int endRow = 7;
+    while(this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(endRow,column))) && (endRow > row) ) --endRow;
+    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(endRow,column))).at(0) == piece.at(0)) --endRow;
+
+    return endRow;
+}
+
+int board::lowerColumnFreeSquare(int column,std::string piece)
+{
+    int endRow = 0;
+    while(this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(endRow,column))) && (endRow < row) ) ++endRow;
+    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(endRow,column))).at(0) == piece.at(0)) ++endRow;
+
+    return endRow;
+}
+
+int board::rightRowFreeSquare(int row,std::string piece)
+{
+    int endColumn = 7;
+    while(this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(row,endColumn)),nextColumn) && (endColumn > column) ) --endColumn;
+    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,endColumn))).at(0) == piece.at(0)) --endColumn;
+
+    return endColumn;
+}
+
+int board::leftRowFreeSquare(int row,std::string piece)
+{
+    int endColumn = 0;
+    while(this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(row,endColumn)),nextColumn) && (endColumn < column) ) ++endColumn;
+    if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,endColumn))).at(0) == piece.at(0)) ++endColumn;
+
+    return endColumn;
 }
