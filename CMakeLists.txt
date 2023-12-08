@@ -2,10 +2,6 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE "Release")
-endif()
-
 project(Chess)
 
 include_directories(include)
