@@ -92,9 +92,6 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
             }
             else if(piece.at(1)=='r')
             {
-                int endRow    = 0;
-                int endColumn = 0;
-
                 //Column check
                 if(isNotOnBottomOrTop)
                 {
