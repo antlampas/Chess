@@ -215,16 +215,6 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
             else if(piece.at(1)=='q')
             {
                 //Check Column and Row
-                // std::string previousColumn = this->encodeCoordinates(std::pair<int,int>(row,column-1));
-                // std::string nextColumn     = this->encodeCoordinates(std::pair<int,int>(row,column+1));
-                // std::string previousRow    = this->encodeCoordinates(std::pair<int,int>(row-1,column));
-                // std::string nextRow        = this->encodeCoordinates(std::pair<int,int>(row+1,column));
-                
-                // bool isUpperColumnClogged = this->isColumnClogged(nextRow,this->encodeCoordinates(std::pair<int,int>(7,column)));
-                // bool isLowerColumnClogged = this->isColumnClogged(this->encodeCoordinates(std::pair<int,int>(0,column)),previousRow);
-                // bool isRightSideClogged   = this->isRowClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(row,7)));
-                // bool isLeftSideClogged    = this->isRowClogged(this->encodeCoordinates(std::pair<int,int>(row,0)),previousColumn);
-                
                 if((row!=0) && (row!=7))
                 {
                     if(!isUpperColumnClogged && !isLowerColumnClogged)
