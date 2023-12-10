@@ -4,6 +4,8 @@
  *
  */
 
+#include <iostream>
+
 #ifndef BOARD_HPP
 #include "board.hpp"
 #endif
@@ -131,22 +133,26 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
             }
             else if(piece.at(1)=='n')
             {
-                if(((column - 2) > -1) && ((row + 1) <  8)) 
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row+1,column-2)));
-                if(((column - 1) > -1) && ((row + 2) <  8))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row+2,column-1)));
-                if(((column - 2) > -1) && ((row - 1) > -1))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row-1,column-2)));
-                if(((column - 1) > -1) && ((row - 2) > -1))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row-2,column-1)));
-                if(((column + 2) <  8) && ((row + 1) <  8))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row+1,column+2)));
-                if(((column + 1) <  8) && ((row + 2) <  8))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row+2,column+1)));
-                if(((column + 2) <  8) && ((row - 1) > -1))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row-1,column+2)));
-                if(((column + 1) <  8) && ((row - 2) > -1))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row-2,column+1)));
+                std::vector<std::string> moves ={ \
+                                                    this->encodeCoordinates(std::pair<int,int>(row+1,column-2)), \
+                                                    this->encodeCoordinates(std::pair<int,int>(row+1,column+2)), \
+                                                    this->encodeCoordinates(std::pair<int,int>(row-1,column-2)), \
+                                                    this->encodeCoordinates(std::pair<int,int>(row-1,column+2)), \
+                                                    this->encodeCoordinates(std::pair<int,int>(row+2,column-1)), \
+                                                    this->encodeCoordinates(std::pair<int,int>(row+2,column+1)), \
+                                                    this->encodeCoordinates(std::pair<int,int>(row-2,column-1)), \
+                                                    this->encodeCoordinates(std::pair<int,int>(row-2,column+1))  \
+                                                };
+                
+                std::vector<std::string> validMoves;
+
+                for(auto move: moves)
+                    if(!move.empty())
+                        validMoves.push_back(move);
+
+                for(auto move: validMoves)
+                    if(!this->isMoveClogged(coordinates,move))
+                        movesList.push_back(move);
             }
             else if(piece.at(1)=='b')
             {
@@ -176,22 +182,25 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
             }
             else if(piece.at(1)=='k')
             {
-                if(((row + 1) < 8) && ((column - 1) > -1) && (this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row+1,column-1))).at(0) != piece.at(0)))
-                        movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row+1,column-1)));
-                if(((row + 1) < 8) && (this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row+1,column))).at(0) != piece.at(0)))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row+1,column)));
-                if(((row + 1) < 8) && ((column + 1) < 8) && (this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row+1,column+1))).at(0) != piece.at(0)))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row+1,column+1)));
-                if(((column + 1) < 8) && (this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,column+1))).at(0) != piece.at(0)))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,column+1)));
-                if(((row - 1) > -1) && ((column + 1) < 8) && (this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row-1,column+1))).at(0) != piece.at(0)))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row-1,column+1)));
-                if(((row - 1) > 8) && (this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row-1,column))).at(0) != piece.at(0)))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row-1,column)));
-                if(((row - 1) > -1) && ((column - 1) > -1) && (this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row-1,column-1))).at(0) != piece.at(0)))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row-1,column-1)));
-                if(((column - 1) > -1) && (this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,column-1))).at(0) != piece.at(0)))
-                    movesList.push_back(this->encodeCoordinates(std::pair<int,int>(row,column-1)));
+                std::vector<std::string>> moves {
+                                                this->encodeCoordinates(std::pair<int,int>(row+1,column-1)), \
+                                                this->encodeCoordinates(std::pair<int,int>(row+1,column)), \
+                                                this->encodeCoordinates(std::pair<int,int>(row+1,column+1)), \
+                                                this->encodeCoordinates(std::pair<int,int>(row,column+1)), \
+                                                this->encodeCoordinates(std::pair<int,int>(row-1,column+1)), \
+                                                this->encodeCoordinates(std::pair<int,int>(row-1,column)), \
+                                                this->encodeCoordinates(std::pair<int,int>(row-1,column-1)), \
+                                                this->encodeCoordinates(std::pair<int,int>(row,column-1)) \
+                                                }
+                
+                std::vector<std::string> validMoves;
+
+                for(auto move: moves)
+                    if(!move.empty())
+                        validMoves.push_back(move);
+                
+                for(auto move: validMoves)
+                    if(move.at(0) != piece.at(0)) moveList.push_back(move);
             }
             else if(piece.at(1)=='q')
             {
