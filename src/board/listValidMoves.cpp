@@ -182,7 +182,7 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
             }
             else if(piece.at(1)=='k')
             {
-                std::vector<std::string>> moves {
+                std::vector<std::string> moves {
                                                 this->encodeCoordinates(std::pair<int,int>(row+1,column-1)), \
                                                 this->encodeCoordinates(std::pair<int,int>(row+1,column)), \
                                                 this->encodeCoordinates(std::pair<int,int>(row+1,column+1)), \
