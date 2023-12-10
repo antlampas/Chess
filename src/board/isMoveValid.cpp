@@ -12,7 +12,7 @@
 #include "board.hpp"
 #endif
 
-inline bool board::isMoveValid(std::string start,std::string end)
+bool board::isMoveValid(std::string start,std::string end)
 {
     std::string piece {this->getPieceInSquare(start)};
 

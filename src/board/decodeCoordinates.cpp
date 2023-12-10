@@ -8,7 +8,7 @@
 #include "board.hpp"
 #endif
 
-inline std::pair<int,int> board::decodeCoordinates(std::string coordinates)
+std::pair<int,int> board::decodeCoordinates(std::string coordinates)
 {
     std::pair<int,int> decodedCoordinates {-1,-1};
 

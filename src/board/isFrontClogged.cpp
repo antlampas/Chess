@@ -8,7 +8,7 @@
 #include "board.hpp"
 #endif
 
-inline bool board::isFrontClogged(std::string position)
+bool board::isFrontClogged(std::string position)
 {
     std::pair<int,int> decodedCoordinates = this->decodeCoordinates(position);
     

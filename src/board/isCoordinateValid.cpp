@@ -10,7 +10,7 @@
 #include "board.hpp"
 #endif
 
-inline bool board::isCoordinateValid(std::string coordinates)
+bool board::isCoordinateValid(std::string coordinates)
 {
     std::regex coordinatesFormat("^[abcdefgh][12345678]$");
     

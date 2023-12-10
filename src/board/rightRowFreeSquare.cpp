@@ -8,7 +8,7 @@
 #include "board.hpp"
 #endif
 
-inline int board::rightRowFreeSquare(int row,int column,std::string nextColumn,std::string piece)
+int board::rightRowFreeSquare(int row,int column,std::string nextColumn,std::string piece)
 {
     int endColumn = 7;
     while(this->isColumnClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(row,endColumn))) && (endColumn > column) ) --endColumn;
