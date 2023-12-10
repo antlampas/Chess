@@ -21,21 +21,20 @@ bool board::isDiagonalClogged(std::string start,std::string end)
 
     if(std::abs(endColumn - startColumn) == std::abs(endRow - startRow))
     
-        /* Check main diagonal */
-        if((endColumn > startColumn) && (endRow > startRow)) //To the right
+        if((endColumn > startColumn) && (endRow > startRow)) //Check main diagonal to the right
             for(int i=(startRow+1);i<endRow;i++)
                 if(this->boardMap.at(i).at(i)!="e")
                     return true;
-        else if((endColumn < startColumn) && (endRow < startRow)) //To the left
+        else if((endColumn < startColumn) && (endRow < startRow)) //Check main diagonal to the left
             for(int i=(startRow-1);i>endRow;i--)
                 if(this->boardMap.at(i).at(i)!="e")
                     return true;
-        /* Check secondary diagonal */
-        else if((endColumn > startColumn) && (endRow < startRow)) //To the right
+
+        else if((endColumn > startColumn) && (endRow < startRow)) //Check secondary diagonal to the right
             for(int i=(startRow-1),j=(startColumn+1);i>endRow,j<endColumn;i--,j++)
                 if(this->boardMap.at(i).at(j)!="e")
                     return true;
-        else if((endColumn < startColumn) && (endRow > startRow)) //To the left
+        else if((endColumn < startColumn) && (endRow > startRow)) //Check secondary diagonal to the left
             for(int i=(startRow+1),j=(startColumn-1);i<endRow,j>endColumn;i++,j--)
                 if(this->boardMap.at(i).at(j)!="e")
                     return true;
