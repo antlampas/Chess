@@ -10,7 +10,7 @@
 #include "board.hpp"
 #endif
 
-bool board::isPieceNameValid(std::string name)
+inline bool board::isPieceNameValid(std::string name)
 {
     std::regex nameFormat("^[wb][prnbkq]$|^e$");
     

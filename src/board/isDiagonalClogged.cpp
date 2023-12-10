@@ -9,7 +9,7 @@
 #include "board.hpp"
 #endif
 
-bool board::isDiagonalClogged(std::string start,std::string end)
+inline bool board::isDiagonalClogged(std::string start,std::string end)
 {
     std::pair<int,int> decodedStartCoordinates = this->decodeCoordinates(start);
     std::pair<int,int> decodedEndCoordinates   = this->decodeCoordinates(end);

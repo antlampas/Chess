@@ -8,7 +8,7 @@
 #include "board.hpp"
 #endif
 
-std::string board::getPieceInSquare(std::string coordinates)
+inline std::string board::getPieceInSquare(std::string coordinates)
 {
     std::pair<int,int> decodedCoordinates = this->decodeCoordinates(coordinates);
     

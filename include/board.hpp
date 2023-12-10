@@ -44,22 +44,22 @@ class board{
         std::vector<std::string> tookPieces;
         std::string error;
     private:
-        std::pair<int,int> decodeCoordinates(std::string);
-        std::pair<char,char> decodePieceName(std::string);
-        std::string encodeCoordinates(std::pair<int,int>);
-        std::string getPieceInSquare(std::string);
-        bool isCoordinateValid(std::string);
-        bool isColumnClogged(std::string,std::string);   //Starting position, end position
-        bool isDiagonalClogged(std::string,std::string); //Starting position, end position
-        bool isFrontClogged(std::string);                //Starting position, end position
-        bool isMoveClogged(std::string,std::string);     //Starting position, end position
-        bool isMoveValid(std::string,std::string);       //Starting position, end position
-        bool isRowClogged(std::string,std::string);      //Starting position, end position
-        bool isPieceNameValid(std::string);
-        int upperColumnFreeSquare(int,int,std::string,std::string);
-        int lowerColumnFreeSquare(int,int,std::string,std::string);
-        int rightRowFreeSquare(int,int,std::string,std::string);
-        int leftRowFreeSquare(int,int,std::string,std::string);
+        inline std::pair<int,int> decodeCoordinates(std::string);
+        inline std::pair<char,char> decodePieceName(std::string);
+        inline std::string encodeCoordinates(std::pair<int,int>);
+        inline std::string getPieceInSquare(std::string);
+        inline bool isColumnClogged(std::string,std::string);   //Starting position, end position
+        inline bool isCoordinateValid(std::string);
+        inline bool isDiagonalClogged(std::string,std::string); //Starting position, end position
+        inline bool isFrontClogged(std::string);                //Starting position, end position
+        inline bool isMoveClogged(std::string,std::string);     //Starting position, end position
+        inline bool isMoveValid(std::string,std::string);       //Starting position, end position
+        inline bool isPieceNameValid(std::string);
+        inline bool isRowClogged(std::string,std::string);      //Starting position, end position
+        inline int leftRowFreeSquare(int,int,std::string,std::string);
+        inline int lowerColumnFreeSquare(int,int,std::string,std::string);
+        inline int rightRowFreeSquare(int,int,std::string,std::string);
+        inline int upperColumnFreeSquare(int,int,std::string,std::string);
     public:
         board();
         board(boardMapType);
