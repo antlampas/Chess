@@ -278,6 +278,8 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 }
                 //End check Diagonals
             }
+            else
+                return std::vector<std::string>();
             return movesList;
         }
         else
