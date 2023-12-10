@@ -279,12 +279,12 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 //End check Diagonals
             }
             else
-                return std::vector<std::string>(std::string());
+                return std::vector<std::string>(std::string(""));
             return movesList;
         }
         else
-            return std::vector<std::string>(std::string());
+            return std::vector<std::string>(std::string(""));
     }
     else
-        return std::vector<std::string>(std::string());
+        return std::vector<std::string>(std::string(""));
 }
