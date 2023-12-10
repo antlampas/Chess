@@ -11,7 +11,7 @@
 std::vector<std::string> board::listValidMoves(std::string coordinates)
 {
     std::pair<int,int> decodedCoordinates = this->decodeCoordinates(coordinates);
-    std::vector<std::string> movesList;
+    std::vector<std::string> movesList {};
 
     if(decodedCoordinates.first != -1)
     {
