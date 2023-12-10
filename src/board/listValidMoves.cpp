@@ -277,13 +277,13 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                 //End check Diagonals
             }
             else
-                return std::vector<std::string> v;
+                return {};
         }
         else
-            return std::vector<std::string> v;
+            return {};
     }
     else
-        return std::vector<std::string> v;
+        return {};
 
     return movesList;
 }
