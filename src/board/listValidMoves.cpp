@@ -11,6 +11,7 @@
 std::vector<std::string> board::listValidMoves(std::string coordinates)
 {
     std::pair<int,int> decodedCoordinates = this->decodeCoordinates(coordinates);
+    std::vector<std::string> movesList;
 
     if(decodedCoordinates.first != -1)
     {
@@ -18,7 +19,6 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
         const int& column {decodedCoordinates.second};
 
         const std::string& piece = this->getPieceInSquare(coordinates);
-        std::vector<std::string> movesList;
 
         std::string previousColumn = this->encodeCoordinates(std::pair<int,int>(row,column-1));
         std::string nextColumn     = this->encodeCoordinates(std::pair<int,int>(row,column+1));
