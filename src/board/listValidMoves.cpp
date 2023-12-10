@@ -191,7 +191,7 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                                                 this->encodeCoordinates(std::pair<int,int>(row-1,column)), \
                                                 this->encodeCoordinates(std::pair<int,int>(row-1,column-1)), \
                                                 this->encodeCoordinates(std::pair<int,int>(row,column-1)) \
-                                                }
+                                                };
                 
                 std::vector<std::string> validMoves;
 
@@ -200,7 +200,7 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                         validMoves.push_back(move);
                 
                 for(auto move: validMoves)
-                    if(move.at(0) != piece.at(0)) moveList.push_back(move);
+                    if(move.at(0) != piece.at(0)) movesList.push_back(move);
             }
             else if(piece.at(1)=='q')
             {
