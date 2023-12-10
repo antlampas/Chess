@@ -46,6 +46,7 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
         if(this->isPieceNameValid(piece))
         {
             if(piece !="e")
+            {
                 if(piece.at(1)=='p')
                 {
                     if(piece.at(0) == 'w')
@@ -277,16 +278,9 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
                     }
                     //End check Diagonals
                 }
-                else
-                    return {};
-            else
-                return {};
+            }
         }
-        else
-            return {};
     }
-    else
-        return {};
 
     return movesList;
 }
