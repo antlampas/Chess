@@ -48,7 +48,7 @@ board::board(boardMapType initialPositions)
             }
         if(!validInput)
         {
-            std::for_each(this->boardMap.begin(),this->boardMap.end(),[](std::vector<std::string> column){std::fill(column.begin(),column.end(),"e");});
+            std::for_each(this->boardMap.begin(),this->boardMap.end(),[](columnType column){std::fill(column.begin(),column.end(),"e");});
             return;
         }
     }
