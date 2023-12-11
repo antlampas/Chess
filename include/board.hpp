@@ -16,7 +16,16 @@
     #define private public
 #endif
 
-using boardMapType = std::vector<std::vector<std::string>>;
+using boardMapType           = std::vector<std::vector<std::string>>;
+using rowType                = std::vector<std::vector<std::string>>;
+using columnType             = std::vector<std::string>;
+using squareType             = std::string;
+using coordinatesType        = std::string;
+using pieceType              = std::string;
+using decodedCoordinatesType = std::pair<int,int>;
+using decodedpieceType   = std::pair<char,char>;
+using decodedRowType         = int;
+using decodedColumnType      = int;
 
 class board{
     /*
@@ -40,32 +49,32 @@ class board{
     * Coordinates id: it's a string like this: "a1", "b1", "c6", etc...
     */
     private:
-        boardMapType boardMap = boardMapType(8,std::vector<std::string>(8,std::string("e")));
-        std::vector<std::string> tookPieces;
+        boardMapType boardMap = rowType(8,columnType(8,squareType("e")));
+        std::vector<pieceType> tookPieces;
         std::string error;
     private:
-        std::pair<int,int> decodeCoordinates(std::string);
-        std::pair<char,char> decodePieceName(std::string);
-        std::string encodeCoordinates(std::pair<int,int>);
-        std::string getPieceInSquare(std::string);
-        bool isColumnClogged(std::string,std::string);   //Starting position, end position
-        bool isCoordinateValid(std::string);
-        bool isDiagonalClogged(std::string,std::string); //Starting position, end position
-        bool isFrontClogged(std::string);                //Starting position, end position
-        bool isMoveClogged(std::string,std::string);     //Starting position, end position
-        bool isMoveValid(std::string,std::string);       //Starting position, end position
-        bool isPieceNameValid(std::string);
-        bool isRowClogged(std::string,std::string);      //Starting position, end position
-        int leftRowFreeSquare(int,int,std::string,std::string);
-        int lowerColumnFreeSquare(int,int,std::string,std::string);
-        int rightRowFreeSquare(int,int,std::string,std::string);
-        int upperColumnFreeSquare(int,int,std::string,std::string);
+        decodedCoordinatesType decodeCoordinates(coordinatesType);
+        decodedpieceType decodePieceName(pieceType);
+        coordinatesType encodeCoordinates(decodedCoordinatesType);
+        pieceType getPieceInSquare(pieceType);
+        bool isColumnClogged(coordinatesType,coordinatesType);   //Starting position, end position
+        bool isCoordinateValid(coordinatesType);
+        bool isDiagonalClogged(coordinatesType,coordinatesType); //Starting position, end position
+        bool isFrontClogged(coordinatesType);                    //Starting position, end position
+        bool isMoveClogged(coordinatesType,coordinatesType);     //Starting position, end position
+        bool isMoveValid(coordinatesType,coordinatesType);       //Starting position, end position
+        bool isPieceNameValid(pieceType);
+        bool isRowClogged(coordinatesType,coordinatesType);      //Starting position, end position
+        int leftRowFreeSquare(decodedRowType,decodedColumnType,coordinatesType,pieceType);
+        int lowerColumnFreeSquare(decodedRowType,decodedColumnType,coordinatesType,pieceType);
+        int rightRowFreeSquare(decodedRowType,decodedColumnType,coordinatesType,pieceType);
+        int upperColumnFreeSquare(decodedRowType,decodedColumnType,coordinatesType,pieceType);
     public:
         board();
         board(boardMapType);
         boardMapType boardStatus();
-        std::vector<std::string> listValidMoves(std::string);
-        bool move(std::string,std::string);
+        std::vector<coordinatesType> listValidMoves(coordinatesType);
+        bool move(coordinatesType,coordinatesType);
 };
 
 #endif

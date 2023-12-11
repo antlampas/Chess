@@ -39,18 +39,26 @@ board::board(boardMapType initialPositions)
     bool validInput = true;
 
     for(auto row: initialPositions)
+    {
+        for(auto column: row)
+            if(!std::regex_match(column,pieceNameFormat))
+            {
+                validInput = false;
+                break;
+            }
+        // if(!validInput)
+        //     break;
         if(!validInput)
-            break;
-        else
-            for(auto column: row)
-                if(!std::regex_match(column,pieceNameFormat))
-                {
-                    validInput = false;
-                    break;
-                }
+        {
+            std::for_each(this->boardMap.begin(),this->boardMap.end(),[](std::vector<std::string> column){std::fill(column.begin(),column.end(),"e");});
+            return;
+        }
+    }
 
-    if(!validInput)
-        std::for_each(this->boardMap.begin(),this->boardMap.end(),[](std::vector<std::string> column){std::fill(column.begin(),column.end(),"e");});
-    else
-        std::swap(this->boardMap,initialPositions);
+    std::swap(this->boardMap,initialPositions);
+
+    // if(!validInput)
+    //     std::for_each(this->boardMap.begin(),this->boardMap.end(),[](std::vector<std::string> column){std::fill(column.begin(),column.end(),"e");});
+    // else
+    //     std::swap(this->boardMap,initialPositions);
 }
