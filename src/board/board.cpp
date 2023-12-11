@@ -46,8 +46,6 @@ board::board(boardMapType initialPositions)
                 validInput = false;
                 break;
             }
-        // if(!validInput)
-        //     break;
         if(!validInput)
         {
             std::for_each(this->boardMap.begin(),this->boardMap.end(),[](std::vector<std::string> column){std::fill(column.begin(),column.end(),"e");});
@@ -56,9 +54,4 @@ board::board(boardMapType initialPositions)
     }
 
     std::swap(this->boardMap,initialPositions);
-
-    // if(!validInput)
-    //     std::for_each(this->boardMap.begin(),this->boardMap.end(),[](std::vector<std::string> column){std::fill(column.begin(),column.end(),"e");});
-    // else
-    //     std::swap(this->boardMap,initialPositions);
 }
