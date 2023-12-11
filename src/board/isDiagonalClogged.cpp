@@ -4,6 +4,7 @@
  *
  */
 
+#include <iostream>
 #include <cmath>
 #ifndef BOARD_HPP
 #include "board.hpp"
@@ -21,12 +22,12 @@ bool board::isDiagonalClogged(std::string start,std::string end)
 
     if(std::abs(endColumn - startColumn) == std::abs(endRow - startRow))
         if((endRow > startRow) && (endColumn > startColumn)) //Check main diagonal to the right
-            for(int i=(startRow+1);i<endRow;i++)
-                if(this->boardMap.at(i).at(i)!="e")
+            for(int i=(startRow+1),j=(startColumn+1);i<endRow,j<endColumn;i++,j++)
+                if(this->boardMap.at(i).at(j)!="e")
                     return true;
         else if((endRow < startRow) && (endColumn < startColumn)) //Check main diagonal to the left
-            for(int i=(startRow-1);i>endRow;i--)
-                if(this->boardMap.at(i).at(i)!="e")
+            for(int i=(startRow-1),j=(startColumn-1);i>endRow,j>endColumn;i--,j--)
+                if(this->boardMap.at(i).at(j)!="e")
                     return true;
 
         else if((endRow < startRow) && (endColumn > startColumn)) //Check secondary diagonal to the right
