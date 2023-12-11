@@ -20,7 +20,7 @@ bool board::isRowClogged(std::string start,std::string end)
 
     bool clogged = false;
     if(startRow == endRow)
-        for(int i=startColumn;i<endColumn;i++)
+        for(int i=startColumn+1;i<endColumn;i++)
             if(this->boardMap.at(startRow).at(i)!="e")
                 clogged = true;
     else
