@@ -29,7 +29,6 @@ bool board::isDiagonalClogged(std::string start,std::string end)
             for(int i=(startRow-1),j=(startColumn-1);i>endRow,j>endColumn;i--,j--)
                 if(this->boardMap.at(i).at(j)!="e")
                     return true;
-
         else if((endRow < startRow) && (endColumn > startColumn)) //Check secondary diagonal to the right
             for(int i=(startRow-1),j=(startColumn+1);i>endRow,j<endColumn;i--,j++)
                 if(this->boardMap.at(i).at(j)!="e")
