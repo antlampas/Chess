@@ -33,7 +33,6 @@ bool turnManager::move(coordinatesType startCoordinates,coordinatesType endCoord
 
         pieceType piece = board.at(decodedStartCoordinates.first).at(decodedStartCoordinates.second);
 
-        std::cout << piece << std::endl << std::endl << std::endl;
         if(piece.at(0) != 'e')
             if(piece.at(0) == this->team)
                 if(this->b.move(startCoordinates,endCoordinates))
@@ -42,11 +41,11 @@ bool turnManager::move(coordinatesType startCoordinates,coordinatesType endCoord
                     currentTeam = this->team;
                 }
                 else
-                    std::cout << "Wrong move" << std::endl;
+                    std::cout << "Wrong move" << std::endl << std::endl << std::endl << std::endl;
             else
-                std::cout << "Not your turn" << std::endl;
+                std::cout << "Not your turn" << std::endl << std::endl << std::endl << std::endl;
         else
-            std::cout << "Empty square" << std::endl;
+            std::cout << "Empty square" << std::endl << std::endl << std::endl << std::endl;
     }
 
     return true;
