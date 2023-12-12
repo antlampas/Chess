@@ -7,10 +7,8 @@
 #ifndef TURNMANAGER_HPP
 #define TURNMANAGER_HPP
 
+#ifndef BOARD_HPP
 #include "board.hpp"
-
-#ifdef DEBUG
-    #define private public
 #endif
 
 class turnManager
@@ -23,12 +21,10 @@ class turnManager
     
     public:
     turnManager()                         = delete;
-    turnManager(turnManager&)             = delete;
     turnManager(turnManager&&)            = delete;
-    turnManager& operator=(turnManager&)  = delete;
     turnManager& operator=(turnManager&&) = delete;
     static turnManager& getInstance(board&);
-    bool move(coordinatesType coordinates);
+    bool move(coordinatesType);
 };
 
 #endif
