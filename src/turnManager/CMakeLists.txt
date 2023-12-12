@@ -3,4 +3,5 @@
 add_library(turnManager SHARED
             turnManager.cpp
             getInstance.cpp
+            move.cpp
            )

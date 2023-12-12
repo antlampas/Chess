@@ -22,6 +22,6 @@ int main(int argc,char** argv)
     boardMapType board = b.boardStatus();
     std::for_each(board.begin(),board.end(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){std::cout << column << " ";});std::cout << std::endl;});
     std::cout << std::endl << std::endl;
-    tm->move();
+    tm.move("a1");
     return 0;
 }
