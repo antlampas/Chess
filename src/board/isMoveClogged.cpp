@@ -21,53 +21,55 @@ bool board::isMoveClogged(std::string start,std::string end)
     std::string piece {this->getPieceInSquare(start)};
 
     if(piece!="e")
+    {
         if(piece.at(1)=='p')
-            if(((startRow != endRow) && (startColumn == endColumn)) && this->isFrontClogged(start))
+        {
+            if(((startRow != endRow) && (startColumn == endColumn)) && this->isFrontClogged(start,end))
                 return true;
-            else
-                if((this->boardMap.at(endRow).at(endColumn) != "e") && (this->boardMap.at(endRow).at(endColumn).at(0) == piece.at(0)))
-                    return true;
-                else
-                    return false;
+            if(((startRow != endRow) && (startColumn == endColumn)) && (this->boardMap.at(endRow).at(endColumn) != "e") && (this->boardMap.at(endRow).at(endColumn).at(0) == piece.at(0)))
+                return true;
+            return false;
+        }
         else if(piece.at(1)=='r')
+        {
             if(((startRow == endRow) && (startColumn != endColumn) && (this->isColumnClogged(start,end))) || ((startColumn == endColumn) && (startRow != endRow) && (this->isRowClogged(start,end))))
                 return true;
-            else
-                if((this->boardMap.at(endRow).at(endColumn) != "e") && (this->boardMap.at(endRow).at(endColumn).at(0) == piece.at(0)))
-                    return true;
-                else
-                    return false;
-        else if(piece.at(1)=='n')
             if((this->boardMap.at(endRow).at(endColumn) != "e") && (this->boardMap.at(endRow).at(endColumn).at(0) == piece.at(0)))
                 return true;
-            else
-                return false;
+            return false;
+        }
+        else if(piece.at(1)=='n')
+        {
+            if((this->boardMap.at(endRow).at(endColumn) != "e") && (this->boardMap.at(endRow).at(endColumn).at(0) == piece.at(0)))
+                return true;
+            return false;
+        }
         else if(piece.at(1)=='b')
+        {
             if(this->isDiagonalClogged(start,end))
                 return true;
-            else
-                if((this->boardMap.at(endRow).at(endColumn) != "e") && (this->boardMap.at(endRow).at(endColumn).at(0) == piece.at(0)))
-                    return true;
-                else
-                    return false;
+            if((this->boardMap.at(endRow).at(endColumn) != "e") && (this->boardMap.at(endRow).at(endColumn).at(0) == piece.at(0)))
+                return true;
+            return false;
+        }
         else if(piece.at(1)=='q')
+        {
             if(this->isColumnClogged(start,end) || this->isRowClogged(start,end) || this->isDiagonalClogged(start,end))
                 return true;
-            else
-                if((this->boardMap.at(endRow).at(endColumn) != "e") && (this->boardMap.at(endRow).at(endColumn).at(0) == piece.at(0)))
-                    return true;
-                else
-                    return false;
-        else if(piece.at(1)=='k')
             if((this->boardMap.at(endRow).at(endColumn) != "e") && (this->boardMap.at(endRow).at(endColumn).at(0) == piece.at(0)))
-                    return true;
-            else
-                if((this->boardMap.at(endRow).at(endColumn) != "e") && (this->boardMap.at(endRow).at(endColumn).at(0) == piece.at(0)))
-                    return true;
-                else
-                    return false;
-        else
+                return true;
             return false;
+        }
+        else if(piece.at(1)=='k')
+        {
+            if((this->boardMap.at(endRow).at(endColumn) != "e") && (this->boardMap.at(endRow).at(endColumn).at(0) == piece.at(0)))
+                return true;
+            if((this->boardMap.at(endRow).at(endColumn) != "e") && (this->boardMap.at(endRow).at(endColumn).at(0) == piece.at(0)))
+                return true;
+            return false;
+        }
+        return false;
+    }
     else
     {
         this->error = "No pieces on the square";

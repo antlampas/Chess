@@ -60,7 +60,7 @@ class board{
         bool isColumnClogged(coordinatesType,coordinatesType);   //Starting position, end position
         bool isCoordinateValid(coordinatesType);
         bool isDiagonalClogged(coordinatesType,coordinatesType); //Starting position, end position
-        bool isFrontClogged(coordinatesType);                    //Starting position, end position
+        bool isFrontClogged(coordinatesType,coordinatesType);    //Starting position, end position
         bool isMoveClogged(coordinatesType,coordinatesType);     //Starting position, end position
         bool isMoveValid(coordinatesType,coordinatesType);       //Starting position, end position
         bool isPieceNameValid(pieceType);

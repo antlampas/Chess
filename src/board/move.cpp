@@ -3,6 +3,7 @@
  * FALP Chess © 2023 by Antlampas is licensed under CC BY-SA 4.0. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/
  *
  */
+
 #include <iostream>
 #ifndef BOARD_HPP
 #include "board.hpp"
@@ -22,21 +23,26 @@ bool board::move(std::string start,std::string end)
     std::string targetPiece = this->getPieceInSquare(end);
     
     if(this->isMoveValid(start,end))
+    {
+        std::cout << "Move is valid" << std::endl;
+
         if(!this->isMoveClogged(start,end))
         {
+            std::cout << "Move is not clogged" << std::endl;
+            
             if(targetPiece != "e")
                 if(targetPiece.at(0) != movingPiece.at(0))
                     this->tookPieces.push_back(targetPiece);
                 else
                     return false;
-            
+
             this->boardMap.at(endRow).at(endColumn)     = movingPiece;
             this->boardMap.at(startRow).at(startColumn) = "e";
-
             return true;
         }
         else
             return false;
+    }
     else
         return false;
 }
