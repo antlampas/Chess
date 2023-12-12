@@ -8,7 +8,7 @@
 #include "turnManager.hpp"
 #endif
 
-turnManager::turnManager(board&)
+turnManager::turnManager(board& b)
 {
-    
+    this->b = b;
 }
