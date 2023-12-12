@@ -26,7 +26,7 @@ class turnManager
     turnManager& operator=(turnManager&&) = delete;
     static turnManager& getInstance(boardMapType);
     static turnManager& getInstance();
-    bool move(coordinatesType);
+    bool move(coordinatesType,coordinatesType);
     char getTurn();
 };
 

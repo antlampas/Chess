@@ -5,7 +5,7 @@
  */
 
 #include <regex>
-#include <exception>
+#include <stdexcept>
 
 #ifndef TURNMANAGER_HPP
 #include "turnManager.hpp"
@@ -16,5 +16,5 @@ char turnManager::getTurn()
     if((this->team == 'w') || (this->team == 'b'))
         return this->team;
     else
-        throw std::exception("Invalid team");
+        throw std::invalid_argument("Invalid team");
 }

@@ -4,7 +4,7 @@
  *
  */
 
-#include <exception>
+#include <stdexcept>
 
 #ifndef TURNMANAGER_HPP
 #include "turnManager.hpp"
@@ -15,6 +15,6 @@ void turnManager::setTurn(char team)
     if(team == 'w' || team == 'b')
         this->team = team;
     else
-        throw std::exception("Invalid team");
+        throw std::invalid_argument("Invalid team");
 
 }
