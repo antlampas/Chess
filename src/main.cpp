@@ -22,6 +22,12 @@ int main(int argc,char** argv)
     std::cout << std::endl << std::endl;
     tm1.move("d2","d3");
     tm1.move("d7","d6");
+
+    tm1.move("e2","e3");
+    tm1.move("e7","e6");
+
+    tm1.move("c1","d2");
+    tm1.move("c8","d7");
     board = tm1.b.boardStatus();
     std::for_each(board.rbegin(),board.rend(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){(column!="e")?(std::cout << column << " "):(std::cout << column << "  ");});std::cout << std::endl;});
     

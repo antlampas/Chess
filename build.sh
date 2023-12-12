@@ -7,5 +7,5 @@
 #     mkdir build
 # fi
 cd build
-cmake .. -DCMAKE_BUILD_TYPE="$1" && make
+cmake .. -DCMAKE_BUILD_TYPE="$1" -DTEST="$2" && make
 cd ..

@@ -11,6 +11,10 @@
 #include "board.hpp"
 #endif
 
+#ifdef TESTING
+    #define private public
+#endif
+
 class turnManager
 {
     private:

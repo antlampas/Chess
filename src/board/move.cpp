@@ -24,12 +24,8 @@ bool board::move(std::string start,std::string end)
     
     if(this->isMoveValid(start,end))
     {
-        std::cout << "Move is valid" << std::endl;
-
         if(!this->isMoveClogged(start,end))
-        {
-            std::cout << "Move is not clogged" << std::endl;
-            
+        { 
             if(targetPiece != "e")
                 if(targetPiece.at(0) != movingPiece.at(0))
                     this->tookPieces.push_back(targetPiece);

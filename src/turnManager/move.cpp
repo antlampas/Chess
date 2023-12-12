@@ -33,8 +33,6 @@ bool turnManager::move(coordinatesType startCoordinates,coordinatesType endCoord
 
         pieceType piece = board.at(decodedStartCoordinates.first).at(decodedStartCoordinates.second);
 
-        std::cout << piece << std::endl;
-
         if(piece.at(0) != 'e')
             if(piece.at(0) == this->team)
                 if(this->b.move(startCoordinates,endCoordinates))

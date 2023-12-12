@@ -4,8 +4,12 @@ cmake_minimum_required(VERSION 3.15)
 
 project(Chess)
 
-if(${CMAKE_BUILD_TYPE} MATCHES "Debug")
+if("${CMAKE_BUILD_TYPE}" MATCHES "Debug")
     add_definitions(-DDEBUG)
+endif()
+
+if("${TEST}" MATCHES "Test")
+    add_definitions(-DTESTING)
 endif()
 
 include_directories(include)

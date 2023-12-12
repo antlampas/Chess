@@ -12,7 +12,7 @@
 #include <array>
 #include <string>
 
-#ifdef DEBUG
+#ifdef TESTING
     #define private public
 #endif
 
