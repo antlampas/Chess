@@ -4,7 +4,6 @@
  *
  */
 
-#include <regex>
 #include <exception>
 
 #ifndef TURNMANAGER_HPP
@@ -13,9 +12,7 @@
 
 void turnManager::setTurn(char team)
 {
-    std::regex teamFormat("[wb]");
-
-    if(std::regex_match(this->team,teamFormat))
+    if(team == 'w' || team == 'b')
         this->team = team;
     else
         throw std::exception("Invalid team");

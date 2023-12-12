@@ -13,9 +13,7 @@
 
 char turnManager::getTurn()
 {
-    std::regex teamFormat("[wb]");
-
-    if(std::regex_match(this->team,teamFormat))
+    if((this->team == 'w') || (this->team == 'b'))
         return this->team;
     else
         throw std::exception("Invalid team");
