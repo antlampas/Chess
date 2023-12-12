@@ -4,11 +4,19 @@
  *
  */
 
+#include <regex>
+#include <exception>
+
 #ifndef TURNMANAGER_HPP
 #include "turnManager.hpp"
 #endif
 
 char getTurn()
 {
-    
+    std::regex teamFormat = "[wb]";
+
+    if(std::regex_match(team,teamFormat))
+        return this->team;
+    else
+        throw std::Exception("Invalid team")
 }

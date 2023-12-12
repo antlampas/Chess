@@ -4,11 +4,19 @@
  *
  */
 
+#include <regex>
+#include <exception>
+
 #ifndef TURNMANAGER_HPP
 #include "turnManager.hpp"
 #endif
 
 void turnManager::toggleTurn()
 {
-
+    if(this->team == 'w') 
+        this->team = 'b';
+    else if(this->team == 'b')
+        this->team = 'w';
+    else
+        throw std::Exception("Invalid team");
 }
