@@ -8,7 +8,7 @@
 #include "turnManager.hpp"
 #endif
 
-static turnManager& turnManager::getInstance(board& b)
+turnManager& turnManager::getInstance(board& b)
 {
     static turnManager instance(b);
     return instance;
