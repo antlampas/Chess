@@ -29,6 +29,6 @@ class turnManager
     turnManager& operator=(turnManager&&) = delete;
     static turnManager& getInstance(board&);
     bool move(coordinatesType coordinates);
-}
+};
 
 #endif
