@@ -14,14 +14,16 @@
 class turnManager
 {
     private:
-    board* b;
+    board b;
     static turnManager* instance;
     char team;
     turnManager();
     turnManager(boardMapType);
     void setTurn(char team);
     void toggleTurn();
+
     public:
+    ~turnManager()                        = default;
     turnManager(turnManager&&)            = delete;
     turnManager& operator=(turnManager&&) = delete;
     static turnManager& getInstance(boardMapType);

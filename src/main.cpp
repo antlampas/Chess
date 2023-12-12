@@ -30,15 +30,15 @@ int main(int argc,char** argv)
     for(auto p: pieces)
         randomBoard.at(r()%8).at(r()%8) = p;
     
-    turnManager& tm = turnManager::getInstance(randomBoard);
-    std::for_each(board.begin(),board.end(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){std::cout << column << " ";});std::cout << std::endl;});
+    turnManager& tm1 = turnManager::getInstance(randomBoard);
+    boardMapType board = tm1.b.boardStatus();
+    std::for_each(board.begin(),board.end(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){(column!="e")?(std::cout << column << " "):(std::cout << column << "  ");});std::cout << std::endl;});
     std::cout << std::endl << std::endl;
-    delete tm;
 
-    turnManager& tm = turnManager::getInstance(randomBoard);
-    std::for_each(board.begin(),board.end(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){std::cout << column << " ";});std::cout << std::endl;});
+    turnManager& tm2 = turnManager::getInstance();
+    board = tm2.b.boardStatus();
+    std::for_each(board.begin(),board.end(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){(column!="e")?(std::cout << column << " "):(std::cout << column << "  ");});std::cout << std::endl;});
     std::cout << std::endl << std::endl;
-    delete tm;
 
     return 0;
 }
