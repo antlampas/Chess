@@ -27,6 +27,7 @@ bool board::isMoveValid(std::string start,std::string end)
         const int& endColumn   {endCoordinates.second};
         
         bool advanceOne   = ((startColumn == endColumn) && (std::abs(endRow - startRow) == 1));
+        bool advanceTwo   = ((startColumn == endColumn) && (std::abs(endRow - startRow) == 2));
         bool pawnCapture  = ((std::abs(endColumn-startColumn)==1) && ((endRow-startRow)==1));
         bool moveHV       = (!((startColumn != endColumn) && (startRow == endRow)) != !((startColumn == endColumn) && (startRow != endRow)));
         bool moveDiagonal = (std::abs(endRow-startRow) == std::abs(endColumn-startColumn));
@@ -35,7 +36,7 @@ bool board::isMoveValid(std::string start,std::string end)
         bool moveL        = (!((std::abs(endRow-startRow) == 1) && (std::abs(endColumn-startColumn) == 2)) != !((std::abs(endRow-startRow) == 2) && (std::abs(endColumn-startColumn) == 1)));
         bool noMove       = ((startRow == endRow) && (startColumn == endColumn));
         
-        if(piece.at(1) == 'p')      return (noMove || advanceOne || pawnCapture);
+        if(piece.at(1) == 'p')      return (noMove || advanceOne || advanceTwo || pawnCapture);
         else if(piece.at(1) == 'r') return (noMove || moveHV);
         else if(piece.at(1) == 'n') return (noMove || moveL);
         else if(piece.at(1) == 'b') return (noMove || moveDiagonal);
