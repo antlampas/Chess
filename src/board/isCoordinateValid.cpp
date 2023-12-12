@@ -12,7 +12,7 @@
 
 bool board::isCoordinateValid(std::string coordinates)
 {
-    std::regex coordinatesFormat("^[abcdefgh][12345678]$");
+    std::regex coordinatesFormat("^[a-h][1-8]$");
     
     return std::regex_match(coordinates,coordinatesFormat);
 }

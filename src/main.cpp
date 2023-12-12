@@ -6,7 +6,6 @@
  
 #include <iostream>
 #include <algorithm>
-#include <random>
 
 #ifndef BOARD_HPP
 #include "board.hpp"
@@ -16,29 +15,15 @@
 #endif
 
 int main(int argc,char** argv)
-{
-    std::random_device r;
-    std::mt19937 g(r());
-
-    std::vector<std::string> pieces      {"wp","wp","wp","wp","wp","wp","wp","wp","wr","wr","wn","wn","wb","wb","wk","wq","bp","bp","bp","bp","bp","bp","bp","bp","br","br","bn","bn","bb","bb","bk","bq"};
-    
-    std::shuffle(pieces.begin(),pieces.end(),g);
-
-    
-    boardMapType randomBoard = boardMapType(8,columnType(8,squareType("e")));
-
-    for(auto p: pieces)
-        randomBoard.at(r()%8).at(r()%8) = p;
-    
-    turnManager& tm1 = turnManager::getInstance(randomBoard);
+{ 
+    turnManager& tm1 = turnManager::getInstance();
     boardMapType board = tm1.b.boardStatus();
-    std::for_each(board.begin(),board.end(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){(column!="e")?(std::cout << column << " "):(std::cout << column << "  ");});std::cout << std::endl;});
+    std::for_each(board.rbegin(),board.rend(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){(column!="e")?(std::cout << column << " "):(std::cout << column << "  ");});std::cout << std::endl;});
     std::cout << std::endl << std::endl;
-
-    turnManager& tm2 = turnManager::getInstance();
-    board = tm2.b.boardStatus();
-    std::for_each(board.begin(),board.end(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){(column!="e")?(std::cout << column << " "):(std::cout << column << "  ");});std::cout << std::endl;});
-    std::cout << std::endl << std::endl;
-
+    tm1.move("d2","d3");
+    tm1.move("d7","d6");
+    board = tm1.b.boardStatus();
+    std::for_each(board.rbegin(),board.rend(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){(column!="e")?(std::cout << column << " "):(std::cout << column << "  ");});std::cout << std::endl;});
+    
     return 0;
 }

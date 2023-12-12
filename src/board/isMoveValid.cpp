@@ -26,7 +26,7 @@ bool board::isMoveValid(std::string start,std::string end)
         const int& endRow      {endCoordinates.first};
         const int& endColumn   {endCoordinates.second};
         
-        bool advanceOne   = ((startColumn == endColumn) && ((endRow - startRow) == 1));
+        bool advanceOne   = ((startColumn == endColumn) && (std::abs(endRow - startRow) == 1));
         bool pawnCapture  = ((std::abs(endColumn-startColumn)==1) && ((endRow-startRow)==1));
         bool moveHV       = (!((startColumn != endColumn) && (startRow == endRow)) != !((startColumn == endColumn) && (startRow != endRow)));
         bool moveDiagonal = (std::abs(endRow-startRow) == std::abs(endColumn-startColumn));

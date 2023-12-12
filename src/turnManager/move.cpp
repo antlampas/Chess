@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <regex>
 
 #ifndef TURNMANAGER_HPP
 #include "turnManager.hpp"
@@ -13,9 +14,40 @@
 
 bool turnManager::move(coordinatesType startCoordinates,coordinatesType endCoordinates)
 {
+    std::regex coordinatesFormat("^[a-h][1-8]$");
+    std::regex nameFormat("^[wb][prnbkq]$|^e$");
+
+    char currentTeam = this->team;
+
     boardMapType board = this->b.boardStatus();
     
-    std::for_each(board.begin(),board.end(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){std::cout << column << " ";});std::cout << std::endl;});
-    
+    if(std::regex_match(startCoordinates,coordinatesFormat) && std::regex_match(endCoordinates,coordinatesFormat))
+    {
+        decodedCoordinatesType decodedStartCoordinates {-1,-1};
+        decodedCoordinatesType decodedEndCoordinates {-1,-1};
+
+        decodedStartCoordinates.second = startCoordinates.at(0) - 97;
+        decodedStartCoordinates.first  = startCoordinates.at(1) - 49;
+        decodedEndCoordinates.second = endCoordinates.at(0) - 97;
+        decodedEndCoordinates.first  = endCoordinates.at(1) - 49;
+
+        pieceType piece = board.at(decodedStartCoordinates.first).at(decodedStartCoordinates.second);
+
+        std::cout << piece << std::endl << std::endl << std::endl;
+        if(piece.at(0) != 'e')
+            if(piece.at(0) == this->team)
+                if(this->b.move(startCoordinates,endCoordinates))
+                {
+                    this->toggleTurn();
+                    currentTeam = this->team;
+                }
+                else
+                    std::cout << "Wrong move" << std::endl;
+            else
+                std::cout << "Not your turn" << std::endl;
+        else
+            std::cout << "Empty square" << std::endl;
+    }
+
     return true;
 }

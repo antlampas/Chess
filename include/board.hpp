@@ -23,7 +23,7 @@ using squareType             = std::string;
 using coordinatesType        = std::string;
 using pieceType              = std::string;
 using decodedCoordinatesType = std::pair<int,int>;
-using decodedpieceType   = std::pair<char,char>;
+using decodedpieceType       = std::pair<char,char>;
 using decodedRowType         = int;
 using decodedColumnType      = int;
 

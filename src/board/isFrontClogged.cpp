@@ -15,7 +15,7 @@ bool board::isFrontClogged(std::string position)
     const int& row    {decodedCoordinates.first};
     const int& column {decodedCoordinates.second};
 
-    if(this->boardMap.at(row+1).at(column)!="e")
+    if((this->boardMap.at(row+1).at(column)!="e") || (this->boardMap.at(row-1).at(column)!="e"))
         return true;
     else
         return false;
