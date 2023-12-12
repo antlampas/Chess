@@ -15,9 +15,20 @@
 
 class turnManager
 {
+    private:
     board* b;
-    bool team;
+    turnManager(board&)                   = default;
+    static turnManager* instance;
+    bool team; //true: white; false: black
     
+    public:
+    turnManager()                         = delete;
+    turnManager(turnManager&)             = delete;
+    turnManager(turnManager&&)            = delete;
+    turnManager& operator=(turnManager&)  = delete;
+    turnManager& operator=(turnManager&&) = delete;
+    static turnManager& getInstance(board&);
+    bool move(coordinatesType coordinates);
 }
 
 #endif
