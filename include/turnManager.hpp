@@ -17,7 +17,7 @@ class turnManager
 {
     private:
     board* b;
-    turnManager(board&)                   = default;
+    turnManager(board&);
     static turnManager* instance;
     bool team; //true: white; false: black
     
