@@ -10,5 +10,5 @@
 
 turnManager::turnManager(board& b)
 {
-    this->b = b;
+    this->b = &b;
 }
