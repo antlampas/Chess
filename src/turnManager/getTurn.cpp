@@ -11,12 +11,12 @@
 #include "turnManager.hpp"
 #endif
 
-char getTurn()
+char turnManager::getTurn()
 {
-    std::regex teamFormat = "[wb]";
+    std::regex teamFormat("[wb]");
 
-    if(std::regex_match(team,teamFormat))
+    if(std::regex_match(this->team,teamFormat))
         return this->team;
     else
-        throw std::Exception("Invalid team")
+        throw std::exception("Invalid team");
 }

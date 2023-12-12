@@ -13,11 +13,11 @@
 
 void turnManager::setTurn(char team)
 {
-    std::regex teamFormat = "[wb]";
+    std::regex teamFormat("[wb]");
 
-    if(std::regex_match(team,teamFormat))
+    if(std::regex_match(this->team,teamFormat))
         this->team = team;
     else
-        throw std::Exception("Invalid team");
+        throw std::exception("Invalid team");
 
 }

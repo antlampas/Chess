@@ -18,5 +18,5 @@ void turnManager::toggleTurn()
     else if(this->team == 'b')
         this->team = 'w';
     else
-        throw std::Exception("Invalid team");
+        throw std::exception("Invalid team");
 }

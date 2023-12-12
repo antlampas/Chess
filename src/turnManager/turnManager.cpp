@@ -4,11 +4,22 @@
  *
  */
 
+#include <utility>
+
 #ifndef TURNMANAGER_HPP
 #include "turnManager.hpp"
 #endif
 
-turnManager::turnManager(board& b)
+turnManager::turnManager(boardMapType boardMap)
 {
-    this->b = &b;
+    board b(boardMap);
+    this->b = std::move(b);
+    this->setTurn('w');
+}
+
+turnManager::turnManager()
+{
+    board b;
+    this->b = std::move(b);
+    this->setTurn('w');
 }

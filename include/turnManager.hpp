@@ -17,15 +17,15 @@ class turnManager
     board* b;
     static turnManager* instance;
     char team;
-    turnManager(board&);
+    turnManager();
+    turnManager(boardMapType);
     void setTurn(char team);
     void toggleTurn();
-    
     public:
-    turnManager()                         = delete;
     turnManager(turnManager&&)            = delete;
     turnManager& operator=(turnManager&&) = delete;
-    static turnManager& getInstance(board&);
+    static turnManager& getInstance(boardMapType);
+    static turnManager& getInstance();
     bool move(coordinatesType);
     char getTurn();
 };
