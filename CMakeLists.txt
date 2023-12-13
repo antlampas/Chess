@@ -9,6 +9,7 @@ if("${CMAKE_BUILD_TYPE}" MATCHES "Debug")
 endif()
 
 if("${TEST}" MATCHES "Test")
+    add_definitions(-DDEBUG)
     add_definitions(-DTESTING)
 endif()
 
