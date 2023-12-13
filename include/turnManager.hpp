@@ -22,14 +22,11 @@ class turnManager
     static turnManager* instance;
     char team;
     turnManager();
-    turnManager(boardMapType);
+    turnManager(boardMapType,int);
     void setTurn(char team);
     void toggleTurn();
 
     public:
-    ~turnManager()                        = default;
-    turnManager(turnManager&&)            = delete;
-    turnManager& operator=(turnManager&&) = delete;
     static turnManager& getInstance(boardMapType);
     static turnManager& getInstance();
     bool move(coordinatesType,coordinatesType);
