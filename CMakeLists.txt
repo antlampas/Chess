@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(Chess)
+project(Chess DESCRIPTION "Yet another chess implementation for excercise purposes" HOMEPAGE "https://github.com/antlampas/Chess" LANGUAGES "CXX")
 
 if("${CMAKE_BUILD_TYPE}" MATCHES "Debug")
     add_definitions(-DDEBUG)
