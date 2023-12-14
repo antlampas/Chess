@@ -6,7 +6,7 @@ add_executable(chess main.cpp)
 
 
 if(TEST)
-    add_subdirectory(tests tests)
+add_subdirectory(tests tests)
 endif()
 
 target_link_libraries(chess PUBLIC board turnManager)
