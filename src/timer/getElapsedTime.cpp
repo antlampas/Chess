@@ -8,3 +8,4 @@
 #include "timer.cpp"
 #endif
 
+std::chrono::duration timer::getElapsedTime(){}

@@ -8,3 +8,5 @@
 #include "timer.cpp"
 #endif
 
+timer::timer(int,std::function<void()>){}
+timer::timer(){}

@@ -8,3 +8,4 @@
 #include "timer.cpp"
 #endif
 
+void timer::setInterval(){}

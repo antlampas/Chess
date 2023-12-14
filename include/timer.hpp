@@ -16,7 +16,7 @@ class timer
     std::function<void()> callback;
 
     public:
-    timer(int);
+    timer(int,std::function<void()>);
     timer();
     void setInterval();
     void setCallback(std::function<void(void*)>);
