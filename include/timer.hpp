@@ -2,9 +2,10 @@
 #define TURNMANAGER_HPP
 
 #include <chrono>
+#include <functional>
 
 #ifdef TESTING
-    #define private public
+#define private public
 #endif
 
 class timer
@@ -12,13 +13,13 @@ class timer
     private:
     std::chrono::duration<short int> interval;
     std::chrono::duration<short int> elapsedTime;
-    void (*callback)(void*);
+    std::function<void()> callback;
 
     public:
     timer(int);
     timer();
     void setInterval();
-    void setCallback(void (*f)(void*),void*);
+    void setCallback(std::function<void(void*)>);
     bool startTimer();
     bool stopTimer();
     bool isStarted();

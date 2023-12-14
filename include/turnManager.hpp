@@ -12,7 +12,7 @@
 #endif
 
 #ifdef TESTING
-    #define private public
+#define private public
 #endif
 
 class turnManager

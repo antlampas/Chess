@@ -13,7 +13,7 @@
 #include <string>
 
 #ifdef TESTING
-    #define private public
+#define private public
 #endif
 
 using boardMapType           = std::vector<std::vector<std::string>>;
