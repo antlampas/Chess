@@ -7,7 +7,7 @@ project(Chess DESCRIPTION "Yet another chess implementation for excercise purpos
 string(TOUPPER "${LIBRARIES_LINKING}" LIBRARIES_LINKING)
 
 if("${LIBRARIES_LINKING}" NOT MATCHES "SHARED" OR "STATIC")
-LIBRARIES_LINKING = ""
+set(LIBRARIES_LINKING "")
 endif()
 
 if("${CMAKE_BUILD_TYPE}" MATCHES "Debug")
