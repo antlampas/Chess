@@ -8,5 +8,5 @@
 #include "timer.cpp"
 #endif
 
-timer::timer(int,std::function<void()>){}
-timer::timer(){}
+timer::timer() : interval(1),callback(nullptr){}
+timer::timer(int interval,std::function<void()> callback) : interval(interval),callback(callback){}
