@@ -10,16 +10,12 @@
 class timer
 {
     private:
-    static timer* instance;
     std::chrono::duration<short int> interval;
     std::chrono::duration<short int> elapsedTime;
-    timer(int);
-    timer();
-    timer(timer&);
-    timer(timer&&);
 
     public:
-    static timer& getInstance();
+    timer(int);
+    timer();
     void setInterval();
     bool startTimer();
     bool stopTimer();
