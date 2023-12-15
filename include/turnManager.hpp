@@ -22,7 +22,7 @@ class turnManager
     static turnManager* instance;
     char team;
     turnManager();
-    turnManager(boardMapType,int);
+    turnManager(boardMapType);
     void setTurn(char team);
     void toggleTurn();
 

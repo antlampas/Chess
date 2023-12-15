@@ -5,7 +5,7 @@ add_subdirectory(turnManager turnManager)
 add_executable(chess main.cpp)
 
 
-if(TEST)
+if("${TESTING}" MATCHES "TEST")
 add_subdirectory(tests tests)
 endif()
 
