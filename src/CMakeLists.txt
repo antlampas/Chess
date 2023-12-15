@@ -2,11 +2,10 @@
 
 add_subdirectory(board board)
 add_subdirectory(turnManager turnManager)
-add_executable(chess main.cpp)
-
-
 if("${TESTING}" MATCHES "TEST")
-add_subdirectory(tests tests)
+set(TESTSLIBRARY "tests")
 endif()
+
+add_executable(chess main.cpp)
 
 target_link_libraries(chess PUBLIC board turnManager)
