@@ -24,6 +24,7 @@ class timer
     bool stopTimer();
     bool isStarted();
     std::chrono::duration getElapsedTime();
+    std::chrono::duration getRemainingTime();
 };
 
 #endif
