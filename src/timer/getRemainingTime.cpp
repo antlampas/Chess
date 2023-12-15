@@ -8,4 +8,7 @@
 #include "timer.cpp"
 #endif
 
-std::chrono::duration timer::getRemainingTime(){}
+std::chrono::duration timer::getRemainingTime()
+{
+    return std::chrono::steady_clock::now() - this->stopTime;
+}

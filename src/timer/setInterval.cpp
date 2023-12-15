@@ -8,4 +8,7 @@
 #include "timer.cpp"
 #endif
 
-void timer::setInterval(){}
+void timer::setInterval(std::chrono::duration interval)
+{
+    this->interval = interval;
+}

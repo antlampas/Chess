@@ -11,14 +11,15 @@
 class timer
 {
     private:
+    std::chrono::time_point startTime;
+    std::chrono::time_point stopTime;
     std::chrono::duration<short int> interval;
-    std::chrono::duration<short int> elapsedTime;
     std::function<void()> callback;
 
     public:
     timer(int,std::function<void()>);
     timer();
-    void setInterval();
+    void setInterval(std::chrono::duration);
     void setCallback(std::function<void(void*)>);
     bool startTimer();
     bool stopTimer();
