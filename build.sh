@@ -5,5 +5,5 @@ then
     mkdir build
 fi
 cd build
-cmake .. -DDEBUGGING="$1" -DLIBRARIES_LINKING="$2" -DTESTING="$3" && make
+cmake .. -DCMAKE_BUILD_TYPE="$1" -DLIBRARIES_LINKING="$2" -DTESTING="${*:3}" && make
 cd ..

@@ -5,7 +5,7 @@
  */
 
 #ifndef TIMER_CPP
-#include "timer.cpp"
+#include "timer.hpp"
 #endif
 
 timer::timer() : interval(1),callback(nullptr){}
