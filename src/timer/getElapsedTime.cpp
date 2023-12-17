@@ -12,5 +12,5 @@ std::chrono::duration<long int,std::chrono::seconds> timer::getElapsedTime()
 {
     std::chrono::time_point<std::chrono::steady_clock,std::chrono::seconds> = std::chrono::time_point_cast<std::chrono::seconds>(std::chrono::steady_clock::now());
     auto d = std::chrono::time_point_cast<std::chrono::seconds>(std::chrono::steady_clock::now()) - this->startTime;
-    return d;
+    return std::chrono::duration_cast<std::chrono::seconds>(d);
 }
