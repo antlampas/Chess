@@ -11,8 +11,8 @@
 class timer
 {
     private:
-    std::chrono::time_point<std::chrono::steady_clock,std::chrono::duration<long int,std::chrono::seconds>> startTime;
-    std::chrono::time_point<std::chrono::steady_clock,std::chrono::duration<long int,std::chrono::seconds>> stopTime;
+    std::chrono::time_point<std::chrono::steady_clock> startTime;
+    std::chrono::time_point<std::chrono::steady_clock> stopTime;
     std::chrono::duration<long int,std::chrono::seconds> interval;
     std::function<void(void*)> callback;
 
