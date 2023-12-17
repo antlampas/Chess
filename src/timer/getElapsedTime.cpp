@@ -10,5 +10,5 @@
 
 std::chrono::duration<std::chrono::seconds> timer::getElapsedTime()
 {
-    return std::chrono::steady_clock::now() - this->startTime;
+    return std::chrono::duration<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime);
 }
