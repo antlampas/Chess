@@ -9,4 +9,4 @@
 #endif
 
 timer::timer() : interval(1),callback(nullptr){}
-timer::timer(int interval,std::function<void()> callback) : interval(interval),callback(callback){}
+timer::timer(int interval,std::function<void(void*)> callback) : interval(interval),callback(callback){}
