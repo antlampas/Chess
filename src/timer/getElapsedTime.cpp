@@ -8,7 +8,7 @@
 #include "timer.cpp"
 #endif
 
-std::chrono::duration<std::chrono::seconds> timer::getElapsedTime()
+std::chrono::duration<std::chrono::steady_clock> timer::getElapsedTime()
 {
-    return std::chrono::duration<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime);
+    return std::chrono::duration<std::chrono::steady_clock>(std::chrono::steady_clock::now() - this->startTime);
 }
