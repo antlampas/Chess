@@ -11,10 +11,10 @@
 class timer
 {
     private:
-    std::chrono::time_point<std::chrono::steady_clock,std::chrono::seconds> startTime;
-    std::chrono::time_point<std::chrono::steady_clock,std::chrono::seconds> stopTime;
-    std::chrono::duration<long int,std::chrono::seconds> interval;
-    std::function<void(void*)> callback;
+    std::chrono::time_point<std::chrono::steady_clock,std::chrono::seconds> startTime {};
+    std::chrono::time_point<std::chrono::steady_clock,std::chrono::seconds> stopTime {};
+    std::chrono::duration<long int,std::chrono::seconds> interval {};
+    std::function<void(void*)> callback {};
 
     public:
     timer(int,std::function<void(void*)>);

@@ -8,5 +8,5 @@
 #include "timer.hpp"
 #endif
 
-timer::timer() : interval(1),callback(nullptr),startTime(std::chrono::steady_clock::now()),stopTime(std::chrono::steady_clock::now()){}
-timer::timer(int interval,std::function<void(void*)> callback) : interval(interval),callback(callback),startTime(std::chrono::steady_clock::now()),stopTime(std::chrono::steady_clock::now()){}
+timer::timer(){}
+timer::timer(int interval,std::function<void(void*)> callback) : callback(callback),interval(interval){}
