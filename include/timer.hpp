@@ -13,19 +13,19 @@ class timer
     private:
     std::chrono::time_point<std::chrono::steady_clock> startTime {std::chrono::steady_clock::now()};
     std::chrono::time_point<std::chrono::steady_clock> stopTime {std::chrono::steady_clock::now()};
-    std::chrono::duration<short int,std::chrono::steady_clock> interval {1};
+    std::chrono::duration<long int,std::chrono::steady_clock> interval {1};
     std::function<void(void*)> callback;
 
     public:
     timer(int,std::function<void(void*)>);
     timer();
-    void setInterval(std::chrono::duration<short int,std::chrono::steady_clock>);
+    void setInterval(std::chrono::duration<long int,std::chrono::steady_clock>);
     void setCallback(std::function<void(void*)>);
     bool startTimer();
     bool stopTimer();
     bool isStarted();
-    std::chrono::duration<short int,std::chrono::steady_clock> getElapsedTime();
-    std::chrono::duration<short int,std::chrono::steady_clock> getRemainingTime();
+    std::chrono::duration<long int,std::chrono::steady_clock> getElapsedTime();
+    std::chrono::duration<long int,std::chrono::steady_clock> getRemainingTime();
 };
 
 #endif
