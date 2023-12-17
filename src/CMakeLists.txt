@@ -2,6 +2,7 @@
 
 add_subdirectory(board board)
 add_subdirectory(turnManager turnManager)
+add_subdirectory(timer timer)
 
 if(DEFINED TESTBOARD OR DEFINED TESTTIMER OR DEFINED TESTTURNMANAGER)
 set(TESTSLIBRARY "tests")
