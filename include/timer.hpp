@@ -14,10 +14,10 @@ class timer
     std::chrono::time_point startTime;
     std::chrono::time_point stopTime;
     std::chrono::duration<short int> interval;
-    std::function<void()> callback;
+    std::function<void(void*)> callback;
 
     public:
-    timer(int,std::function<void()>);
+    timer(int,std::function<void(void*)>);
     timer();
     void setInterval(std::chrono::duration);
     void setCallback(std::function<void(void*)>);

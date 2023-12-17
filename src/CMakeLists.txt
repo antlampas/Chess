@@ -2,7 +2,8 @@
 
 add_subdirectory(board board)
 add_subdirectory(turnManager turnManager)
-if("${TESTING}" MATCHES "TEST")
+
+if(DEFINED TESTBOARD OR DEFINED TESTTIMER OR DEFINED TESTTURNMANAGER)
 set(TESTSLIBRARY "tests")
 endif()
 

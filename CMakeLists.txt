@@ -17,8 +17,15 @@ if("${RELEASETYPE}" MATCHES "DEBUG")
     add_definitions(-DDEBUG)
 endif()
 
-if("${TESTING}" MATCHES "TEST")
-    add_definitions(-DTESTING)
+if(TESTBOARD)
+    add_definitions(-DTESTBOARD)
+endif()
+
+if(TESTTIMER)
+    add_definitions(-DTESTTIMER)
+endif()
+if(TESTTURNMANAGER)
+    add_definitions(-DTESTTURNMANAGER)
 endif()
 
 include_directories(include)
