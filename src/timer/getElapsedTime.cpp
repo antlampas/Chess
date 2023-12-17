@@ -10,6 +10,6 @@
 
 std::chrono::duration<long int,std::chrono::seconds> timer::getElapsedTime()
 {
-    auto d = std::chrono::steady_clock::now() - this->startTime;
-    return std::chrono::duration<long int,std::chrono::seconds>(std::chrono::duration_cast<std::chrono::seconds>(d));
+    auto d = std::chrono::duration<long int,std::chrono::seconds>(std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now())) - this->startTime;
+    return d;
 }
