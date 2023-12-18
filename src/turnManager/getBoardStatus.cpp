@@ -9,4 +9,7 @@
 #endif
 
 
-boardMapType getBoardStatus(){}
+boardMapType getBoardStatus()
+{
+    return this->b.BoardStatus();
+}
