@@ -9,7 +9,7 @@
 #endif
 
 
-boardMapType getBoardStatus()
+boardMapType turnManager::getBoardStatus()
 {
     return this->b.BoardStatus();
 }
