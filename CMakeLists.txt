@@ -4,12 +4,9 @@ cmake_minimum_required(VERSION 3.15)
 
 project(Chess DESCRIPTION "Yet another chess implementation for excercise purposes" HOMEPAGE_URL "https://github.com/antlampas/Chess" LANGUAGES "CXX")
 
+block(PROPAGATE)
 string(TOUPPER "${LIBRARIES_LINKING}" LIBRARIES_LINKING)
 string(TOUPPER "${TESTING}" TESTING)
-
-set(CMAKE_BUILD_TYPE "${CMAKE_BUILD_TYPE}" PARENT_SCOPE)
-set(LIBRARIES_LINKING "${LIBRARIES_LINKING}" PARENT_SCOPE)
-set(TESTING "${TESTING}" PARENT_SCOPE)
 
 if((NOT ("${LIBRARIES_LINKING}" MATCHES "SHARED")) OR (NOT ("${LIBRARIES_LINKING}" MATCHES "STATIC")))
 set(LIBRARIES_LINKING "")
@@ -34,3 +31,4 @@ endif()
 include_directories(include)
 
 add_subdirectory(src ${CMAKE_BUILD_TYPE})
+endblock()
