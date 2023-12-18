@@ -14,13 +14,13 @@ if(TESTING MATCHES "BOARD")
     add_definitions(-DTESTBOARD)
 endif()
 
-if(TESTING MATCHES "TIMER")
-    add_definitions(-DTESTTIMER)
-endif()
+# if(TESTING MATCHES "TIMER")
+#     add_definitions(-DTESTTIMER)
+# endif()
 
-if(TESTING MATCHES "TURNMANAGER")
-    add_definitions(-DTESTTURNMANAGER)
-endif()
+# if(TESTING MATCHES "TURNMANAGER")
+#     add_definitions(-DTESTTURNMANAGER)
+# endif()
 
 include_directories(include)
 
