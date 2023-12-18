@@ -4,11 +4,9 @@
  *
  */
 
-#ifndef TIMER_CPP
-#include "timer.cpp"
+#ifndef TURNMANAGER_HPP
+#include "turnManager.hpp"
 #endif
 
-void timer::setInterval(std::chrono::duration<long int> interval)
-{
-    this->interval = interval;
-}
+
+boardMapType getBoardStatus(){}

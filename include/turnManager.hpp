@@ -31,6 +31,7 @@ class turnManager
     static turnManager& getInstance();
     bool move(coordinatesType,coordinatesType);
     char getTurn();
+    boardMapType getBoardStatus();
 };
 
 #endif
