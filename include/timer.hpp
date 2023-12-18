@@ -4,7 +4,7 @@
 #include <chrono>
 #include <functional>
 
-#ifdef TESTING
+#ifdef TESTTIMER
 #define private public
 #endif
 

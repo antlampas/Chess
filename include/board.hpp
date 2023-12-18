@@ -12,7 +12,7 @@
 #include <array>
 #include <string>
 
-#ifdef TESTING
+#ifdef TESTBOARD
 #define private public
 #endif
 

@@ -10,8 +10,11 @@
 #ifndef BOARD_HPP
 #include "board.hpp"
 #endif
+#ifndef TIMER_HPP
+#include "timer.hpp"
+#endif
 
-#ifdef TESTING
+#ifdef TESTTURNMANAGER
 #define private public
 #endif
 
