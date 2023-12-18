@@ -7,6 +7,8 @@ project(Chess DESCRIPTION "Yet another chess implementation for excercise purpos
 string(TOUPPER "${LIBRARIES_LINKING}" LIBRARIES_LINKING)
 string(TOUPPER "${TESTING}" TESTING)
 
+message("${LIBRARIES_LINKING}")
+
 if((NOT ("${LIBRARIES_LINKING}" MATCHES "SHARED")) OR (NOT ("${LIBRARIES_LINKING}" MATCHES "STATIC")))
 set(LIBRARIES_LINKING "")
 endif()
