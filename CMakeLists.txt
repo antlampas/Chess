@@ -4,14 +4,7 @@ cmake_minimum_required(VERSION 3.15)
 
 project(Chess DESCRIPTION "Yet another chess implementation for excercise purposes" HOMEPAGE_URL "https://github.com/antlampas/Chess" LANGUAGES "CXX")
 
-string(TOUPPER "${LIBRARIES_LINKING}" LIBRARIES_LINKING)
 string(TOUPPER "${TESTING}" TESTING)
-
-message("${LIBRARIES_LINKING}")
-
-if((NOT ("${LIBRARIES_LINKING}" MATCHES "SHARED")) OR (NOT ("${LIBRARIES_LINKING}" MATCHES "STATIC")))
-set(LIBRARIES_LINKING "")
-endif()
 
 if("${CMAKE_BUILD_TYPE}" MATCHES "Debug")
     add_definitions(-DDEBUG)
