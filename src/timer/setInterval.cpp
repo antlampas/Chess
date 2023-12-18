@@ -4,8 +4,8 @@
  *
  */
 
-#ifndef TIMER_CPP
-#include "timer.cpp"
+#ifndef TIMER_HPP
+#include "timer.hpp"
 #endif
 
 void timer::setInterval(std::chrono::duration<long int> interval)

@@ -4,8 +4,8 @@
  *
  */
 
-#ifndef TIMER_CPP
-#include "timer.cpp"
+#ifndef TIMER_HPP
+#include "timer.hpp"
 #endif
 
 bool timer::isStarted(){}

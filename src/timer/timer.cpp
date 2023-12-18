@@ -4,7 +4,7 @@
  *
  */
 
-#ifndef TIMER_CPP
+#ifndef TIMER_HPP
 #include "timer.hpp"
 #endif
 
