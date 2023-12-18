@@ -11,5 +11,5 @@
 
 boardMapType turnManager::getBoardStatus()
 {
-    return this->b.BoardStatus();
+    return this->b.boardStatus();
 }
