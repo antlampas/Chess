@@ -11,7 +11,6 @@ if((NOT ("${LIBRARIES_LINKING}" MATCHES "SHARED")) OR (NOT ("${LIBRARIES_LINKING
 set(LIBRARIES_LINKING "")
 endif()
 
-
 if("${CMAKE_BUILD_TYPE}" MATCHES "Debug")
     add_definitions(-DDEBUG)
 endif()
