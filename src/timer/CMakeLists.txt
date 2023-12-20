@@ -3,7 +3,6 @@
 add_library(timer SHARED
             getElapsedTime.cpp
             isStarted.cpp
-            setCallback.cpp
             setInterval.cpp
             startTimer.cpp
             stopTimer.cpp
