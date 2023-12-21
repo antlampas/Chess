@@ -8,4 +8,8 @@
 #include "timer.hpp"
 #endif
 
-bool timer::startTimer(){}
+bool timer::startTimer(std::function<void(void*)> f)
+{
+    std::future<void> requestExit = this->exitSignal.get_future();
+    this->callback {f,requestExit};
+}

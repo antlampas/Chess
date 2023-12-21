@@ -14,16 +14,16 @@ class timer
 {
     private:
     std::chrono::time_point<std::chrono::steady_clock,std::chrono::seconds> startTime {};
-    std::chrono::time_point<std::chrono::steady_clock,std::chrono::seconds> stopTime {};
-    std::chrono::duration<long int> interval {};
-    std::thread callback {};
-    std::promise<void> exitSignal;
+    std::chrono::time_point<std::chrono::steady_clock,std::chrono::seconds> stopTime  {};
+    std::chrono::duration<long int> interval                                          {};
+    std::thread callback                                                              {};
+    std::promise<void> exitSignal                                                     {};
 
     public:
     timer();
-    timer(int,std::function<void(void*)>,void* args);
+    timer(int,std::function<void(void*)>);
     void setInterval(std::chrono::duration<long int>);
-    bool startTimer(std::function<void(void*)>,void* args);
+    bool startTimer(std::function<void(void*)>);
     bool stopTimer();
     bool isStarted();
     std::chrono::duration<long int> getElapsedTime();
