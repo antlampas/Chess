@@ -24,9 +24,9 @@ bool timer::startTimer(std::function<void()> f)
                                                 (*func)();
                                                 break;
                                             }
-                                            elapsedTime = std::chrono::now() - this->startTime;
+                                            elapsedTime = std::chrono::steady_clock::now() - this->startTime;
                                         }
-                                    }
+                                    };
     std::thread func {function,std::move(requestExit)};
 
     if((func.get_id() != std::thread::id{}) && (this->callback = std::move(func)))
