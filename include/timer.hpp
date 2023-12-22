@@ -17,13 +17,13 @@ class timer
     std::chrono::time_point<std::chrono::steady_clock> stopTime  {};
     std::chrono::duration<long int> interval                     {};
     std::thread callback                                         {};
-    std::promise<void()> exitSignal;
+    std::promise<void> exitSignal;
 
     public:
     timer();
-    timer(int,std::function<void>);
+    timer(int,std::function<void()>);
     void setInterval(std::chrono::duration<long int>);
-    bool startTimer(std::function<void>);
+    bool startTimer(std::function<void()>);
     bool stopTimer();
     bool isStarted();
     std::chrono::duration<long int> getElapsedTime();
