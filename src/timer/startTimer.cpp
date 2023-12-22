@@ -21,15 +21,18 @@ bool timer::startTimer(std::function<void()> f)
                                         {
                                             if(reqExit.wait_for(std::chrono::seconds(1))==std::future_status::ready)
                                             {
-                                                (*func)();
+                                                *func();
                                                 break;
                                             }
                                             elapsedTime = std::chrono::steady_clock::now() - this->startTime;
                                         }
                                     };
     std::thread func {function,std::move(requestExit)};
+    
 
-    if((func.get_id() != std::thread::id{}) && (this->callback = std::move(func)))
+    if(func.get_id() != std::thread::id{}) this->callback = std::move(func);
+    
+    if(this->callback.get_id() != std::thread::id{})
         return true;
     else
         return false;
