@@ -8,26 +8,28 @@
 #include "timer.hpp"
 #endif
 
-bool timer::startTimer(std::function<void> f)
+bool timer::startTimer(std::function<void()> f)
 {
     std::future<void> requestExit = this->exitSignal.get_future();
 
-    std::function<void> function = [](std::function<void> *func,std::future<void> reqExit)
+    std::function<void()> function = [this](std::function<void> *func,std::future<void> reqExit)
                                     {
                                         this->startTime = std::chrono::now();
                                         this->stopTime  = this->startTime + this->interval;
                                         std::chrono::duration<long int> elapsedTime {std::chrono::now() - this->startTime};
                                         while(elapsedTime < this->interval)
                                         {
-                                            if(reqExit.wait_for(std::chrono::seconds(1))==std::future_status::ready())
+                                            if(reqExit.wait_for(std::chrono::seconds(1))==std::future_status::ready)
                                             {
                                                 (*func)();
                                                 break;
                                             }
-                                            elapsedTime {std::chrono::now() - this->startTime};
+                                            elapsedTime = std::chrono::now() - this->startTime;
                                         }
                                     }
-    if((std::thread func {function,std::move(requestExit)}) && (this->callback = std::move(func)))
+    std::thread func {function,std::move(requestExit)};
+
+    if((func.get_id() != std::thread::id{}) && (this->callback = std::move(func)))
         return true;
     else
         return false;
