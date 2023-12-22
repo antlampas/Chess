@@ -11,5 +11,8 @@
 bool timer::startTimer(std::function<void(void*)> f)
 {
     std::future<void> requestExit = this->exitSignal.get_future();
-    this->callback {f,requestExit};
+    if((std::thread func {f,requestExit}) && (this->callback = std::move(func)))
+        return true;
+    else
+        return false;
 }
