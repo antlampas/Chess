@@ -21,7 +21,7 @@ bool timer::startTimer(std::function<void()> f)
                                         {
                                             if(reqExit.wait_for(std::chrono::seconds(1))==std::future_status::ready)
                                             {
-                                                func();
+                                                (*func)();
                                                 break;
                                             }
                                             elapsedTime = std::chrono::steady_clock::now() - this->startTime;
