@@ -14,9 +14,9 @@ bool timer::startTimer(std::function<void()> f)
 
     std::function<void()> function = [this](std::function<void> *func,std::future<void> reqExit)
                                     {
-                                        this->startTime = std::chrono::now();
+                                        this->startTime = std::chrono::steady_clock::now();
                                         this->stopTime  = this->startTime + this->interval;
-                                        std::chrono::duration<long int> elapsedTime {std::chrono::now() - this->startTime};
+                                        std::chrono::duration<long int> elapsedTime {std::chrono::steady_clock::now() - this->startTime};
                                         while(elapsedTime < this->interval)
                                         {
                                             if(reqExit.wait_for(std::chrono::seconds(1))==std::future_status::ready)
