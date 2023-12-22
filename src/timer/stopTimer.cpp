@@ -8,4 +8,7 @@
 #include "timer.hpp"
 #endif
 
-bool timer::stopTimer(){}
+bool timer::stopTimer()
+{
+    this->exitSignal.set_value();
+}
