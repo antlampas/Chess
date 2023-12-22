@@ -12,7 +12,7 @@ bool timer::startTimer(std::function<void()> f)
 {
     std::future<void> requestExit = this->exitSignal.get_future();
 
-    std::function<void(std::function<void>*,std::future<void>)> function = [this](std::function<void> *func,std::future<void> reqExit)
+    std::function<void(std::function<void>*,std::future<void>)> function = [this](std::function<void()> *func,std::future<void> reqExit)
                                     {
                                         this->startTime = std::chrono::steady_clock::now();
                                         this->stopTime  = this->startTime + this->interval;
