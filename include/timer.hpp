@@ -26,6 +26,7 @@ class timer
     bool startTimer(std::function<void()>);
     bool stopTimer();
     bool isStarted();
+    bool checkCallback(); //TODO: implement
     std::chrono::duration<long int> getElapsedTime();
     std::chrono::duration<long int> getRemainingTime();
 };

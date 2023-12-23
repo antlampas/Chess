@@ -17,14 +17,14 @@ turnManager::turnManager(boardMapType boardMap)
     this->setTurn('w');
     std::function<void()> checkTimer {[this](std::future<void> exitSignal,timer t)
                                         {
-                                            while(exitSignal.get_value() == std::future_status::timeout)
+                                            while(exitSignal.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout)
                                             {
                                                 std::this_thread::wait_for(std::chrono::milliseconds(998));
-                                                if(this->t.get_id() == std::thread::id{})
+                                                if(!this->t.checkCallback())
                                                     this->t.startTimer(&this->toggleTurn,std::move(exitSignal.get_future()));
                                                 std::cout << this->getTurn() << std::endl;
                                             }
-                                            if(this->t.get_id() != std::thread::id{})
+                                            if(!this->t.checkCallback())
                                                 exitSignal.set_value();
                                         }};
 
@@ -38,14 +38,14 @@ turnManager::turnManager()
     this->setTurn('w');
     std::function<void()> checkTimer {[this](std::future<void> exitSignal,timer t)
                                         {
-                                            while(exitSignal.get_value() == std::future_status::timeout)
+                                            while(exitSignal.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout)
                                             {
                                                 std::this_thread::wait_for(std::chrono::milliseconds(998));
-                                                if(this->t.get_id() == std::thread::id{})
+                                                if(!this->t.checkCallback())
                                                     this->t.startTimer(&this->toggleTurn,std::move(exitSignal.get_future()));
                                                 std::cout << this->getTurn() << std::endl;
                                             }
-                                            if(this->t.get_id() != std::thread::id{})
+                                            if(!this->t.checkCallback())
                                                 exitSignal.set_value();
                                         }};
 
