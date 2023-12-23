@@ -12,11 +12,11 @@ bool timer::startTimer(std::function<void()> f)
 {
     std::future<void> requestExit = this->exitSignal.get_future();
 
-    std::function<void(std::function<void>*,std::future<void>)> function = [this](std::function<void()> *func,std::future<void> reqExit)
+    std::function<void(std::function<void()>*,std::future<void>)> function = std::move([this](std::function<void()> *func,std::future<void> reqExit)
                                     {
                                         this->startTime = std::chrono::steady_clock::now();
                                         this->stopTime  = this->startTime + this->interval;
-                                        std::chrono::duration<long int> elapsedTime {std::chrono::steady_clock::now() - this->startTime};
+                                        std::chrono::duration<long int> elapsedTime {std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime)};
                                         while(elapsedTime < this->interval)
                                         {
                                             if(reqExit.wait_for(std::chrono::seconds(1))==std::future_status::ready)
@@ -24,9 +24,9 @@ bool timer::startTimer(std::function<void()> f)
                                                 (*func)();
                                                 break;
                                             }
-                                            elapsedTime = std::chrono::steady_clock::now() - this->startTime;
+                                            elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime);
                                         }
-                                    };
+                                    });
     std::thread func {function,&f,std::move(requestExit)};
     
 
