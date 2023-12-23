@@ -1,5 +1,5 @@
-#ifndef TURNMANAGER_HPP
-#define TURNMANAGER_HPP
+#ifndef TIMER_HPP
+#define TIMER_HPP
 
 #include <chrono>
 #include <functional>

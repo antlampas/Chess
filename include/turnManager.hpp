@@ -21,7 +21,7 @@
 class turnManager
 {
     private:
-    static turnManager* instance                 {nullptr};
+    static turnManager* instance;
     board b                                      {};
     char team                                    {};
     timer t                                      {};
@@ -36,6 +36,7 @@ class turnManager
     void toggleTurn();
 
     public:
+    ~turnManager()
     static turnManager& getInstance(boardMapType);
     static turnManager& getInstance();
     bool move(coordinatesType,coordinatesType);
