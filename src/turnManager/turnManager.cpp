@@ -28,3 +28,8 @@ turnManager::turnManager()
     this->b = std::move(b);
     this->setTurn('w');
 }
+
+turnManager::~turnManager()
+{
+    //TODO: implementa
+}
