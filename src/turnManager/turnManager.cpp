@@ -19,7 +19,7 @@ turnManager::turnManager(boardMapType boardMap)
                                         {
                                             while(exitSignal.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout)
                                             {
-                                                std::this_thread::wait_for(std::chrono::milliseconds(998));
+                                                std::this_thread::sleep_for(std::chrono::milliseconds(998));
                                                 if(!this->t.checkCallback())
                                                     this->t.startTimer(&this->toggleTurn,std::move(exitSignal.get_future()));
                                                 std::cout << this->getTurn() << std::endl;
@@ -40,7 +40,7 @@ turnManager::turnManager()
                                         {
                                             while(exitSignal.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout)
                                             {
-                                                std::this_thread::wait_for(std::chrono::milliseconds(998));
+                                                std::this_thread::sleep_for(std::chrono::milliseconds(998));
                                                 if(!this->t.checkCallback())
                                                     this->t.startTimer(&this->toggleTurn,std::move(exitSignal.get_future()));
                                                 std::cout << this->getTurn() << std::endl;
@@ -56,5 +56,4 @@ turnManager::~turnManager()
 {
     this->exitSignal.set_value();
     this->checkTimer.join();
-    this->t.join();
 }

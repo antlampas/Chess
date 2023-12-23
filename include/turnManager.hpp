@@ -36,7 +36,7 @@ class turnManager
     void toggleTurn();
 
     public:
-    ~turnManager()
+    ~turnManager();
     static turnManager& getInstance(boardMapType);
     static turnManager& getInstance();
     bool move(coordinatesType,coordinatesType);
