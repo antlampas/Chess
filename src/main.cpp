@@ -21,6 +21,7 @@ int main(int argc,char** argv)
 { 
     turnManager& tm = turnManager::getInstance();
     timer tt;
-    
+    tt.setInterval {std::chrono::seconds(10)};
+    tt.startTimer()
     return 0;
 }

@@ -21,9 +21,14 @@
 class turnManager
 {
     private:
-    board b;
     static turnManager* instance;
-    char team;
+    board b                       {};
+    char team                     {};
+    timer t                       {};
+    std::promise<void> exitSignal {};
+    std::thread checkTimer        {};
+
+    private:
     turnManager();
     turnManager(boardMapType);
     void setTurn(char team);
