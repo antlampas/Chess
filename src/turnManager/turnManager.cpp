@@ -5,6 +5,7 @@
  */
 
 #include <utility>
+#include <iostream>
 
 #ifndef TURNMANAGER_HPP
 #include "turnManager.hpp"
