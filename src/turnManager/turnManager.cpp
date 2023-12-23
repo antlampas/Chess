@@ -44,6 +44,6 @@ turnManager::turnManager()
 turnManager::~turnManager()
 {
     this->exitSignal.set_value();
-    this->t.join();
     this->checkTimer.join();
+    this->t.join();
 }
