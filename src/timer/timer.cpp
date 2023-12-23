@@ -9,4 +9,4 @@
 #endif
 
 timer::timer(){}
-timer::timer(int interval) : interval(interval){}
+timer::timer(long int interval) : interval(interval){}

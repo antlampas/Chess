@@ -21,12 +21,13 @@
 class turnManager
 {
     private:
-    static turnManager* instance;
-    board b                       {};
-    char team                     {};
-    timer t                       {};
-    std::promise<void> exitSignal {};
-    std::thread checkTimer        {};
+    static turnManager* instance                 {nullptr};
+    board b                                      {};
+    char team                                    {};
+    timer t                                      {};
+    std::chrono::duration<long int> turnDuration {};
+    std::promise<void> exitSignal                {};
+    std::thread checkTimer                       {};
 
     private:
     turnManager();
