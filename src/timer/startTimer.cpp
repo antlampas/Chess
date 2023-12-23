@@ -28,7 +28,6 @@ bool timer::startTimer(std::function<void()> f)
                                         }
                                     });
     std::thread func {function,&f,std::move(requestExit)};
-    
 
     if(func.get_id() != std::thread::id{}) this->callback = std::move(func);
 
