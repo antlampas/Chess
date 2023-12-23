@@ -13,23 +13,14 @@
 #ifndef TURNMANAGER_HPP
 #include "turnManager.hpp"
 #endif
+#ifndef TIMER_HPP
+#include "timer.hpp"
+#endif
 
 int main(int argc,char** argv)
 { 
-    turnManager& tm1 = turnManager::getInstance();
-    boardMapType board = tm1.getBoardStatus();
-    std::for_each(board.rbegin(),board.rend(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){(column!="e")?(std::cout << column << " "):(std::cout << column << "  ");});std::cout << std::endl;});
-    std::cout << std::endl << std::endl;
-    tm1.move("d2","d3");
-    tm1.move("d7","d6");
-
-    tm1.move("e2","e3");
-    tm1.move("e7","e6");
-
-    tm1.move("c1","d2");
-    tm1.move("c8","d7");
-    board = tm1.getBoardStatus();
-    std::for_each(board.rbegin(),board.rend(),[](std::vector<std::string> row){std::for_each(row.begin(),row.end(),[](std::string column){(column!="e")?(std::cout << column << " "):(std::cout << column << "  ");});std::cout << std::endl;});
+    turnManager& tm = turnManager::getInstance();
+    timer tt;
     
     return 0;
 }

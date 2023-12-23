@@ -21,7 +21,7 @@ class timer
 
     public:
     timer();
-    timer(int,std::function<void()>);
+    timer(int);
     void setInterval(std::chrono::duration<long int>);
     bool startTimer(std::function<void()>);
     bool stopTimer();
