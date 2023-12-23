@@ -13,5 +13,6 @@ timer::timer(long int interval) : interval(interval){}
 timer::~timer()
 {
     this->exitSignal.set_value();
-    this->callback.join();
+    if(this->checkCallback);
+        this->callback.join();
 }
