@@ -20,12 +20,10 @@ bool timer::startTimer(std::function<void()> f)
                                         while(elapsedTime < this->interval)
                                         {
                                             if(reqExit.wait_for(std::chrono::seconds(1))==std::future_status::ready)
-                                            {
-                                                (*func)();
                                                 break;
-                                            }
                                             elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime);
                                         }
+                                        (*func)();
                                     });
     std::thread func {function,&f,std::move(requestExit)};
 

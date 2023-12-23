@@ -8,4 +8,10 @@
 #include "timer.hpp"
 #endif
 
-bool timer::isStarted(){}
+bool timer::isStarted()
+{
+    if(this->callback.get_id()!= std::thread::id{})
+        return true;
+    else
+        return false;
+}

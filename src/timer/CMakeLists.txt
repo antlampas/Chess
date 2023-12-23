@@ -2,6 +2,7 @@
 
 add_library(timer SHARED
             getElapsedTime.cpp
+            getRemainingTime.cpp
             isStarted.cpp
             setInterval.cpp
             startTimer.cpp
