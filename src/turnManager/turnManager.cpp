@@ -11,6 +11,8 @@
 #include "turnManager.hpp"
 #endif
 
+turnManager::turnManager(): turnManager(boardMapType()){}
+
 turnManager::turnManager(boardMapType boardMap)
 {
     if(!boardMap.empty())
@@ -42,8 +44,6 @@ turnManager::turnManager(boardMapType boardMap)
 
     this->checkTimer(checkTimer,std::move(this->exitSignal.get_future()));
 }
-
-turnManager::turnManager(): turnManager(boardMapType()){}
 
 turnManager::~turnManager()
 {
