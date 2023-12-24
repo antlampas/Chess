@@ -8,7 +8,7 @@
 #include "timer.hpp"
 #endif
 
-bool timer::startTimer(std::function<void()> f,void* obj,std::future<void> exitSignal)
+bool timer::startTimer(std::function<void()>* f,void* obj,std::future<void> exitSignal)
 {
     std::function<void(std::function<void()>*,std::future<void>)> function = std::move([this](turnManager* obj,std::function<void()> *func,std::future<void> reqExit)
                                     {
