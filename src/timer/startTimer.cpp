@@ -25,8 +25,9 @@ template<typename T,typename U> bool timer::startTimer(T f,U* obj,std::future<vo
                                         f();
                                     });
 
-    if(func.get_id() != std::thread::id{})
-        this->callback = std::move(std::thread(function,obj,std::move(exitSignal)));
+    this->callback = std::move(std::thread(function,obj,std::move(exitSignal)));
+    
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
     if(this->callback.get_id() != std::thread::id{})
         return true;
