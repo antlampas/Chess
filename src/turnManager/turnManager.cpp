@@ -43,28 +43,7 @@ turnManager::turnManager(boardMapType boardMap)
     this->checkTimer(checkTimer,std::move(this->exitSignal.get_future()));
 }
 
-turnManager::turnManager(): turnManager(boardMapType())
-{
-    // board b;
-    // this->b = std::move(b);
-    // this->setTurn('w');
-    
-    // std::function<void()> checkTimer {[this](std::future<void> exitSignal,timer t)
-    //                                     {
-    //                                         std::promise<void> internalExitSignal {};
-    //                                         while(exitSignal.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout)
-    //                                         {
-    //                                             std::this_thread::sleep_for(std::chrono::milliseconds(998));
-    //                                             if(!this->t.checkCallback())
-    //                                                 // this->t.startTimer(&turnManager::toggleTurn,this,std::move(internalExitSignal.get_future()));
-    //                                                 this->t.startTimer(&turnManager::this->urn() << std::endl;
-    //                                         }
-    //                                         if(!this->t.checkCallback())
-    //                                             internalExitSignal.set_value();
-    //                                     }};
-
-    // this->checkTimer(checkTimer,std::move(this->exitSignal.get_future()));
-}
+turnManager::turnManager(): turnManager(boardMapType()){}
 
 turnManager::~turnManager()
 {
