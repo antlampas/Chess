@@ -19,12 +19,23 @@
 #include "timer.hpp"
 #endif
 
+bool stop = false;
+
+void setStop(int signal)
+{
+    stop = true;
+}
+
 int main(int argc,char** argv)
 { 
     turnManager& tm = turnManager::getInstance();
-    std::signal(std::SIGINT,std::terminate());
+    std::signal(SIGINT,setStop);
 
-    while(true) std::this_thread::wait_for(std::chrono::milliseconds(10));
+    while(true)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        if(stop) break;
+    }
 
     return 0;
 }
