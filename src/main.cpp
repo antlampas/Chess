@@ -9,14 +9,8 @@
 #include <csignal>
 #include <exception>
 
-#ifndef BOARD_HPP
-#include "board.hpp"
-#endif
 #ifndef TURNMANAGER_HPP
 #include "turnManager.hpp"
-#endif
-#ifndef TIMER_HPP
-#include "timer.hpp"
 #endif
 
 bool stop = false;
