@@ -24,10 +24,10 @@ template<typename T> bool timer::startTimer(T f,T* obj,const char* obj_t,std::fu
                                         }
                                         f();
                                     });
-    std::thread func = std::thread(function,&f,dynamic_cast<obj_t> obj,std::move(exitSignal));
+    //std::thread func = std::thread(function,&f,dynamic_cast<obj_t> obj,std::move(exitSignal));
 
     if(func.get_id() != std::thread::id{})
-        this->callback = std::move(func);
+        this->callback = std::move(std::thread(function,&f,dynamic_cast<obj_t> obj,std::move(exitSignal)));
 
     if(this->callback.get_id() != std::thread::id{})
         return true;
