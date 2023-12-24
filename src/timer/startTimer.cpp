@@ -8,9 +8,9 @@
 #include "timer.hpp"
 #endif
 
-bool timer::startTimer(std::function<void()>* f,void* obj,std::future<void> exitSignal)
+bool timer::startTimer(std::function<void()>* f,std::future<void> exitSignal)
 {
-    std::function<void(std::function<void()>*,std::future<void>)> function = std::move([this](turnManager* obj,std::function<void()> *func,std::future<void> reqExit)
+    std::function<void(std::function<void()>*,std::future<void>)> function = std::move([this](std::function<void()> *func,std::future<void> reqExit)
                                     {
                                         this->startTime = std::chrono::steady_clock::now();
                                         this->stopTime  = this->startTime + this->interval;
@@ -24,7 +24,7 @@ bool timer::startTimer(std::function<void()>* f,void* obj,std::future<void> exit
                                         }
                                         (*func)();
                                     });
-    std::thread func = std::thread(function,&f,obj,std::move(exitSignal));
+    std::thread func = std::thread(function,&f,std::move(exitSignal));
 
     if(func.get_id() != std::thread::id{}) this->callback = std::move(func);
 

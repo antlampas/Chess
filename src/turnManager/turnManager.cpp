@@ -34,7 +34,7 @@ turnManager::turnManager(boardMapType boardMap)
                                                 std::this_thread::sleep_for(std::chrono::milliseconds(998));
                                                 if(!this->t.checkCallback())
                                                     // this->t.startTimer(&turnManager::toggleTurn,this,std::move(internalExitSignal.get_future()));
-                                                    this->t.startTimer(this->toggleTurn,std::move(internalExitSignal.get_future()));
+                                                    this->t.startTimer(&this->toggleTurn,std::move(internalExitSignal.get_future()));
                                                 std::cout << this->getTurn() << std::endl;
                                             }
                                             if(!this->t.checkCallback())
