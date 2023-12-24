@@ -22,9 +22,8 @@ template<typename T,typename U> bool timer::startTimer(T f,U* obj,std::future<vo
                                                 break;
                                             elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime);
                                         }
-                                        func();
+                                        f();
                                     });
-    //std::thread func = std::thread(function,&f,dynamic_cast<obj_t> obj,std::move(exitSignal));
 
     if(func.get_id() != std::thread::id{})
         this->callback = std::move(std::thread(function,obj,std::move(exitSignal)));
