@@ -8,7 +8,7 @@
 #include "timer.hpp"
 #endif
 
-bool timer::startTimer(std::function<void()> f,void* obj,const char* obj_t,std::future<void> exitSignal)
+template<typename T> bool timer::startTimer(T* f,T* obj,const char* obj_t,std::future<void> exitSignal)
 {
     std::function<void(std::function<void()>*,std::future<void>)> function = std::move([this](std::function<void()>* func,std::future<void> reqExit)
                                     {
@@ -22,7 +22,7 @@ bool timer::startTimer(std::function<void()> f,void* obj,const char* obj_t,std::
                                                 break;
                                             elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime);
                                         }
-                                        func();
+                                        f();
                                     });
     std::thread func = std::thread(function,&f,dynamic_cast<obj_t> obj,std::move(exitSignal));
 
