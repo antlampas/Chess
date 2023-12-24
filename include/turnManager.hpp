@@ -33,7 +33,7 @@ class turnManager
     turnManager();
     turnManager(boardMapType);
     void setTurn(char team);
-    void toggleTurn();
+    static void toggleTurn(turnManager*);
 
     public:
     ~turnManager();

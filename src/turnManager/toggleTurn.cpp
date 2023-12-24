@@ -11,12 +11,12 @@
 #include "turnManager.hpp"
 #endif
 
-void turnManager::toggleTurn()
+void turnManager::toggleTurn(turnManager *obj)
 {
-    if(this->team == 'w') 
-        this->team = 'b';
+    if(obj->team == 'w') 
+        obj->team = 'b';
     else if(this->team == 'b')
-        this->team = 'w';
+        obj->team = 'w';
     else
         throw std::invalid_argument("Invalid team");
 }
