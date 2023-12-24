@@ -44,7 +44,7 @@ turnManager::turnManager(boardMapType boardMap)
                                                 internalExitSignal.set_value();
                                         };
 
-    this->checkTimer(checkTimer,std::move(this->exitSignal.get_future()));
+    this->checkTimer = std::thread(checkTimer,std::move(this->exitSignal.get_future()));
 }
 
 turnManager::~turnManager()
