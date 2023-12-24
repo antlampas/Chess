@@ -22,6 +22,7 @@ class timer
     public:
     timer();
     timer(long int);
+    ~timer();
     void setInterval(std::chrono::duration<long int>);
     template<typename T,typename U> bool startTimer(T,U*,std::future<void>);
     bool stopTimer();
