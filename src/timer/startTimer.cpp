@@ -8,7 +8,7 @@
 #include "timer.hpp"
 #endif
 
-bool timer::startTimer(std::function<void()> f,std::future<void> exitSignal)
+bool timer::startTimer(std::function<void()> f,void* obj,const char* obj_t,std::future<void> exitSignal)
 {
     std::function<void(std::function<void()>*,std::future<void>)> function = std::move([this](std::function<void()>* func,std::future<void> reqExit)
                                     {
@@ -24,7 +24,7 @@ bool timer::startTimer(std::function<void()> f,std::future<void> exitSignal)
                                         }
                                         func();
                                     });
-    std::thread func = std::thread(function,&f,std::move(exitSignal));
+    std::thread func = std::thread(function,&f,dynamic_cast<obj_t> obj,std::move(exitSignal));
 
     if(func.get_id() != std::thread::id{})
         this->callback = std::move(func);

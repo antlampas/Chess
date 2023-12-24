@@ -23,7 +23,7 @@ class timer
     timer();
     timer(long int);
     void setInterval(std::chrono::duration<long int>);
-    bool startTimer(std::function<void()>,std::future<void>);
+    bool startTimer(std::function<void()>,void*,const char*,std::future<void>);
     bool stopTimer();
     bool isStarted();
     bool checkCallback();
