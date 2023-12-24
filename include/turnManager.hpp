@@ -33,9 +33,9 @@ class turnManager
     turnManager();
     turnManager(boardMapType);
     void setTurn(char team);
+    void toggleTurn();
 
     public:
-    void toggleTurn();
     ~turnManager();
     static turnManager& getInstance(boardMapType);
     static turnManager& getInstance();
