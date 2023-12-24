@@ -13,8 +13,17 @@
 
 turnManager::turnManager(boardMapType boardMap)
 {
-    board b(boardMap);
-    this->b = std::move(b);
+    if(!boardMap.empty())
+    {
+        board b(boardMap);
+        this->b = std::move(b);
+    }
+    else
+    {
+        board b;
+        this->b = std::move(b);
+    }
+
     this->setTurn('w');
     
     std::function<void()> checkTimer {[this](std::future<void> exitSignal,timer t)
@@ -24,7 +33,8 @@ turnManager::turnManager(boardMapType boardMap)
                                             {
                                                 std::this_thread::sleep_for(std::chrono::milliseconds(998));
                                                 if(!this->t.checkCallback())
-                                                    this->t.startTimer(&turnManager::toggleTurn,this,std::move(internalExitSignal.get_future()));
+                                                    // this->t.startTimer(&turnManager::toggleTurn,this,std::move(internalExitSignal.get_future()));
+                                                    this->t.startTimer(this->toggleTurn,std::move(internalExitSignal.get_future()));
                                                 std::cout << this->getTurn() << std::endl;
                                             }
                                             if(!this->t.checkCallback())
@@ -34,27 +44,27 @@ turnManager::turnManager(boardMapType boardMap)
     this->checkTimer(checkTimer,std::move(this->exitSignal.get_future()));
 }
 
-turnManager::turnManager()
+turnManager::turnManager(): turnManager(boardMapType boardMap{})
 {
-    board b;
-    this->b = std::move(b);
-    this->setTurn('w');
+    // board b;
+    // this->b = std::move(b);
+    // this->setTurn('w');
     
-    std::function<void()> checkTimer {[this](std::future<void> exitSignal,timer t)
-                                        {
-                                            std::promise<void> internalExitSignal {};
-                                            while(exitSignal.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout)
-                                            {
-                                                std::this_thread::sleep_for(std::chrono::milliseconds(998));
-                                                if(!this->t.checkCallback())
-                                                    this->t.startTimer(&turnManager::toggleTurn,this,std::move(internalExitSignal.get_future()));
-                                                std::cout << this->getTurn() << std::endl;
-                                            }
-                                            if(!this->t.checkCallback())
-                                                internalExitSignal.set_value();
-                                        }};
+    // std::function<void()> checkTimer {[this](std::future<void> exitSignal,timer t)
+    //                                     {
+    //                                         std::promise<void> internalExitSignal {};
+    //                                         while(exitSignal.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout)
+    //                                         {
+    //                                             std::this_thread::sleep_for(std::chrono::milliseconds(998));
+    //                                             if(!this->t.checkCallback())
+    //                                                 // this->t.startTimer(&turnManager::toggleTurn,this,std::move(internalExitSignal.get_future()));
+    //                                                 this->t.startTimer(&turnManager::this->urn() << std::endl;
+    //                                         }
+    //                                         if(!this->t.checkCallback())
+    //                                             internalExitSignal.set_value();
+    //                                     }};
 
-    this->checkTimer(checkTimer,std::move(this->exitSignal.get_future()));
+    // this->checkTimer(checkTimer,std::move(this->exitSignal.get_future()));
 }
 
 turnManager::~turnManager()
