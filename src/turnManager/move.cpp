@@ -37,7 +37,7 @@ bool turnManager::move(coordinatesType startCoordinates,coordinatesType endCoord
             if(piece.at(0) == this->team)
                 if(this->b.move(startCoordinates,endCoordinates))
                 {
-                    this->toggleTurn();
+                    this->exitSignal.set_value();
                     currentTeam = this->team;
                 }
                 else
