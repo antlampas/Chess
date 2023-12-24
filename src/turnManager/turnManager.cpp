@@ -28,7 +28,7 @@ turnManager::turnManager(boardMapType boardMap)
 
     this->setTurn('w');
     
-    std::function<void(std::future<void>)> checkTimer {[this](std::future<void> exitSignal)
+    std::function<void(std::future<void>)> checkTimer = [this](std::future<void> exitSignal)
                                         {
                                             std::promise<void> internalExitSignal {};
                                             while(exitSignal.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout)
@@ -42,7 +42,7 @@ turnManager::turnManager(boardMapType boardMap)
                                             }
                                             if(!this->t.checkCallback())
                                                 internalExitSignal.set_value();
-                                        }};
+                                        };
 
     this->checkTimer(checkTimer,std::move(this->exitSignal.get_future()));
 }
