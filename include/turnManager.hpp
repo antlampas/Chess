@@ -17,7 +17,9 @@
 #ifdef TESTTURNMANAGER
 #define private public
 #endif
-class turnTimer : public timer{};
+
+class turnTimer : timer
+{};
 
 class turnManager
 {
