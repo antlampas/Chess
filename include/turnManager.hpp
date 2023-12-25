@@ -14,10 +14,10 @@
 #include "timer.hpp"
 #endif
 
-
 #ifdef TESTTURNMANAGER
 #define private public
 #endif
+class turnTimer : public timer;
 
 class turnManager
 {
@@ -25,7 +25,7 @@ class turnManager
     static turnManager* instance;
     board b                                      {};
     char team                                    {};
-    timer t                                      {};
+    turnTimer t                                  {};
     std::chrono::duration<long int> turnDuration {};
     std::promise<void> exitSignal                {};
     std::thread checkTimer                       {};
