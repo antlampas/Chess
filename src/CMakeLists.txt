@@ -7,8 +7,8 @@ add_subdirectory(tests tests)
 endif()
 
 add_subdirectory(board board)
-add_subdirectory(timer timer)
 add_subdirectory(turnManager turnManager)
+add_subdirectory(timer timer)
 
 add_executable(chess main.cpp)
 
