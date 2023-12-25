@@ -6,11 +6,10 @@
 #include <thread>
 #include <future>
 
-// #ifndef TURNMANAGER_HPP
-// #include "turnManager.hpp"
-// #endif
-
+#ifndef TURNMANAGER_HPP
 #include "turnManager.hpp"
+#endif
+
 
 #ifdef TESTTIMER
 #define private public

@@ -14,6 +14,7 @@
 #include "timer.hpp"
 #endif
 
+
 #ifdef TESTTURNMANAGER
 #define private public
 #endif
