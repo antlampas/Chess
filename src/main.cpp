@@ -8,7 +8,6 @@
 #include <algorithm>
 #include <csignal>
 #include <exception>
-#include <chrono>
 
 #ifndef TURNMANAGER_HPP
 #include "turnManager.hpp"
@@ -25,8 +24,6 @@ int main(int argc,char** argv)
 { 
     // turnManager* tm = new turnManager;
     turnManager tm;
-
-    tm.t.setInterval(std::chrono::seconds(10));
 
     std::signal(SIGINT,setStop);
 
