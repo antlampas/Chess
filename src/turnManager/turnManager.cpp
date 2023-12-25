@@ -53,5 +53,6 @@ turnManager::turnManager(boardMapType boardMap)
 turnManager::~turnManager()
 {
     this->exitSignal.set_value();
-    this->checkTimer.join();
+    if(this->checkTimer.joinable())
+        this->checkTimer.join();
 }
