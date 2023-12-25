@@ -30,7 +30,7 @@ class timer
     timer(long int);
     ~timer();
     void setInterval(std::chrono::duration<long int>);
-    template<typename T,typename U> bool startTimer(T f,U obj,std::future<void> exitSignal)
+    template<typename T,typename U> bool startTimer(T* f,U obj,std::future<void> exitSignal)
     {
         std::function<void(std::future<void>)> function = std::move([this,&f,&obj](std::future<void> reqExit)
         {
@@ -44,7 +44,7 @@ class timer
                     break;
                 elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime);
             }
-            (obj.*f)();
+            (*obj.*f)();
         });
 
         this->callback = std::move(std::thread(function,std::move(exitSignal)));
