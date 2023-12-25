@@ -18,7 +18,7 @@
 #define private public
 #endif
 
-class turnTimer : timer
+class turnTimer : public timer
 {};
 
 class turnManager
