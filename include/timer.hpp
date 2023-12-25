@@ -19,10 +19,10 @@
 class timer
 {
     private:
-    std::chrono::time_point<std::chrono::steady_clock> startTime {};
-    std::chrono::time_point<std::chrono::steady_clock> stopTime  {};
-    std::chrono::duration<long int> interval                     {};
-    std::thread callback                                         {};
+    std::chrono::time_point<std::chrono::steady_clock> startTime  {};
+    std::chrono::time_point<std::chrono::steady_clock> stopTime   {};
+    std::chrono::duration<long int,std::chrono::seconds> interval {};
+    std::thread callback                                          {};
     std::promise<void> exitSignal;
 
     public:
