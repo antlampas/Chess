@@ -18,16 +18,13 @@
 #define private public
 #endif
 
-class turnTimer : public timer
-{};
-
 class turnManager
 {
     private:
     static turnManager* instance;
     board b                                      {};
     char team                                    {};
-    turnTimer t                                  {};
+    timer t                                      {};
     std::chrono::duration<long int> turnDuration {};
     std::promise<void> exitSignal                {};
     std::thread checkTimer                       {};
