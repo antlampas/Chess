@@ -21,7 +21,6 @@
 class turnManager
 {
     private:
-    static turnManager* instance;
     board b                                      {};
     char team                                    {};
     timer t                                      {};
@@ -30,15 +29,13 @@ class turnManager
     std::thread checkTimer                       {};
 
     private:
-    turnManager();
-    turnManager(boardMapType);
     void setTurn(char team);
     void toggleTurn();
 
     public:
+    turnManager();
+    turnManager(boardMapType);
     ~turnManager();
-    static turnManager& getInstance(boardMapType);
-    static turnManager& getInstance();
     bool move(coordinatesType,coordinatesType);
     char getTurn();
     boardMapType getBoardStatus();

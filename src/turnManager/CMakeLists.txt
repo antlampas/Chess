@@ -2,7 +2,6 @@
 
 add_library(turnManager SHARED
             getBoardStatus.cpp
-            getInstance.cpp
             getTurn.cpp
             move.cpp
             setTurn.cpp
