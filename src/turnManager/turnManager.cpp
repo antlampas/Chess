@@ -11,7 +11,7 @@
 #include "turnManager.hpp"
 #endif
 
-turnManager::turnManager(): turnManager(boardMapType()){}
+turnManager::turnManager() : turnManager(boardMapType()){}
 
 turnManager::turnManager(boardMapType boardMap)
 {
