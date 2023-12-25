@@ -12,4 +12,4 @@ add_subdirectory(turnManager turnManager)
 
 add_executable(chess main.cpp)
 
-target_link_libraries(chess PUBLIC board turnManager timer)
+target_link_libraries(chess PUBLIC board timer turnManager)
