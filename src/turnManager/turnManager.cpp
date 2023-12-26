@@ -39,7 +39,7 @@ turnManager::turnManager(boardMapType boardMap)
                                                 if(this->t.isCallbackEnded())
                                                 {
                                                     internalExitSignal = std::promise<void> {};
-                                                    if(this->t.startTimer(&turnManager::toggleTurn,std::move(this),std::move(internalExitSignal.get_future())))
+                                                    this->t.startTimer(&turnManager::toggleTurn,std::move(this),std::move(internalExitSignal.get_future()));
                                                 }
                                                 std::cout << this->getTurn() << std::endl;
                                             }
