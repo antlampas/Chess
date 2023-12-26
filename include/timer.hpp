@@ -11,6 +11,7 @@
 #include <functional>
 #include <thread>
 #include <future>
+#include <iostream>
 
 #ifdef TESTTIMER
 #define private public
@@ -32,8 +33,10 @@ class timer
     void setInterval(std::chrono::duration<long int>);
     template<typename T,typename U> bool startTimer(T f,U obj,std::future<void> exitSignal)
     {
+        std::cout << "Start timer" << std::endl;
         std::function<void(std::future<void>)> function = std::move([this,f,obj](std::future<void> reqExit)
         {
+            std::cout << "Start callback" << std::endl;
             this->startTime = std::chrono::steady_clock::now();
             this->stopTime  = this->startTime + this->interval;
             std::chrono::duration<long int> elapsedTime {std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime)};
@@ -48,6 +51,7 @@ class timer
                 }
                 elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime);
             }
+            std::cout << "Execute" << std::endl;
             std::thread execute(f,obj);
             execute.join();
         });
