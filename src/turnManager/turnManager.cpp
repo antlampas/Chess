@@ -28,7 +28,7 @@ turnManager::turnManager(boardMapType boardMap)
 
     this->setTurn('w');
     
-    this->t.setInterval(std::chrono::seconds(10));
+    this->t.setInterval(std::chrono::seconds(2));
 
     std::function<void(std::future<void>)> checkTimer = [this](std::future<void> exitSignal)
                                         {
