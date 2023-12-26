@@ -38,7 +38,7 @@ turnManager::turnManager(boardMapType boardMap)
                                             {
                                                 std::cout << "No exit request" << std::endl;
                                                 std::this_thread::sleep_for(std::chrono::milliseconds(998));
-                                                if(!this->t.checkCallback())
+                                                if(!this->t.callbackStillRunning())
                                                 {
                                                     std::cout << "Callback not running" << std::endl;
                                                     if(this->t.startTimer(&turnManager::toggleTurn,std::move(this),std::move(internalExitSignal.get_future())))
@@ -47,7 +47,7 @@ turnManager::turnManager(boardMapType boardMap)
                                                 std::cout << this->getTurn() << std::endl;
                                             }
                                             std::cout << "Exit request" << std::endl;
-                                            if(!this->t.checkCallback())
+                                            if(!this->t.callbackStillRunning())
                                                 internalExitSignal.set_value();
                                         };
 
