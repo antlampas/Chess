@@ -37,8 +37,8 @@ class timer
         std::function<void(std::future<void>)> function = std::move([this,f,obj](std::future<void> reqExit)
         {
             this->callbackEnded = false;
-            this->startTime = std::chrono::steady_clock::now();
-            this->stopTime  = this->startTime + this->interval;
+            this->startTime     = std::chrono::steady_clock::now();
+            this->stopTime      = this->startTime + this->interval;
             std::chrono::duration<long int> elapsedTime {std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime)};
             while(elapsedTime < this->interval)
             {
