@@ -60,7 +60,7 @@ class timer
 
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
-        if(this->callback.get_id() != std::thread::id{})
+        if(this->callback.gjoinable())
             return true;
         else
             return false;

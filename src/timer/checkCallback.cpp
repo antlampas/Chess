@@ -10,7 +10,7 @@
 
 bool timer::checkCallback()
 {
-    if(this->callback.get_id() != std::thread::id{})
+    if(this->callback.joinable())
         return true;
     else
         return false;
