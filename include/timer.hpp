@@ -25,7 +25,7 @@ class timer
     std::chrono::duration<long int> interval                     {};
     std::thread callback                                         {};
     bool callbackEnded                                           {true};
-    std::promise<void> exitSignal;
+    std::promise<void> exitSignal                                {};
 
     public:
     timer();
