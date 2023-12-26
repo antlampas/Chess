@@ -32,22 +32,17 @@ turnManager::turnManager(boardMapType boardMap)
 
     std::function<void(std::future<void>)> checkTimer = [this](std::future<void> exitSignal)
                                         {
-                                            std::cout << "Starting Check timer" << std::endl;
                                             std::promise<void> internalExitSignal {};
                                             while(exitSignal.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout)
                                             {
-                                                std::cout << "No exit request" << std::endl;
                                                 std::this_thread::sleep_for(std::chrono::milliseconds(998));
                                                 if(this->t.isCallbackEnded())
                                                 {
-                                                    std::cout << "Callback not running" << std::endl;
                                                     internalExitSignal = std::promise<void> {};
                                                     if(this->t.startTimer(&turnManager::toggleTurn,std::move(this),std::move(internalExitSignal.get_future())))
-                                                        std::cout << "Timer Started" << std::endl;
                                                 }
                                                 std::cout << this->getTurn() << std::endl;
                                             }
-                                            std::cout << "Exit request" << std::endl;
                                             if(!this->t.isCallbackStillRunning())
                                                 internalExitSignal.set_value();
                                         };
