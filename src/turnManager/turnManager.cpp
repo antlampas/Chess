@@ -41,7 +41,7 @@ turnManager::turnManager(boardMapType boardMap)
                                                 if(this->t.isCallbackEnded())
                                                 {
                                                     std::cout << "Callback not running" << std::endl;
-                                                    internalExitSignal {};
+                                                    internalExitSignal = std::promise<void> {};
                                                     if(this->t.startTimer(&turnManager::toggleTurn,std::move(this),std::move(internalExitSignal.get_future())))
                                                         std::cout << "Timer Started" << std::endl;
                                                 }
