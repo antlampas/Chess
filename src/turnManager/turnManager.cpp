@@ -5,7 +5,6 @@
  */
 
 #include <utility>
-#include <iostream>
 
 #ifndef TURNMANAGER_HPP
 #include "turnManager.hpp"
@@ -47,7 +46,6 @@ turnManager::turnManager(boardMapType boardMap)
                                                     internalExitSignal = std::promise<void> {};
                                                     this->t.startTimer(&turnManager::toggleTurn,std::move(this),std::move(internalExitSignal.get_future()));
                                                 }
-                                                std::cout << this->getTurn() << std::endl;
                                             }while(exitSignal.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout);
 
                                             if(!this->t.isCallbackStillRunning())

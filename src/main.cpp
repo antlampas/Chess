@@ -5,8 +5,6 @@
  */
  
 #include <iostream>
-#include <algorithm>
-#include <csignal>
 #include <exception>
 
 #ifndef TURNMANAGER_HPP
