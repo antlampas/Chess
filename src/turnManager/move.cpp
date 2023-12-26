@@ -4,7 +4,7 @@
  *
  */
 
-#include <iostream>
+#include <stdexcept>
 #include <algorithm>
 #include <regex>
 
@@ -41,11 +41,11 @@ bool turnManager::move(coordinatesType startCoordinates,coordinatesType endCoord
                     currentTeam = this->team;
                 }
                 else
-                    std::cout << "Wrong move" << std::endl << std::endl << std::endl << std::endl;
+                    throw std::domain_error("Wrong move");
             else
-                std::cout << "Not your turn" << std::endl << std::endl << std::endl << std::endl;
+                throw std::domain_error("Not your turn");
         else
-            std::cout << "Empty square" << std::endl << std::endl << std::endl << std::endl;
+            throw std::domain_error("Empty square");
     }
 
     return true;
