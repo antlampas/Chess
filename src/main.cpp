@@ -13,30 +13,7 @@
 #include "turnManager.hpp"
 #endif
 
-bool stop = false;
-
-void setStop(int signal)
-{
-    stop = true;
-}
-
 int main(int argc,char** argv)
 { 
-    turnManager* tm = new turnManager;
-
-    std::signal(SIGINT,setStop);
-
-    for(int i=0;i<10;i++)
-    {
-        std::this_thread::sleep_for(std::chrono::seconds(5));
-        tm->endTurn();
-    }
-
-    while(true)
-    {
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
-        if(stop) break;
-    }
-
-    return 0;
+    return 1;
 }
