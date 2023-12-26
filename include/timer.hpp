@@ -44,7 +44,8 @@ class timer
                     break;
                 elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime);
             }
-            (*obj.*f)();
+            // (*obj.*f)();
+            std::thread exec(f,obj);
         });
 
         this->callback = std::move(std::thread(function,std::move(exitSignal)));

@@ -22,7 +22,7 @@ void setStop(int signal)
 
 int main(int argc,char** argv)
 { 
-    turnManager tm;
+    turnManager* tm = new turnManager;
 
     std::signal(SIGINT,setStop);
 
