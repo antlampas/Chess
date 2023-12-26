@@ -8,7 +8,7 @@
 #include "turnManager.hpp"
 #endif
 
-boardMapType turnManager::getBoardStatus()
+void turnManager::endTurn()
 {
-    return this->b.boardStatus();
+    this->endTurnSignal = true;
 }

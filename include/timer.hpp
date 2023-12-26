@@ -44,9 +44,7 @@ class timer
             {
                 std::this_thread::sleep_for(std::chrono::milliseconds(998));
                 if(reqExit.wait_for(std::chrono::milliseconds(1))==std::future_status::ready)
-                {
                     break;
-                }
                 elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime);
             }
             std::thread execute(f,obj);

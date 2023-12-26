@@ -28,26 +28,33 @@ turnManager::turnManager(boardMapType boardMap)
 
     this->setTurn('w');
     
-    this->t.setInterval(std::chrono::seconds(2));
+    this->t.setInterval(std::chrono::seconds(10));
 
     std::function<void(std::future<void>)> checkTimer = [this](std::future<void> exitSignal)
                                         {
                                             std::promise<void> internalExitSignal {};
-                                            while(exitSignal.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout)
+                                            do
                                             {
-                                                std::this_thread::sleep_for(std::chrono::milliseconds(998));
+                                                std::this_thread::sleep_for(std::chrono::milliseconds(996));
+                                                if(this->endTurnSignal)
+                                                {
+                                                    internalExitSignal.set_value();
+                                                    this->endTurnSignal = false;
+                                                }
+                                                std::this_thread::sleep_for(std::chrono::milliseconds(1));
                                                 if(this->t.isCallbackEnded())
                                                 {
                                                     internalExitSignal = std::promise<void> {};
                                                     this->t.startTimer(&turnManager::toggleTurn,std::move(this),std::move(internalExitSignal.get_future()));
                                                 }
                                                 std::cout << this->getTurn() << std::endl;
-                                            }
+                                            }while(exitSignal.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout);
+
                                             if(!this->t.isCallbackStillRunning())
                                                 internalExitSignal.set_value();
                                         };
 
-    this->checkTimer = std::move(std::thread(checkTimer,std::move(exitSignal.get_future())));
+    this->checkTimer = std::move(std::thread(checkTimer,std::move(this->exitSignal.get_future())));
 }
 
 turnManager::~turnManager()

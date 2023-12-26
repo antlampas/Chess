@@ -26,6 +26,12 @@ int main(int argc,char** argv)
 
     std::signal(SIGINT,setStop);
 
+    for(int i=0;i<10;i++)
+    {
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+        tm->endTurn();
+    }
+
     while(true)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(10));

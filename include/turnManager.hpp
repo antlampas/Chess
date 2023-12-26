@@ -25,6 +25,7 @@ class turnManager
     char team                                    {};
     timer t                                      {};
     std::chrono::duration<long int> turnDuration {};
+    bool endTurnSignal                           {false};
     std::promise<void> exitSignal                {};
     std::thread checkTimer                       {};
 
@@ -38,6 +39,7 @@ class turnManager
     ~turnManager();
     bool move(coordinatesType,coordinatesType);
     char getTurn();
+    void endTurn();
     boardMapType getBoardStatus();
 };
 
