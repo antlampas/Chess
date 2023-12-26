@@ -8,7 +8,7 @@
 #include "timer.hpp"
 #endif
 
-bool timer::callbackStillRunning()
+bool timer::isCallbackStillRunning()
 {
     if(this->callback.joinable() && !this->callbackEnded)
         return true;

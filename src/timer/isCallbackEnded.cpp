@@ -4,7 +4,11 @@
  *
  */
 
-bool timer::callbackEnded()
+#ifndef TIMER_HPP
+#include "timer.hpp"
+#endif
+
+bool timer::isCallbackEnded()
 {
     if(this->callback.joinable() && this->callbackEnded)
     {

@@ -24,7 +24,7 @@ class timer
     std::chrono::time_point<std::chrono::steady_clock> stopTime  {};
     std::chrono::duration<long int> interval                     {};
     std::thread callback                                         {};
-    bool callbackEnded                                       = true;
+    bool callbackEnded                                           {true};
     std::promise<void> exitSignal;
 
     public:
@@ -70,8 +70,8 @@ class timer
     }
     bool stopTimer();
     bool isStarted();
-    bool callbackStillRunning();
-    bool callbackEnded();
+    bool isCallbackStillRunning();
+    bool isCallbackEnded();
     std::chrono::duration<long int> getElapsedTime();
     std::chrono::duration<long int> getRemainingTime();
 };
