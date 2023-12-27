@@ -2,10 +2,6 @@
 
 get_directory_property(MYDEFS COMPILE_DEFINITIONS)
 
-if("${MYDEFS}" MATCHES "TESTBOARD" OR "${MYDEFS}" MATCHES "TESTTIMER" OR "${MYDEFS}" MATCHES "TESTTURNMANAGER")
-add_subdirectory(tests tests)
-endif()
-
 add_subdirectory(board board)
 add_subdirectory(timer timer)
 add_subdirectory(turnManager turnManager)
