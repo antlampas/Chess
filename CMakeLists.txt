@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(Chess DESCRIPTION "Yet another chess implementation for excercise purposes" HOMEPAGE_URL "https://github.com/antlampas/Chess" LANGUAGES "CXX")
+project(Chess VERSION "${VERSION}" DESCRIPTION "Yet another chess implementation for excercise purposes" HOMEPAGE_URL "https://github.com/antlampas/Chess" LANGUAGES "CXX")
 
 include_directories(include)
 
