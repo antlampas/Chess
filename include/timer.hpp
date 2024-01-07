@@ -11,7 +11,7 @@
 #include <functional>
 #include <thread>
 #include <future>
-#include <iostream>
+#include <string>
 
 #ifdef TESTTIMER
 #define private public
@@ -26,6 +26,7 @@ class timer
     std::thread callback                                         {};
     bool callbackEnded                                           {true};
     std::promise<void> exitSignal                                {};
+    std::string name                                             {};
 
     public:
     timer();
@@ -67,6 +68,8 @@ class timer
     bool isCallbackEnded();
     std::chrono::duration<long int> getElapsedTime();
     std::chrono::duration<long int> getRemainingTime();
+    std::string getName();
+    void setName(std::string);
 };
 
 #endif

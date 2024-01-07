@@ -28,8 +28,8 @@ bool turnManager::move(coordinatesType startCoordinates,coordinatesType endCoord
 
         decodedStartCoordinates.second = startCoordinates.at(0) - 97;
         decodedStartCoordinates.first  = startCoordinates.at(1) - 49;
-        decodedEndCoordinates.second   = endCoordinates.at(0) - 97;
-        decodedEndCoordinates.first    = endCoordinates.at(1) - 49;
+        decodedEndCoordinates.second   = endCoordinates.at(0)   - 97;
+        decodedEndCoordinates.first    = endCoordinates.at(1)   - 49;
 
         pieceType piece = board.at(decodedStartCoordinates.first).at(decodedStartCoordinates.second);
 

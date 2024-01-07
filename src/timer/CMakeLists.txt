@@ -2,11 +2,13 @@
 
 add_library(timer SHARED
             getElapsedTime.cpp
+            getName.cpp
             getRemainingTime.cpp
             isCallbackEnded.cpp
             isCallbackStillRunning.cpp
             isStarted.cpp
             setInterval.cpp
+            setName.cpp
             stopTimer.cpp
             timer.cpp
            )
