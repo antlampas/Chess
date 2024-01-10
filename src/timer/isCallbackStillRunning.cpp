@@ -10,7 +10,7 @@
 
 bool timer::isCallbackStillRunning()
 {
-    if(this->callback.joinable() && !this->callbackEnded)
+    if(this->callback.joinable())
         return true;
     else
         return false;

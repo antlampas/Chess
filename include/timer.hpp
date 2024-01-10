@@ -19,25 +19,36 @@
 
 class timer
 {
+    /* Properties about timer itself */
     private:
     std::chrono::time_point<std::chrono::steady_clock> startTime {};
     std::chrono::time_point<std::chrono::steady_clock> stopTime  {};
     std::chrono::duration<long int> interval                     {};
-    std::thread callback                                         {};
-    bool callbackEnded                                           {true};
-    std::promise<void> exitSignal                                {};
     std::string name                                             {};
 
+    /* Callback function properties */
+    private:
+    std::thread callback                                         {};
+    std::promise<void> exitSignal                                {};
+
+    /* Timer construction and destruction */
     public:
     timer();
     timer(long int);
     ~timer();
+
+    /* Timer handling */
     void setInterval(std::chrono::duration<long int>);
+    bool stopTimer();
+    bool isStarted();
+    std::chrono::duration<long int> getElapsedTime();
+    std::chrono::duration<long int> getRemainingTime();
+    std::string getName();
+    void setName(std::string);
     template<typename T,typename U> bool startTimer(T f,U obj,std::future<void> exitSignal)
     {
-        std::function<void(std::future<void>)> function = std::move([this,f,obj](std::future<void> reqExit)
+        std::function<void(std::future<void>)> function = std::move([&,this,f,obj](std::future<void> reqExit)
         {
-            this->callbackEnded = false;
             this->startTime     = std::chrono::steady_clock::now();
             this->stopTime      = this->startTime + this->interval;
             std::chrono::duration<long int> elapsedTime {std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime)};
@@ -48,9 +59,7 @@ class timer
                     break;
                 elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - this->startTime);
             }
-            std::thread execute(f,obj);
-            execute.join();
-            this->callbackEnded = true;
+            (obj->*f)();
         });
 
         this->callback = std::move(std::thread(function,std::move(exitSignal)));
@@ -62,14 +71,11 @@ class timer
         else
             return false;
     }
-    bool stopTimer();
-    bool isStarted();
+    
+    /* Callback check */
+    public:
     bool isCallbackStillRunning();
     bool isCallbackEnded();
-    std::chrono::duration<long int> getElapsedTime();
-    std::chrono::duration<long int> getRemainingTime();
-    std::string getName();
-    void setName(std::string);
 };
 
 #endif

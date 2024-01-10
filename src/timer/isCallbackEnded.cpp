@@ -10,7 +10,7 @@
 
 bool timer::isCallbackEnded()
 {
-    if(this->callback.joinable() && this->callbackEnded)
+    if(this->callback.joinable())
     {
         this->callback.join();
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
