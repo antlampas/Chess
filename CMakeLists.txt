@@ -6,7 +6,6 @@ set(CMAKE_CXX_COMPILER clang++)
 
 project(Chess VERSION "${VERSION}" DESCRIPTION "Yet another chess implementation for excercise purposes" HOMEPAGE_URL "https://github.com/antlampas/Chess" LANGUAGES "CXX")
 
-
 include_directories(include)
 
 add_subdirectory(src ${CMAKE_BUILD_TYPE})
