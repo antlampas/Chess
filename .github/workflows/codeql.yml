@@ -17,7 +17,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: 'fedora-latest'
+    runs-on: 'ubuntu-latest'
     timeout-minutes: ${{ (matrix.language == 'C++' && 120) || 360 }}
     permissions:
       security-events: write
