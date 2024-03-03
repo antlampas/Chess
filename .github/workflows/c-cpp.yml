@@ -1,0 +1,15 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: fedora-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: make
+      run: cmake -DCMAKE_BUILD_TYPE=RELEASE
