@@ -13,7 +13,7 @@ name: "Analyze and build"
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
 jobs:
   analyze:
     name: Analyze
@@ -26,7 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'c-cpp' ]
+        language: ['c-cpp']
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -49,7 +49,6 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         build_type: [Debug]
-        c_compiler: [gcc, clang]
         include:
           - os: windows-latest
             c_compiler: clang
