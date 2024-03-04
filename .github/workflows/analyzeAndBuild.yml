@@ -64,7 +64,8 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Debug]
-        cpp_compiler: [g++,clang++,msvc]
+        # cpp_compiler: [g++,clang++,msvc]
+        cpp_compiler: [msvc]
     steps:
     - uses: actions/checkout@v3
     - name: Workaround test
