@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-#set(CMAKE_CXX_COMPILER clang++)
+set(CMAKE_CXX_STANDARD 11)
 
 project(Chess VERSION "${VERSION}" DESCRIPTION "Yet another chess implementation for excercise purposes" HOMEPAGE_URL "https://github.com/antlampas/Chess" LANGUAGES "CXX")
 
