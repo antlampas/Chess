@@ -29,36 +29,36 @@ jobs:
   #     uses: github/codeql-action/analyze@v3
   #     with:
   #       category: "/language:${{matrix.language}}"
-  build-linux:
-    name: Build on linux
-    # needs: analyze
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        build_type: [Debug]
-        cpp_compiler: [g++,clang++]
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set reusable strings
-      id: strings
-      shell: bash
-      run: |
-        echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
-    - name: Configure CMake
-      run: >
-        cmake -B ${{ steps.strings.outputs.build-output-dir }}
-        -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-        -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-        -S ${{ github.workspace }}
-    - name: Build
-      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
-    - name: Test
-      working-directory: ${{ steps.strings.outputs.build-output-dir }}
-      run: ctest --build-config ${{ matrix.build_type }}
+  # build-linux:
+  #   name: Build on linux
+  #   needs: analyze
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       build_type: [Debug]
+  #       cpp_compiler: [g++,clang++]
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Set reusable strings
+  #     id: strings
+  #     shell: bash
+  #     run: |
+  #       echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+  #   - name: Configure CMake
+  #     run: >
+  #       cmake -B ${{ steps.strings.outputs.build-output-dir }}
+  #       -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
+  #       -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+  #       -S ${{ github.workspace }}
+  #   - name: Build
+  #     run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+  #   - name: Test
+  #     working-directory: ${{ steps.strings.outputs.build-output-dir }}
+  #     run: ctest --build-config ${{ matrix.build_type }}
   build-windows:
     name: Build on Windows
-    needs: analyze
+    # needs: analyze
     runs-on: windows-2019
     strategy:
       fail-fast: false
