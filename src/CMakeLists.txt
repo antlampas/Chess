@@ -10,4 +10,7 @@ add_dependencies(timer turnManager)
 
 add_executable(chess main.cpp)
 
-target_link_libraries(chess PUBLIC board timer turnManager)
+target_link_libraries(chess PUBLIC
+                        board
+                        timer
+                        turnManager)
