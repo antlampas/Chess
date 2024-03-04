@@ -37,7 +37,7 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Debug]
-          cpp_compiler: [g++,clang++]
+        cpp_compiler: [g++,clang++]
     steps:
     - uses: actions/checkout@v3
     - name: Set reusable strings
