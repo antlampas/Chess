@@ -4,34 +4,34 @@ on:
   push:
     branches: ["master"]
 jobs:
-  # analyze:
-  #   name: Analyze
-  #   runs-on: 'ubuntu-latest'
-  #   timeout-minutes: ${{ (matrix.language == 'C++' && 120) || 360 }}
-  #   permissions:
-  #     security-events: write
-  #     actions: read
-  #     contents: read
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       language: ['c-cpp']
-  #   steps:
-  #   - name: Checkout repository
-  #     uses: actions/checkout@v4
-  #   - name: Initialize CodeQL
-  #     uses: github/codeql-action/init@v3
-  #     with:
-  #       languages: ${{ matrix.language }}
-  #   - name: Autobuild
-  #     uses: github/codeql-action/autobuild@v3
-  #   - name: Perform CodeQL Analysis
-  #     uses: github/codeql-action/analyze@v3
-  #     with:
-  #       category: "/language:${{matrix.language}}"
+  analyze:
+    name: Analyze
+    runs-on: 'ubuntu-latest'
+    timeout-minutes: ${{ (matrix.language == 'C++' && 120) || 360 }}
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['c-cpp']
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v3
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:${{matrix.language}}"
   build-linux:
     name: Build on linux
-    # needs: analyze
+    needs: analyze
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -58,8 +58,8 @@ jobs:
       run: ctest --build-config ${{ matrix.build_type }}
   build-windows:
     name: Build on Windows
-    # needs: analyze
-    runs-on: windows-latest
+    needs: analyze
+    runs-on: windows-2019
     strategy:
       fail-fast: false
       matrix:
