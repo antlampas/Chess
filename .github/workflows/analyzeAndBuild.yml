@@ -58,7 +58,7 @@ jobs:
       run: ctest --build-config ${{ matrix.build_type }}
   build-windows:
     name: Build on Windows
-    needs: analyze
+    # needs: analyze
     runs-on: windows-latest
     strategy:
       fail-fast: false
