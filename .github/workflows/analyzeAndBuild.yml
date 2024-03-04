@@ -41,6 +41,7 @@ jobs:
       with:
         category: "/language:${{matrix.language}}"
   build:
+    name: build
     needs: analyze
     runs-on: ${{ matrix.os }}
     strategy:
