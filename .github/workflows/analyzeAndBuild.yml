@@ -1,21 +1,22 @@
 name: "Analyze and build"
 on:
   push:
-    branches: ["master"]
+    branches:     "master"
+    paths-ignore: ".github"
   workflow_dispatch:
 jobs:
   analyze:
-    name: Analyze
-    runs-on: 'ubuntu-latest'
+    name:            Analyze
+    runs-on:         'ubuntu-latest'
     timeout-minutes: ${{ (matrix.language == 'C++' && 120) || 360 }}
     permissions:
       security-events: write
-      actions: read
-      contents: read
+      actions:         read
+      contents:        read
     strategy:
       fail-fast: false
       matrix:
-        language: ['c-cpp']
+        language: 'c-cpp'
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -30,29 +31,29 @@ jobs:
       with:
         category: "/language:${{matrix.language}}"
   build-linux:
-    name: Build on linux
-    needs: analyze
+    name:    Build on linux
+    needs:   analyze
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        build_type: [Debug]
+        build_type:   Debug
         cpp_compiler: [g++,clang++]
     steps:
-    - uses: actions/checkout@v4
-    - name: Set reusable strings
-      id: strings
+    - uses:  actions/checkout@v4
+    - name:  Set reusable strings
+      id:    strings
       shell: bash
-      run: |
-        echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
-    - name: Configure CMake
-      run: >
-        cmake -B ${{ steps.strings.outputs.build-output-dir }}
-        -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-        -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-        -S ${{ github.workspace }}
-    - name: Build
-      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+      run:   |
+             echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+    - name:  Configure CMake
+      run:   >
+             cmake -B ${{ steps.strings.outputs.build-output-dir }}
+             -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
+             -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+             -S ${{ github.workspace }}
+    - name:  Build
+      run:   cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
     - name: Test
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       run: ctest --build-config ${{ matrix.build_type }}
