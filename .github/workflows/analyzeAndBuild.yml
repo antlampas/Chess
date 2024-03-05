@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: 'c-cpp'
+        language: ['c-cpp']
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -37,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        build_type:   Debug
+        build_type:   [Debug]
         cpp_compiler: [g++,clang++]
     steps:
     - uses:  actions/checkout@v4
