@@ -21,15 +21,15 @@ class timer
 {
     /* Properties about timer itself */
     private:
-    std::chrono::time_point<std::chrono::steady_clock> startTime {};
-    std::chrono::time_point<std::chrono::steady_clock> stopTime  {};
-    std::chrono::duration<long int> interval                     {};
-    std::string name                                             {};
+    std::chrono::time_point<std::chrono::steady_clock> startTime  {};
+    std::chrono::time_point<std::chrono::steady_clock> stopTime   {};
+    std::chrono::duration<long int>                    interval   {};
+    std::string                                        name       {};
 
     /* Callback function properties */
     private:
-    std::thread callback                                         {};
-    std::promise<void> exitSignal                                {};
+    std::thread                                        callback   {};
+    std::promise<void>                                 exitSignal {};
 
     /* Timer construction and destruction */
     public:
@@ -38,13 +38,13 @@ class timer
     ~timer();
 
     /* Timer handling */
-    void setInterval(std::chrono::duration<long int>);
-    bool stopTimer();
-    bool isStarted();
-    std::chrono::duration<long int> getElapsedTime();
-    std::chrono::duration<long int> getRemainingTime();
-    std::string getName();
-    void setName(std::string);
+    void                                 setInterval(std::chrono::duration<long int>);
+    bool                                 stopTimer();
+    bool                                 isStarted();
+    void                                 setName(std::string);
+    std::chrono::duration<long int>      getElapsedTime();
+    std::chrono::duration<long int>      getRemainingTime();
+    std::string                          getName();
     template<typename T,typename U> bool startTimer(T f,U obj,std::future<void> exitSignal)
     {
         std::function<void(std::future<void>)> function = std::move([&,this,f,obj](std::future<void> reqExit)

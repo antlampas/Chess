@@ -17,12 +17,12 @@ turnManager::turnManager(boardMapType boardMap)
     if(!boardMap.empty())
     {
         board b(boardMap);
-        this->b = std::move(b);
+        std::swap(b,this->b);
     }
     else
     {
         board b;
-        this->b = std::move(b);
+        std::swap(b,this->b);
     }
 
     this->setTurn('w');

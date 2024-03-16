@@ -11,7 +11,10 @@
 #include "board.hpp"
 #endif
 
-board::board()
+board::board()  :   publicFunctionsState(functionsState),
+                    publicBoardMap(boardMap),
+                    publicTookPieces(tookPieces),
+                    publicError(error)
 {
     const std::vector<std::string> whiteBackLine  {"wr","wn","wb","wq","wk","wb","wn","wr"};
     const std::vector<std::string> blackBackLine  {"br","bn","bb","bq","bk","bb","bn","br"};
@@ -31,7 +34,10 @@ board::board()
     }
 }
 
-board::board(boardMapType initialPositions)
+board::board(boardMapType initialPositions) :   publicFunctionsState(functionsState),
+                                                publicBoardMap(boardMap),
+                                                publicTookPieces(tookPieces),
+                                                publicError(error)
 {
     std::regex pieceNameFormat("^[wb][prnbkq]$|^e$");
     
@@ -48,4 +54,19 @@ board::board(boardMapType initialPositions)
         std::copy(initialPositions.begin(),initialPositions.end(),this->boardMap.begin());
     else
         std::for_each(this->boardMap.begin(),this->boardMap.end(),[emptyLine](columnType column){std::copy(emptyLine.begin(),emptyLine.end(),column.begin());});
+}
+
+board::board(board&& b) :   functionsState(b.functionsState),
+                            boardMap(b.boardMap),
+                            tookPieces(b.tookPieces),
+                            error(b.error),
+                            publicFunctionsState(functionsState),
+                            publicBoardMap(boardMap),
+                            publicTookPieces(tookPieces),
+                            publicError(error)
+{}
+
+board& board::operator=(board&& b)
+{
+    return *this;
 }
