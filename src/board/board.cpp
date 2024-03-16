@@ -27,9 +27,9 @@ board::board()  :   publicFunctionsState(functionsState),
     for(int row: {0,1,2,3,4,5,6,7})
     {
         if(row==0)      std::copy(whiteBackLine.begin(),whiteBackLine.end(),this->boardMap.at(row).begin());
-        else if(row==7) std::copy(blackBackLine.begin(),blackBackLine.end(),this->boardMap.at(row).begin());
         else if(row==1) std::copy(whitePawnLine.begin(),whitePawnLine.end(),this->boardMap.at(row).begin());
         else if(row==6) std::copy(blackPawnLine.begin(),blackPawnLine.end(),this->boardMap.at(row).begin());
+        else if(row==7) std::copy(blackBackLine.begin(),blackBackLine.end(),this->boardMap.at(row).begin());
         else            std::copy(emptyLine.begin(),emptyLine.end(),this->boardMap.at(row).begin());
     }
 }
