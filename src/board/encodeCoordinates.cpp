@@ -12,8 +12,10 @@
 
 std::string board::encodeCoordinates(std::pair<int,int> coordinates)
 {
+    this->functionsState.encodeCoordinates = 1;
     if((coordinates.first > -1 && coordinates.first < 8) && (coordinates.second > -1 && coordinates.second < 8))
     {
+        this->functionsState.encodeCoordinates = 2;
         const char row    = coordinates.first  + 49;
         const char column = coordinates.second + 97;
         
@@ -21,7 +23,12 @@ std::string board::encodeCoordinates(std::pair<int,int> coordinates)
         
         encodedCoordinates.append(1,column).append(1,row);
 
+        this->functionsState.encodeCoordinates = 0;
+
         return encodedCoordinates;
     }
+
+    this->functionsState.encodeCoordinates = 0;
+    
     return std::string();
 }

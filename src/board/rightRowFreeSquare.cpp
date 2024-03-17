@@ -10,6 +10,8 @@
 
 int board::rightRowFreeSquare(int row,int column,std::string nextColumn,std::string piece)
 {
+    this->functionsState.rightRowFreeSquare = 1;
+
     int endColumn = 7;
     while(this->isColumnClogged(nextColumn,this->encodeCoordinates(std::pair<int,int>(row,endColumn))) && (endColumn > column) ) --endColumn;
     if(this->getPieceInSquare(this->encodeCoordinates(std::pair<int,int>(row,endColumn))).at(0) == piece.at(0)) --endColumn;

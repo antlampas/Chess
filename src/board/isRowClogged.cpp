@@ -10,6 +10,8 @@
 
 bool board::isRowClogged(std::string start,std::string end)
 {
+    this->functionsState.isRowClogged = 1;
+
     std::pair<int,int> decodedStartCoordinates = this->decodeCoordinates(start);
     std::pair<int,int> decodedEndCoordinates   = this->decodeCoordinates(end);
     
@@ -19,11 +21,17 @@ bool board::isRowClogged(std::string start,std::string end)
     const int& endColumn   {decodedEndCoordinates.second};
 
     bool clogged = false;
+
+    this->functionsState.isRowClogged = 2;
+    
     if(startRow == endRow)
         for(int i=startColumn+1;i<endColumn;i++)
             if(this->boardMap.at(startRow).at(i)!="e")
                 clogged = true;
     else
         this->error = "Not on the same Row";
+    
+    this->functionsState.isRowClogged = 0;
+    
     return clogged;
 }

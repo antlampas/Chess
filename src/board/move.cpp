@@ -11,6 +11,8 @@
 
 bool board::move(std::string start,std::string end)
 {
+    this->functionsState.move = 1;
+
     std::pair<int,int> decodedStartCoordinates = this->decodeCoordinates(start);
     std::pair<int,int> decodedEndCoordinates   = this->decodeCoordinates(end);
     
@@ -22,6 +24,8 @@ bool board::move(std::string start,std::string end)
     std::string movingPiece = this->getPieceInSquare(start);
     std::string targetPiece = this->getPieceInSquare(end);
     
+    this->functionsState.move = 2;
+
     if(this->isMoveValid(start,end))
     {
         if(!this->isMoveClogged(start,end))
@@ -30,15 +34,30 @@ bool board::move(std::string start,std::string end)
                 if(targetPiece.at(0) != movingPiece.at(0))
                     this->tookPieces.push_back(targetPiece);
                 else
+                {
+                    this->functionsState.move = 0;
+
                     return false;
+                }
 
             this->boardMap.at(endRow).at(endColumn)     = movingPiece;
             this->boardMap.at(startRow).at(startColumn) = "e";
+            
+            this->functionsState.move = 0;
+
             return true;
         }
         else
+        {
+            this->functionsState.move = 0;
+
             return false;
+        }
     }
     else
+    {
+        this->functionsState.move = 0;
+
         return false;
+    }
 }

@@ -12,5 +12,9 @@
 
 boardMapType board::boardStatus()
 {
+    this->functionsState.boardStatus = 1;
+
+    this->functionsState.boardStatus = 0;
+    
     return this->boardMap;
 }

@@ -12,8 +12,17 @@
 
 std::pair<char,char> board::decodePieceName(std::string piece)
 {
+    this->functionsState.decodePieceName = 1;
     if(this->isPieceNameValid(piece))
+    {
+        this->functionsState.decodePieceName = 0;
+
         return std::make_pair(piece.at(0),piece.at(1));
+    }
     else
+    {
+        this->functionsState.decodePieceName = 0;
+
         return std::pair<char,char>();
+    }
 }

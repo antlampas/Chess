@@ -10,11 +10,15 @@
 
 std::vector<std::string> board::listValidMoves(std::string coordinates)
 {
+    this->functionsState.listValidMoves = 1;
+
     std::pair<int,int> decodedCoordinates = this->decodeCoordinates(coordinates);
     std::vector<std::string> movesList {};
 
     if(decodedCoordinates.first != -1)
     {
+        this->functionsState.listValidMoves = 2;
+
         const int& row    {decodedCoordinates.first};
         const int& column {decodedCoordinates.second};
 
@@ -42,6 +46,8 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
         const bool isOnRight                 = ( column == 7 );
         const bool isNotOnBottomOrTop        = ( (row != 0) && (row != 7));
         const bool isNotOnLeftOrRight        = ( (column != 0) && (column != 7));
+
+        this->functionsState.listValidMoves = 3;
 
         if(this->isPieceNameValid(piece))
         {
@@ -282,5 +288,7 @@ std::vector<std::string> board::listValidMoves(std::string coordinates)
         }
     }
 
+    this->functionsState.listValidMoves = 0;
+    
     return movesList;
 }

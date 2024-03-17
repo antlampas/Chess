@@ -12,7 +12,11 @@
 
 bool board::isPieceNameValid(std::string name)
 {
+    this->functionsState.isPieceNameValid = 1;
+    
     std::regex nameFormat("^[wb][prnbkq]$|^e$");
+    
+    this->functionsState.isPieceNameValid = 0;
     
     return std::regex_match(name,nameFormat);
 }

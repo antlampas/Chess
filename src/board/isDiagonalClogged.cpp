@@ -12,6 +12,8 @@
 
 bool board::isDiagonalClogged(std::string start,std::string end)
 {
+    this->functionsState.isDiagonalClogged = 1;
+
     std::pair<int,int> decodedStartCoordinates = this->decodeCoordinates(start);
     std::pair<int,int> decodedEndCoordinates   = this->decodeCoordinates(end);
 
@@ -19,6 +21,8 @@ bool board::isDiagonalClogged(std::string start,std::string end)
     const int& startColumn {decodedStartCoordinates.second};
     const int& endRow      {decodedEndCoordinates.first};
     const int& endColumn   {decodedEndCoordinates.second};
+
+    this->functionsState.isDiagonalClogged = 2;
 
     if(std::abs(endColumn - startColumn) == std::abs(endRow - startRow))
         if((endRow > startRow) && (endColumn > startColumn))      //Check main diagonal to the right
@@ -39,5 +43,8 @@ bool board::isDiagonalClogged(std::string start,std::string end)
                     return true;
     else
         this->error = "Not on a diagonal";
+
+    this->functionsState.isDiagonalClogged = 0;
+    
     return false;
 }

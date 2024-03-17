@@ -12,7 +12,11 @@
 
 bool board::isCoordinateValid(std::string coordinates)
 {
+    this->functionsState.isCoordinateValid = 1;
+
     std::regex coordinatesFormat("^[a-h][1-8]$");
+    
+    this->functionsState.isCoordinateValid = 0;
     
     return std::regex_match(coordinates,coordinatesFormat);
 }

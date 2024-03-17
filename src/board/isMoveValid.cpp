@@ -14,10 +14,13 @@
 
 bool board::isMoveValid(std::string start,std::string end)
 {
+    this->functionsState.isMoveValid = 1;
+
     std::string piece {this->getPieceInSquare(start)};
 
     if(this->isPieceNameValid(piece) && this->isCoordinateValid(start) && this->isCoordinateValid(end))
     {
+        this->functionsState.isMoveValid = 2;
         std::pair<int,int> startCoordinates = this->decodeCoordinates(start);
         std::pair<int,int> endCoordinates   = this->decodeCoordinates(end);
         
@@ -36,6 +39,7 @@ bool board::isMoveValid(std::string start,std::string end)
         bool moveL        = (!((std::abs(endRow-startRow) == 1) && (std::abs(endColumn-startColumn) == 2)) != !((std::abs(endRow-startRow) == 2) && (std::abs(endColumn-startColumn) == 1)));
         bool noMove       = ((startRow == endRow) && (startColumn == endColumn));
         
+        this->functionsState.isMoveValid = 0;
         if(piece.at(1) == 'p')      return (noMove || advanceOne || advanceTwo || pawnCapture);
         else if(piece.at(1) == 'r') return (noMove || moveHV);
         else if(piece.at(1) == 'n') return (noMove || moveL);
@@ -45,12 +49,14 @@ bool board::isMoveValid(std::string start,std::string end)
         else
         {
             this->error = "Move validation: something went wrong...";
+            this->functionsState.isMoveValid = 0;
             return false;
         }
     }
     else
     {
         this->error = "Move validation failed";
+        this->functionsState.isMoveValid = 0;
         return false;
     }
 }

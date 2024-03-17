@@ -30,9 +30,10 @@ using decodedColumnType      = int;
 class fs //Functions state bit-field
 {
     public:
-    unsigned char decodeCoordinate       : 2;
+    unsigned char boardStatus            : 2;
+    unsigned char decodeCoordinates      : 2;
     unsigned char decodePieceName        : 2;
-    unsigned char encodePieceName        : 2;
+    unsigned char encodeCoordinates      : 2;
     unsigned char getPieceInSquare       : 2;
     unsigned char isColumnClogged        : 2;
     unsigned char isCoordinateValid      : 2;
@@ -46,6 +47,8 @@ class fs //Functions state bit-field
     unsigned char lowerColumnFreeSquare  : 2;
     unsigned char rightRowFreeSquare     : 2;
     unsigned char upperColumnFreeSquare  : 2;
+    unsigned char listValidMoves         : 2;
+    unsigned char move                   : 2;
 };
 
 class board{

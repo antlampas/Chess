@@ -10,6 +10,8 @@
 
 bool board::isFrontClogged(coordinatesType startCoordinates,coordinatesType endCoordinates)
 {
+    this->functionsState.isFrontClogged = 0;
+
     decodedCoordinatesType decodedStartCoordinates = this->decodeCoordinates(startCoordinates);
     decodedCoordinatesType decodedEndCoordinates = this->decodeCoordinates(endCoordinates);
     
@@ -19,8 +21,14 @@ bool board::isFrontClogged(coordinatesType startCoordinates,coordinatesType endC
     const int& endRow    {decodedEndCoordinates.first};
     const int& endColumn {decodedEndCoordinates.second};
 
+    this->functionsState.isFrontClogged = 1;
+
     if((std::abs(endRow-startRow) == 1) && (endColumn == startColumn))
         if((this->boardMap.at(endRow).at(endColumn)!="e"))
+        {
+            this->functionsState.isFrontClogged = 0;
             return true;
+        }
+    this->functionsState.isFrontClogged = 0;
     return false;
 }
