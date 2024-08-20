@@ -2,14 +2,14 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(Chess
+set(CMAKE_CXX_STANDARD 20)
+
+project("Chess"
         VERSION      "${VERSION}"
         DESCRIPTION  "Yet another chess implementation for excercise purposes"
         HOMEPAGE_URL "https://github.com/antlampas/Chess"
         LANGUAGES    "CXX"
 )
-
-set(CMAKE_CXX_STANDARD 20)
 
 include_directories(include)
 
