@@ -31,10 +31,10 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{env.language}}"
-  build-linux:
-    name:    Build on linux
+  build:
+    name:    Build
     needs:   analyze
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest,macos-latest,windows-latest]
     strategy:
       fail-fast: false
       matrix:
