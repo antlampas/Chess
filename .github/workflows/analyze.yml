@@ -1,0 +1,33 @@
+name: "Analyze"
+on:
+  push:
+    branches:     "master"
+    paths-ignore:
+      - '.github/**'
+      - 'LICENSE.md'
+      - 'README.md'
+  workflow_dispatch:
+jobs:
+  analyze:
+    name:            Analyze
+    runs-on:         'ubuntu-latest'
+    timeout-minutes: ${{ (matrix.language == 'C++' && 120) || 360 }}
+    permissions:
+      security-events: write
+      actions:         read
+      contents:        read
+    env:
+      language: 'c-cpp'
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v3
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:${{env.language}}"
