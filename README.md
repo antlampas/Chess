@@ -1,5 +1,4 @@
 ![Analyze](https://github.com/antlampas/Chess/actions/workflows/analyze.yml/badge.svg)
-![Build](https://github.com/antlampas/Chess/actions/workflows/build.yml/badge.svg)
 
 Yet another Chess implementation as C++ and programming exercises
 
